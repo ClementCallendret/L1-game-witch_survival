@@ -20,13 +20,12 @@ int main()
     Enemy enemytest(W/2., H/4., 50., 3);  // Je créé un enemy que je ferais bouger moi même pour les testes
     bool moveUp, moveDown, moveLeft, moveRight;
 
-    sf::CircleShape player(50.f);  // Je créé un cercle immobile au centre qui serait notre joueur
+    sf::CircleShape player(30.f);  // Je créé un cercle immobile au centre qui serait notre joueur
     player.setFillColor(sf::Color::Green);
     player.setOrigin(sf::Vector2f(player.getRadius(), player.getRadius()));
     player.setPosition(sf::Vector2f(W/2., H/2.));
-
-    std::vector<Bullet *> ens_bullet; // tableau dynamique contenant des pointeurs vers chaque projectile a l'ecran
-
+    
+    Arme baguette(1., 0.1, 1., 10., 1, "baguette de pain", 120);
 
     while (window.isOpen())  // Boucle Principale de l'app
     {
@@ -52,9 +51,9 @@ int main()
                 case sf::Keyboard::Right:
                     moveRight = true;
                     break;
-                case sf::Keyboard::Space:
+                /* case sf::Keyboard::Space:
                     Bullet *b = new Bullet(player.getPosition().x, player.getPosition().y, 15., 1.5, enemytest);
-                    ens_bullet.push_back(b);
+                    ens_bullet.push_back(b); */
                 }
 
             if (event.type == sf::Event::KeyReleased)
@@ -86,41 +85,16 @@ int main()
         if (moveRight)
             enemytest.x += 6;
 
-
-        for (auto b : ens_bullet) // On verifie si un projectile touche un enemi
-        {
-            if (b->collision(&enemytest))
-                {
-                b->life = 0;    // si c'est le cas le projectile "meurt" et l'ennemi prend des degats
-                enemytest.life -= b->degats;
-                }
-            
-        }
-
-        for (auto i = std::begin(ens_bullet); i != std::end(ens_bullet);) 
-        { 
-            Bullet *e = *i;
-            e->update();  // on fait bouger les projectiles grace a la fct update
-
-            if (e->life == 0)  // on efface les projectiles qui sont "mort"
-            {
-                i = ens_bullet.erase(i);
-                delete e;
-            }
-            else
-                i++;
-            
-        }
-
         // on actualise enfin la fenetre
+        baguette.update(enemytest);
 
         window.clear();
-        window.draw(player);
-        enemytest.draw(window);
-        for (auto b : ens_bullet)
+        for (auto b : baguette.ensemble)
         {
             b->draw(window);
         }
+        window.draw(player);
+        enemytest.draw(window);
         window.display();
     }
 }
