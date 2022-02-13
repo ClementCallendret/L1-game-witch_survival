@@ -1,11 +1,9 @@
-// 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 token git
-
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
-#define _USE_MATH_DEFINES
-#include <cmath>
-#include "Entity_arme.hpp"
+#include "Arme.hpp"
+#include "Bullet.hpp"
+#include "Animation.hpp"
 
 
 int main()
@@ -17,15 +15,20 @@ int main()
     window.setKeyRepeatEnabled(false);
 
 
-    Enemy enemytest(W/2., H/4., 50., 3);  // Je créé un enemy que je ferais bouger moi même pour les testes
+    Enemy enemytest(W/2., H/4., 30., 10);  // Je créé un enemy que je ferais bouger moi même pour les testes
     bool moveUp, moveDown, moveLeft, moveRight;
 
     sf::CircleShape player(30.f);  // Je créé un cercle immobile au centre qui serait notre joueur
     player.setFillColor(sf::Color::Green);
     player.setOrigin(sf::Vector2f(player.getRadius(), player.getRadius()));
     player.setPosition(sf::Vector2f(W/2., H/2.));
-    
-    Arme baguette(1., 0.1, 1., 10., 1, "baguette de pain", 120);
+
+    sf::Texture blueFire;
+    blueFire.loadFromFile("fire_blue.png");
+    sf::Sprite blueSprite(blueFire);
+
+    Animation blueAnim(blueSprite, 32, 64, 16, sf::Vector2i(16, 16));
+    Arme baguette(1., 0.1, 1., 10, 1, "baguette de pain", 30, randomm, blueAnim);
 
     while (window.isOpen())  // Boucle Principale de l'app
     {
@@ -51,9 +54,6 @@ int main()
                 case sf::Keyboard::Right:
                     moveRight = true;
                     break;
-                /* case sf::Keyboard::Space:
-                    Bullet *b = new Bullet(player.getPosition().x, player.getPosition().y, 15., 1.5, enemytest);
-                    ens_bullet.push_back(b); */
                 }
 
             if (event.type == sf::Event::KeyReleased)
@@ -89,10 +89,7 @@ int main()
         baguette.update(enemytest);
 
         window.clear();
-        for (auto b : baguette.ensemble)
-        {
-            b->draw(window);
-        }
+        baguette.draw(window);
         window.draw(player);
         enemytest.draw(window);
         window.display();
