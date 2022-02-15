@@ -1,4 +1,6 @@
 #pragma once
+
+
 struct deplacement2D
 {
 	float x, y;

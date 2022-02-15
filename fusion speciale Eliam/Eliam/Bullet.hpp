@@ -1,6 +1,7 @@
 #ifndef BULLET_HPP
 #define BULLET_HPP
 #include "Animation.hpp"
+#include "Player.h"
 
 class Enemy : public sf::Transformable
 {
@@ -15,23 +16,27 @@ public:
 };
 
 
-enum ModeDeTir{teleguide, randomm};
+enum ModeDeTir{teleguide, randomDir, randomPlace, rotation, boomerang};
 
 class Bullet
 {
-public:
-    float x, y, rayon, life, degats, speed, angle;
-    int num_frame;
+private:
+    float x, y, rayon, degats, speed, angle;
+    int life;
     Animation bul_anim;
-    Enemy *cible;
+    Enemy* cible;
     ModeDeTir mdt;
 
-    Bullet(float X, float Y, float R, float D, float S, Enemy & Cible, Animation &a, ModeDeTir mDT);
+    Player* tireur;
 
-    void update();
+public:
+    Bullet(float X, float Y, float Rayon, float Degat, float Speed, int Life, Enemy & Cible, Animation &a, ModeDeTir mDT, Player* j);
 
+    float getBulLife();
+    void hit(Enemy &enemy);
     bool collision(Enemy *a);
 
+    void update();
     void draw(sf::RenderWindow &window);
 };
 

@@ -3,15 +3,19 @@
 #include <iostream>
 #define _USE_MATH_DEFINES
 
-Bullet::Bullet(float X, float Y, float R, float D, float S, Enemy &Cible, Animation &a, ModeDeTir mDT) : x(X), y(Y), rayon(R), degats(D), speed(S), cible(&Cible), bul_anim(a), mdt(mDT)
+Bullet::Bullet(float X, float Y, float R, float D, float S, int Life, Enemy &Cible, Animation &a, ModeDeTir mDT, Player* j) : x(X), y(Y), rayon(R), degats(D), speed(S), life(Life), cible(&Cible), bul_anim(a), mdt(mDT), tireur(j)
 {
-    life = 1; // donner de la vie au projectile pourrait lui permettre de toucher plusieurs ennemis
 
     if (mdt == 1)
     {
         angle = rand() % 360;
         bul_anim.sprite.setRotation(-1 * angle * 180 / M_PI + 180);
     }
+    if (mdt == 3)
+    {
+        angle = rand() % 360;
+    }
+
 }
 
 void Bullet::update()
@@ -24,15 +28,19 @@ void Bullet::update()
     {
         /* On récupère a chaque frame la position de la cible grace au pointeur cible
         puis on la vise en calculant l'angle de tir */
+        float pente;
+        if(y == cible->y)
+            pente = (x - cible->x) / 0.0001;
+        else
+            pente = (x - cible->x) / (y - cible->y);
 
-        float pente = (x - cible->x) / (y - cible->y);
         angle = atan(pente);
 
         if (y > cible->y)
             angle += M_PI;
 
-        x += speed * (180 / M_PI) * sin(angle); // fait avvancer le projectiles dans la bonne
-        y += speed * (180 / M_PI) * cos(angle); // direction grace à la trigo
+        x += speed * sin(angle); // fait avvancer le projectiles dans la bonne
+        y += speed * cos(angle); // direction grace à la trigo
         if (x > 1200 || x < 0 || y > 800 || y < 0)
             life = 0;
 
@@ -41,21 +49,42 @@ void Bullet::update()
     }
     break;
 
-    case randomm:
+    case randomDir:
     {
         // ici un angle aleatoire est definit des le départ et la balle va tout droit
 
-        x += speed * (180 / M_PI) * sin(angle); // fait avvancer le projectiles dans la bonne
-        y += speed * (180 / M_PI) * cos(angle); // direction grace à la trigo
+        x += speed * sin(angle); // fait avvancer le projectiles dans la bonne
+        y += speed * cos(angle); // direction grace à la trigo
         if (x > 1200 || x < 0 || y > 800 || y < 0)
             life = 0;
 
         bul_anim.update();
     }
+    break;
 
+    case rotation:
+    {
+        x = tireur->getPlayerPos().x + 5 * (180 / M_PI) * sin(angle);
+        y = tireur->getPlayerPos().y + 5 * (180 / M_PI) * cos(angle);
+        angle += 0.01*speed;
+
+        bul_anim.update();
+    }
     break;
     }
 }
+
+float Bullet::getBulLife()
+{
+    return life;
+}
+
+void Bullet::hit(Enemy &enemy)
+{
+    life -= 1;
+    enemy.life -= degats;
+}
+
 
 bool Bullet::collision(Enemy *a)
 {

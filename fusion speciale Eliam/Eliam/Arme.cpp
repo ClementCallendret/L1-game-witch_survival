@@ -5,19 +5,19 @@
 
 // oui, ca fait beaucoup mais on le fait qu'une fois par arme donc ok ca va*
 
-Arme::Arme(float d, float vP, int nP, float tP, int vieProjectile, std::string nom, int cool, ModeDeTir mDT, Animation &a) : degats(d), vitesseProjectile(vP), nombreProjectile(nP), tailleProjectile(tP), nomArme(nom), cooldown(cool), mdt(mDT), anim(a)
+Arme::Arme(float d, float vP, int nP, float tP, int vieP, std::string nom, sf::Time cool, ModeDeTir mDT, Animation &a, Player* j) : degats(d), vitesseProjectile(vP), nombreProjectile(nP), tailleProjectile(tP), vieProjectile(vieP), nomArme(nom), cooldown(cool), mdt(mDT), anim(a), joueur(j)
 {
+    clock.restart();
 }
 
 void Arme::tirer(Enemy &cible)
 {
-    if (compteFrame == cooldown)
+    if (clock.getElapsedTime() >= cooldown)
     {
-        Bullet *b = new Bullet(600, 400, tailleProjectile, degats, vitesseProjectile, cible, anim, mdt);
+        Bullet *b = new Bullet(joueur->getPlayerPos().x, joueur->getPlayerPos().y, tailleProjectile, degats, vitesseProjectile, vieProjectile, cible, anim, mdt, joueur);
         ensemble.push_back(b);
-        compteFrame = 0;
+        clock.restart();
     }
-    else compteFrame++;
 }
 
 void Arme::update(Enemy &cible)
@@ -27,9 +27,7 @@ void Arme::update(Enemy &cible)
     {
         if (b->collision(&cible))
         {
-            b->life = 0; // si c'est le cas le projectile "meurt" et l'ennemi prend des degats
-            cible.life -= b->degats;
-            std::cout << cible.life << std::endl;
+            b->hit(cible);
         }
     }
 
@@ -38,7 +36,7 @@ void Arme::update(Enemy &cible)
         Bullet *e = *i;
         e->update(); // on fait bouger les projectiles grace a la fct update
 
-        if (e->life == 0) // on efface les projectiles qui sont "mort"
+        if (e->getBulLife() == 0) // on efface les projectiles qui sont "mort"
         {
             i = ensemble.erase(i);
             delete e;
