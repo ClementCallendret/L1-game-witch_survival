@@ -1,7 +1,9 @@
-#ifndef _PLAYER_H_
-#define _PLAYER_H_
+#ifndef ENNEMI_H
+#define ENNEMI_H
 
 #include "deplacement.h"
+#include "Player.h"
+#include <SFML/Graphics.hpp>
 
 namespace sf
 {
@@ -18,10 +20,14 @@ private:
 
 public:
 	Ennemi(Player* j);
-	short PV[100];
+	short PV = 100;
 
 	void draw(sf::RenderWindow &window);
 	void inputs();
+
+	sf::Vector2f getEnnemiPos(){
+		return sf::Vector2f(location.x, location.y);
+	}
 };
 
 

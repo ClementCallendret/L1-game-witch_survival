@@ -29,14 +29,17 @@ void Bullet::update()
         /* On récupère a chaque frame la position de la cible grace au pointeur cible
         puis on la vise en calculant l'angle de tir */
         float pente;
-        if(y == cible->y)
-            pente = (x - cible->x) / 0.0001;
+        float Cx = cible->getEnnemiPos().x;
+        float Cy = cible->getEnnemiPos().y;
+
+        if(y == Cy)
+            pente = (x - Cx) / 0.0001;
         else
-            pente = (x - cible->x) / (y - cible->y);
+            pente = (x - Cx) / (y - Cy);
 
         angle = atan(pente);
 
-        if (y > cible->y)
+        if (y > Cy)
             angle += M_PI;
 
         x += speed * sin(angle); // fait avvancer le projectiles dans la bonne
@@ -82,15 +85,13 @@ float Bullet::getBulLife()
 void Bullet::hit(Ennemi &enemy)
 {
     life -= 1;
-    enemy.life -= degats;
+    enemy.PV -= degats;
 }
 
 
 bool Bullet::collision(Ennemi *a)
 {
-    return (x - a->x)*(x - a->x)+
-         (y - a->y)*(y - a->y)<
-         (a->rayon + rayon)*(a->rayon + rayon);
+    
 }
 
 void Bullet::draw(sf::RenderWindow &window)

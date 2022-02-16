@@ -92,7 +92,6 @@ int main()
         // on draw le jeu
         window.clear();
         window.draw(map);
-        enmycible.draw(window);
         player.draw(window);
         ennemi.draw(window);
         baguette.draw(window);

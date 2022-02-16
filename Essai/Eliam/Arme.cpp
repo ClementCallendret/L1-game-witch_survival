@@ -24,13 +24,13 @@ void Arme::tirer(Ennemi &cible)
 void Arme::update(Ennemi &cible)
 {
     tirer(cible);
-    for (auto b : ensemble) // On verifie si un projectile touche un enemi
+    /* for (auto b : ensemble) // On verifie si un projectile touche un enemi
     {
         if (b->collision(&cible))
         {
             b->hit(cible);
         }
-    }
+    } */
 
     for (auto i = std::begin(ensemble); i != std::end(ensemble);)
     {

@@ -32,8 +32,8 @@ void Ennemi::inputs()
 
        // Collision
     //printf("%lf %lf\n",location.x,posxP);
-    float posxP = joueur.getPlayerPos().x;
-    float posyP = joueur.getPlayerPos().y;
+    float posxP = joueur->getPlayerPos().x;
+    float posyP = joueur->getPlayerPos().y;
 
     deplaX = posxP - location.x;
     deplaY = posyP - location.y;
@@ -50,7 +50,7 @@ void Ennemi::inputs()
         location.y -= speed * sin(angle); 
     }      
     int tailleE = 256;
-    int tailleP = 225;
+    int tailleP = 32;
 // COLLISION 
 if (location.x < (posxP + tailleP) && location.x + tailleE > posxP && location.y < posyP + tailleP && location.y + tailleE > posyP){
     location.x = 0;
