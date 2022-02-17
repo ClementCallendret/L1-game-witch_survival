@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-
 #include "Player.h"
 
 Player::Player()
@@ -45,7 +43,3 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite)
     }
 }
 
-sf::Vector2f Player::getPlayerPos()
-{
-    return sf::Vector2f(location.x, location.y);
-}

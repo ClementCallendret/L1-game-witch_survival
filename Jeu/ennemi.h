@@ -15,7 +15,7 @@ class Ennemi
 {
 private:
 	Player* joueur;
-	static constexpr float speed = 0.1;
+	static constexpr float speed = 1.;
 	deplacement2D location = deplacement2D(0, 0);
 
 public:

@@ -5,12 +5,12 @@
 class Animation
 {
     public:
+    sf::Sprite sprite;
     int nbtot_frames;
     float speed, num_frame;
-    sf::Sprite sprite;
     std::vector<sf::IntRect> frames;
 
-    Animation(sf::Sprite spt, int w, int h, int nb_frames, sf::Vector2i center, float speed = 1, int scale = 1);
+    Animation(sf::Sprite spt, int nb_frames, sf::Vector2i center, int w, int h, int scale = 1, float speed = 1);
 
     void update();
 };

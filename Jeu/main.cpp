@@ -3,33 +3,33 @@
 
 
 #include <SFML/Graphics.hpp>
-#include "Class_Player.cpp"
+#include <iostream>
+#include "Player.h"
 #include "deplacement.h"
 #include "map.cpp"
 #include "Animation.hpp"
-#include "Bullet.hpp"
-#include "Arme.hpp"
+#include "Armes/Bullet.hpp"
+#include "Armes/Arme.hpp"
 #include "ennemi.h"
+#include "Armes/ArmeBaguette.hpp"
 
 
 int main()
 {
     // on cree la fenetre principale
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Witch SURVIVAL !"); // Taille de la fenetre principale appelee ici "window" (1600/900)
-
+    window.setFramerateLimit(60);
+    
     Player player;
     Ennemi ennemi(&player);
 
     sf::Texture blueFire;
     blueFire.loadFromFile("media/fire_blue.png");
     sf::Sprite blueSprite(blueFire);
-    
-    sf::Time cooldown = sf::milliseconds(500);
 
-    Animation blueAnim(blueSprite, 32, 64, 16, sf::Vector2i(16, 16));
-    blueAnim.sprite.setScale(0.5, 0.5);
-    Arme baguette(1., 1, 1., 5, 1, "baguette de pain", cooldown, teleguide, blueAnim, &player);
-
+    Animation baguetteanim(blueSprite, 16,  sf::Vector2i(16, 16), 32, 64);
+   
+    Arme* baguette = new ArmeBaguette(&baguetteanim, &player);
 
     const int level[] = // Nos tuiles placees au bon endroit avec le bon numero definissent la carte
     {
@@ -80,21 +80,24 @@ int main()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed) // Lorsque l'on va fermer le jeu, notre code vabel et bien s'arreter
-                window.close();
+                {
+                    delete baguette;
+                    baguette = 0;
+                    window.close();
+                }         
 
-            
         }
 
         player.inputs();
         ennemi.inputs();
-        baguette.update(ennemi);
+        if (baguette) baguette->update(&ennemi);
 
         // on draw le jeu
         window.clear();
         window.draw(map);
         player.draw(window);
         ennemi.draw(window);
-        baguette.draw(window);
+        if (baguette) baguette->draw(window);
         window.display();
 
 
