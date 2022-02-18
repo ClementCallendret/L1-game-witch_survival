@@ -5,13 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Player.h"
-#include "deplacement.h"
 #include "map.cpp"
 #include "Animation.hpp"
+#include "ennemi.h"
 #include "Armes/Bullet.hpp"
 #include "Armes/Arme.hpp"
-#include "ennemi.h"
 #include "Armes/ArmeBaguette.hpp"
+#include "Armes/ArmeHache.hpp"
 
 
 int main()
@@ -22,19 +22,13 @@ int main()
     
     Player player;
     Ennemi ennemi(&player);
-
-    sf::Texture blueFire;
-    blueFire.loadFromFile("media/fire_blue.png");
-    sf::Sprite blueSprite(blueFire);
-
-    Animation baguetteanim(blueSprite, 16,  sf::Vector2i(16, 16), 32, 64);
-   
-    Arme* baguette = new ArmeBaguette(&baguetteanim, &player);
+    
+    Arme* baguette = new ArmeHache(&player);
 
     const int level[] = // Nos tuiles placees au bon endroit avec le bon numero definissent la carte
     {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 3, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 3,

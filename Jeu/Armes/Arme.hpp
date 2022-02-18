@@ -1,10 +1,10 @@
 #ifndef ARME_HPP
 #define ARME_HPP
-#include "../Animation.hpp"
 #include "Bullet.hpp"
-#include <string>
+#include "../Animation.hpp"
 #include "../Player.h"
 #include "../ennemi.h"
+#include <string>
 
 
 class Arme
@@ -18,15 +18,13 @@ protected:
     sf::Time cooldown;
     sf::Clock clock;
 
-    Animation* anim;
-
     Player* joueur;
 
     std::vector<Bullet *> ensemble;
     
 public : 
 
-    Arme(Animation* anim, Player* joueur);
+    Arme(Player* joueur);
     virtual ~Arme();
 
     virtual void tirer(Ennemi* cible) = 0;

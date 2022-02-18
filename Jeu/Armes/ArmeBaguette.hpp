@@ -4,8 +4,14 @@
 
 class ArmeBaguette : public Arme
 {
+    private :
+
+        sf::Texture texture;
+        sf::Sprite sprite;
+        Animation anim;
+
     public :
-        ArmeBaguette(Animation* anim, Player* joueur);
+        ArmeBaguette(Player* joueur);
         ~ArmeBaguette() {};
 
         void tirer(Ennemi* cible);

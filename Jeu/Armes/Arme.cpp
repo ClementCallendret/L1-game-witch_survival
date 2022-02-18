@@ -1,13 +1,10 @@
 #include "Arme.hpp"
-#include "../ennemi.h"
-#include <cmath>
 #include <iostream>
-#include "TeleguidedBullet.hpp"
 #define _USE_MATH_DEFINES
 
 // oui, ca fait beaucoup mais on le fait qu'une fois par arme donc ok ca va*
 
-Arme::Arme(Animation* an, Player* j) : anim(an), joueur(j)
+Arme::Arme(Player* j) : joueur(j)
 {
     clock.restart();
 }

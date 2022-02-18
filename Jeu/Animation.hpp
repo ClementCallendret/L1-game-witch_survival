@@ -10,7 +10,8 @@ class Animation
     float speed, num_frame;
     std::vector<sf::IntRect> frames;
 
-    Animation(sf::Sprite spt, int nb_frames, sf::Vector2i center, int w, int h, int scale = 1, float speed = 1);
+    Animation() {};
+    Animation(sf::Sprite spt, int nb_frames, sf::Vector2i center, int w, int h, float scale = 1, float speed = 1);
 
     void update();
 };

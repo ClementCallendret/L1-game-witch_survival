@@ -1,22 +1,15 @@
 #ifndef ENNEMI_H
 #define ENNEMI_H
 
-#include "deplacement.h"
 #include "Player.h"
 #include <SFML/Graphics.hpp>
-
-namespace sf
-{
-	class RenderWindow;
-}
-
 
 class Ennemi
 {
 private:
 	Player* joueur;
 	static constexpr float speed = 1.;
-	deplacement2D location = deplacement2D(0, 0);
+	sf::Vector2f location = sf::Vector2f(0, 0);
 
 public:
 	Ennemi(Player* j);
