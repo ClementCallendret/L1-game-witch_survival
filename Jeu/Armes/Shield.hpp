@@ -5,7 +5,7 @@
 #include "../ennemi.h"
 #include "Arme.hpp"
 
-class Shield : public Arme
+class ArmeShield : public Arme
 {
     private :
 
@@ -15,10 +15,12 @@ class Shield : public Arme
 
     public :
 
-        ArmeBaguette(Player* joueur);
-        ~ArmeBaguette() {};
+        ArmeShield(Player* joueur);
+        ~ArmeShield() {};
 
-        void tirer(Player* cible);
+        void tirer(Ennemi* cible = 0);
+        void update(Ennemi* cible = 0);
+        void draw(sf::RenderWindow &window);
 };
 
 #endif

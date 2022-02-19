@@ -5,7 +5,7 @@ ArmeHache::ArmeHache(Player* joueur) : Arme(joueur)
 {
     degats = 2;
     vitesseProjectile = 3;
-    tailleProjectile = 16;
+    tailleProjectile = 20;
     nombreProjectile = 1;
     vieProjectile = 1;
     level = 0;
@@ -15,7 +15,8 @@ ArmeHache::ArmeHache(Player* joueur) : Arme(joueur)
 
     texture.loadFromFile("media/hache.png");
     sprite.setTexture(texture);
-    sprite.setOrigin(16, 16);
+    sprite.setOrigin(40, 55);
+    sprite.scale(0.4, 0.4);
 }
 
 void ArmeHache::tirer(Ennemi* cible)

@@ -4,7 +4,7 @@
 ArmeBaguette::ArmeBaguette(Player* joueur) : Arme(joueur)
 {
     degats = 1;
-    vitesseProjectile = 5;
+    vitesseProjectile = 2.5;
     tailleProjectile = 10;
     nombreProjectile = 1;
     vieProjectile = 1;

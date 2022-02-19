@@ -15,22 +15,22 @@ void BulletTeleguided::update(){
         float Cx = cible->getEnnemiPos().x;
         float Cy = cible->getEnnemiPos().y;
 
-        if(location.y == Cy)
-            pente = (location.x - Cx) / 0.01;
+        if(location.x == Cx)
+            pente = (location.y - Cy) / 0.01;
         else
-            pente = (location.x - Cx) / (location.y - Cy);
+            pente = (location.y - Cy) / (location.x - Cx);
 
         float angle = atan(pente);
 
-        if (location.y > Cy)
+        if (location.x > Cx)
             angle += M_PI;
 
-        location.x += speed * sin(angle); // fait avvancer le projectiles dans la bonne
-        location.y += speed * cos(angle); // direction grace à la trigo
+        location.x += speed * cos(angle); // fait avvancer le projectiles dans la bonne
+        location.y += speed * sin(angle); // direction grace à la trigo
         if (location.x > 1600 || location.x < 0 || location.y > 800 || location.y < 0)
             life = 0;
 
-        anim.sprite.setRotation(-1 * angle * 180 / M_PI + 180); // on fait tourner le projectile pour qu'il pointe au bonne endroit
+        anim.sprite.setRotation(angle * 180 / M_PI + 90); // on fait tourner le projectile pour qu'il pointe au bonne endroit
         anim.update();
 }
 
@@ -46,7 +46,7 @@ void BulletTeleguided::draw(sf::RenderWindow &window)
     hitbox.setFillColor(sf::Color(255, 0, 0, 127)); // ce cercle nous permet de voir la hitbox
     hitbox.setOrigin(sf::Vector2f(rayon, rayon));
     hitbox.setPosition(location);
-    window.draw(hitbox);
+    //window.draw(hitbox);
 
     // on dessine l'animation du projectile
     anim.sprite.setPosition(location);

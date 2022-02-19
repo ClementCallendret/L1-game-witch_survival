@@ -27,11 +27,11 @@ public :
     Arme(Player* joueur);
     virtual ~Arme();
 
-    virtual void tirer(Ennemi* cible) = 0;
+    virtual void tirer(Ennemi* cible = 0) = 0;
     // virtual void ameliorer() = 0;
 
-    void update(Ennemi* cible);
-    void draw(sf::RenderWindow& window);
+    virtual void update(Ennemi* cible = 0);
+    virtual void draw(sf::RenderWindow& window);
 };
 
 #endif
