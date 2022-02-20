@@ -1,8 +1,8 @@
-#ifndef ARMEBAGUETTE_HPP
-#define ARMEBEGUETTE_HPP
+#ifndef ARMEECLAIR_HPP
+#define ARMEECLAIR_HPP
 #include "Arme.hpp"
 
-class ArmeBaguette : public Arme
+class ArmeEclair : public Arme
 {
     private :
 
@@ -11,8 +11,8 @@ class ArmeBaguette : public Arme
         Animation anim;
 
     public :
-        ArmeBaguette(Player* joueur);
-        ~ArmeBaguette() {};
+        ArmeEclair(Player* joueur);
+        ~ArmeEclair() {};
 
         void tirer(Ennemi* cible);
 

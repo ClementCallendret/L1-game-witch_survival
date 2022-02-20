@@ -5,17 +5,17 @@ ArmeEclair::ArmeEclair(Player* joueur) : Arme(joueur)
 {
     degats = 1;
     vitesseProjectile = 2.5;
-    tailleProjectile = 5;
+    tailleProjectile = 25;
     nombreProjectile = 1;
     vieProjectile = 1;
     level = 0;
     nomArme = "Lightning";
     cooldown = sf::seconds(2);
 
-    texture.loadFromFile("media/Lightning.png");
+    texture.loadFromFile("media/Lightning3.png");
     sprite.setTexture(texture);
 
-    anim = Animation(sprite, 12,  sf::Vector2i(8, 28), 16, 32, 3, 0.3);
+    anim = Animation(sprite, 12,  sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
 }
 
 void ArmeEclair::tirer(Ennemi* cible)

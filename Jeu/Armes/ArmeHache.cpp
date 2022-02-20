@@ -23,7 +23,7 @@ void ArmeHache::tirer(Ennemi* cible)
 {
     if (clock.getElapsedTime() >= cooldown)
     {
-        Bullet *b = new BulletHache(joueur->getPlayerPos(), tailleProjectile, degats, vitesseProjectile, vieProjectile, cible, sprite, joueur, range);
+        Bullet *b = new BulletHache(joueur->getPlayerPos(), tailleProjectile, degats, vitesseProjectile, vieProjectile, sprite, joueur, range, cible->getEnnemiPos());
         ensemble.push_back(b);
         clock.restart();
     }
