@@ -10,6 +10,7 @@ private:
 	Player* joueur;
 	static constexpr float speed = 1.;
 	sf::Vector2f location = sf::Vector2f(0, 0);
+	sf::Vector2f taille;
 
 public:
 	Ennemi(Player* j);
@@ -20,7 +21,12 @@ public:
 
 	sf::Vector2f getEnnemiPos(){
 		return sf::Vector2f(location.x, location.y);
-	}
+	};
+
+	sf::Vector2f getEnnemiTaille(){
+		return sf::Vector2f(taille.x, taille.y);
+	};
+	
 };
 
 

@@ -10,7 +10,7 @@ ArmeEclair::ArmeEclair(Player* joueur) : Arme(joueur)
     vieProjectile = 1;
     level = 0;
     nomArme = "Lightning";
-    cooldown = sf::seconds(1);
+    cooldown = sf::seconds(10);
 
     texture.loadFromFile("media/Lightning3.png");
     sprite.setTexture(texture);

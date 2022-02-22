@@ -6,6 +6,7 @@
 Ennemi::Ennemi(Player* j)
 {
     joueur = j;
+    taille = sf::Vector2f(157, 157);
 }
 
 void Ennemi::draw(sf::RenderWindow &window)

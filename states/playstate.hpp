@@ -43,7 +43,7 @@ private:
 	Map* map;
     Arme* baguette; 
 	Arme* hache;
-	Arme* fire;
+	Arme* orbe;
 	Arme* thunder;
 	Arme* shield;
 	Arme* epee;

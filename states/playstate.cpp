@@ -14,7 +14,7 @@ void CPlayState::Init()
 
 	baguette = new ArmeFireball(player);
 	hache = new ArmeHache(player);
-	fire = new ArmeOrbe(player);
+	orbe = new ArmeOrbe(player);
 	thunder = new ArmeEclair(player);
 	shield = new ArmeShield(player);
 	epee = new ArmeEpee(player);
@@ -30,7 +30,7 @@ void CPlayState::Cleanup()
 
 	delete baguette;
 	delete hache;
-	delete fire;
+	delete orbe;
 	delete thunder;
 	delete shield;
 	delete epee;
@@ -83,7 +83,7 @@ void CPlayState::Update(CGameEngine *game)
 
 	baguette->update(ennemi);
 	hache->update(ennemi);
-	fire->update();
+	orbe->update();
 	thunder->update(ennemi);
 	shield->update();
 	epee->update();
@@ -99,7 +99,7 @@ void CPlayState::Draw(CGameEngine *game)
 
 	baguette->draw(*(game->screen));
 	hache->draw(*(game->screen));
-	fire->draw(*(game->screen));
+	orbe->draw(*(game->screen));
 	thunder->draw(*(game->screen));
 	shield->draw(*(game->screen));
 	epee->draw(*(game->screen));

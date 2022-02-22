@@ -18,6 +18,7 @@ public:
     virtual ~Bullet() {};
 
     float getBulLife();
+    bool collision(Ennemi* enemy);
     virtual void hit(Ennemi* enemy);
 
     virtual void update() = 0;
