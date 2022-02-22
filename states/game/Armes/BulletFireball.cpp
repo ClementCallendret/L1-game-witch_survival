@@ -30,12 +30,6 @@ void BulletFireball::update()
     life = 0;
 }
 
-void BulletFireball::hit(Ennemi *enemy)
-{
-    life -= 1;
-    enemy->PV -= degats;
-}
-
 void BulletFireball::draw(sf::RenderWindow &window)
 {
     sf::CircleShape hitbox(rayon);

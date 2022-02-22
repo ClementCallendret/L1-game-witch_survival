@@ -13,8 +13,6 @@ public :
 
     BulletFireball(sf::Vector2f pos, float Rayon, float Degat, float Speed, int Life, sf::Vector2f ciblePos, Animation a);
     ~BulletFireball() {};
-    
-    void hit(Ennemi* enemy);
 
     void update();
     void draw(sf::RenderWindow &window);

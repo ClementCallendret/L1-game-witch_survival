@@ -30,7 +30,7 @@ public :
     virtual void tirer(Ennemi* cible = 0) = 0;
     // virtual void ameliorer() = 0;
 
-    virtual void update(Ennemi* cible = 0);
+    virtual void update(Ennemi* cible);
     virtual void draw(sf::RenderWindow& window);
 };
 

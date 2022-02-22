@@ -86,7 +86,7 @@ void CPlayState::Update(CGameEngine *game)
 	orbe->update();
 	thunder->update(ennemi);
 	shield->update();
-	epee->update();
+	epee->update(ennemi);
 }
 
 void CPlayState::Draw(CGameEngine *game)

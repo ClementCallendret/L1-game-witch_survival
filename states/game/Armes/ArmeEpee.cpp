@@ -10,7 +10,7 @@ ArmeEpee::ArmeEpee(Player* joueur) : Arme(joueur)
     vieProjectile = 1;
     level = 0;
     nomArme = "Epee";
-    cooldown = sf::seconds(1.5);
+    cooldown = sf::seconds(1);
 
     texture.loadFromFile("media/slashepee.png");
     sprite.setTexture(texture);

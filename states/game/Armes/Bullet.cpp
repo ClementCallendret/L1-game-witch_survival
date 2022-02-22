@@ -1,4 +1,5 @@
 #include "Bullet.hpp"
+#include <stdio.h>
 #include <cmath>
 
 Bullet::Bullet(sf::Vector2f pos, float R, float D, float S, int Life) : 
@@ -46,4 +47,5 @@ void Bullet::hit(Ennemi *enemy)
 {
     life -= 1;
     enemy->PV -= degats;
+    printf("vie bullet : %d\nvie ennemi : %d\n\n", life, enemy->PV);
 }

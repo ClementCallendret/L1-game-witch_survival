@@ -10,8 +10,8 @@ ArmeHache::ArmeHache(Player* joueur) : Arme(joueur)
     vieProjectile = 1;
     level = 0;
     nomArme = "Haches";
-    cooldown = sf::seconds(3);
-    range = 300;
+    cooldown = sf::seconds(3.5);
+    range = 500;
 
     texture.loadFromFile("media/hache.png");
     sprite.setTexture(texture);

@@ -12,7 +12,7 @@ ArmeOrbe::ArmeOrbe(Player* joueur) : Arme(joueur)
     vieProjectile = 7;
     level = 0;
     nomArme = "FireBall";
-    cooldown = sf::seconds(3);
+    cooldown = sf::seconds(5);
 
     texture.loadFromFile("media/blueorbe.png");
     sprite.setTexture(texture);

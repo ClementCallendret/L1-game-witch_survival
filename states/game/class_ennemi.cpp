@@ -6,7 +6,7 @@
 Ennemi::Ennemi(Player* j)
 {
     joueur = j;
-    taille = sf::Vector2f(157, 157);
+    taille = sf::Vector2f(256, 256);
 }
 
 void Ennemi::draw(sf::RenderWindow &window)
@@ -16,6 +16,7 @@ void Ennemi::draw(sf::RenderWindow &window)
         return;
 
     sf::Sprite sprite(texture);
+    sprite.setOrigin(157, 157);
 
     sprite.setPosition(location.x, location.y); // deplacer l'image
 

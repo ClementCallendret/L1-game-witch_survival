@@ -10,7 +10,7 @@ ArmeFireball::ArmeFireball(Player* joueur) : Arme(joueur)
     vieProjectile = 1;
     level = 0;
     nomArme = "Fireball";
-    cooldown = sf::seconds(1.5);
+    cooldown = sf::seconds(2);
 
     texture.loadFromFile("media/fireball2.png");
     sprite.setTexture(texture);

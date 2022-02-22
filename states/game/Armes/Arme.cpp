@@ -1,4 +1,5 @@
 #include "Arme.hpp"
+#include <iostream>
 
 // oui, ca fait beaucoup mais on le fait qu'une fois par arme donc ok ca va*
 
@@ -27,23 +28,16 @@ void Arme::update(Ennemi *cible)
         Bullet *e = *i;
         e->update(); // on fait bouger les projectiles grace a la fct update
 
-        if (e->collision(cible))
-        {
-            printf("collision\n");
-        }
-        else
-        {
-            printf("pas collision\n");
-            printf("ca marche");
-        }
-
         if (e->getBulLife() == 0) // on efface les projectiles qui sont "mort"
         {
             i = ensemble.erase(i);
             delete e;
         }
         else
+        {
+            if (e->collision(cible)){e->hit(cible);}
             i++;
+        }
     }
 }
 
