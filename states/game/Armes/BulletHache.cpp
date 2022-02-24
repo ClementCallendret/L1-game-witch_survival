@@ -24,12 +24,11 @@ void BulletHache::update()
 
     if (distance < range)
     {
-        location.x += speed * cos(angle); // fait avvancer le projectiles dans la bonne
-        location.y += speed * sin(angle); // direction grace à la trigo
+        location.x += speed * cos(angle); // fait avvancer le projectiles dans la bonne direction
 
         distance += abs(speed * sin(angle)) + abs(speed * cos(angle));
     }
-    else
+    else // lorsque la hache a atteint sa range max elle revient vers le joueur
     {
         float pente;
         float Cx = tireur->getPlayerPos().x;
@@ -45,8 +44,8 @@ void BulletHache::update()
         if (location.x > Cx)
             angleRetour += M_PI;
 
-        location.x += speed * cos(angleRetour); // fait avvancer le projectiles dans la bonne
-        location.y += speed * sin(angleRetour); // direction grace à la trigo
+        location.x += speed * cos(angleRetour);
+        location.y += speed * sin(angleRetour);
 
         distance += abs(speed * cos(angleRetour)) + abs(speed * sin(angleRetour));
 
@@ -56,7 +55,7 @@ void BulletHache::update()
             life = 0;
     }
 
-    sprite.rotate(10); // on fait tourner le projectile pour qu'il pointe au bonne endroit
+    sprite.rotate(10); // on fait tournoyer la hache
 }
 
 void BulletHache::hit(Ennemi *enemy)
@@ -66,13 +65,12 @@ void BulletHache::hit(Ennemi *enemy)
 
 void BulletHache::draw(sf::RenderWindow &window)
 {
-    sf::CircleShape hitbox(rayon);
-    hitbox.setFillColor(sf::Color(255, 0, 0, 127)); // ce cercle nous permet de voir la hitbox
+    /* sf::CircleShape hitbox(rayon);
+    hitbox.setFillColor(sf::Color(255, 0, 0, 127));
     hitbox.setOrigin(sf::Vector2f(rayon, rayon));
     hitbox.setPosition(location);
-    // window.draw(hitbox);
+    window.draw(hitbox); */
 
-    // on dessine l'animation du projectile
     sprite.setPosition(location);
     window.draw(sprite);
 }

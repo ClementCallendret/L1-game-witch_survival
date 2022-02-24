@@ -1,10 +1,11 @@
 #include "BulletFireball.hpp"
-#include <iostream>
 #include <cmath>
 #define _USE_MATH_DEFINES
 
-BulletFireball::BulletFireball(sf::Vector2f pos, float R, float D, float S, int Life, sf::Vector2f ciblePos, Animation a) : Bullet(pos, R, D, S, Life), anim(a)
+BulletFireball::BulletFireball(sf::Vector2f pos, float R, float D, float S, int Life, sf::Vector2f ciblePos, Animation a) : 
+Bullet(pos, R, D, S, Life), anim(a)
 {
+    // on commence par calculer l'angle vers lequel le projectile va partir (vers ciblePose)
     float pente;
     float Cx = ciblePos.x;
     float Cy = ciblePos.y;
@@ -18,27 +19,26 @@ BulletFireball::BulletFireball(sf::Vector2f pos, float R, float D, float S, int 
     if (location.x > Cx)
         angle += M_PI;
 
-    anim.sprite.setRotation(angle*180/M_PI);
+    anim.sprite.setRotation(angle*180/M_PI); // on met 
 }
 
 void BulletFireball::update()
 {
-    location.x += speed * cos(angle); // fait avvancer le projectiles dans la bonne
-    location.y += speed * sin(angle); // direction grace à la trigo
+    location.x += speed * cos(angle); // fait avvancer le projectiles dans la bonne direction
+    location.y += speed * sin(angle);
     anim.update();
     if(location.x < 0 || location.x > 1600 || location.y < 0 || location.y > 900)
-    life = 0;
+    life = 0; //faudra mettre a jour les coordonés mais ca tu le projectile quand il sort de la map
 }
 
 void BulletFireball::draw(sf::RenderWindow &window)
 {
-    sf::CircleShape hitbox(rayon);
-    hitbox.setFillColor(sf::Color(255, 0, 0, 127)); // ce cercle nous permet de voir la hitbox
+    /* sf::CircleShape hitbox(rayon);
+    hitbox.setFillColor(sf::Color(255, 0, 0, 127));
     hitbox.setOrigin(sf::Vector2f(rayon, rayon));
     hitbox.setPosition(location);
-    // window.draw(hitbox);
+    window.draw(hitbox); */
 
-    // on dessine l'animation du projectile
     anim.sprite.setPosition(location);
     window.draw(anim.sprite);
 }

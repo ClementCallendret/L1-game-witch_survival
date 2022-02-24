@@ -6,19 +6,20 @@
 
 class Ennemi
 {
-private:
+protected:
 	Player* joueur;
-	static constexpr float speed = 1.;
-	sf::Vector2f location = sf::Vector2f(0, 0);
+	float speed,degat;
+	sf::Texture texture;
+	sf::Sprite sprite;
+	sf::Vector2f location;
 	sf::Vector2f taille;
 
 public:
 	Ennemi(Player* j);
-	short PV = 100;
-
+	short PV;
 	void draw(sf::RenderWindow &window);
-	void inputs();
-
+	void update();
+    void collision();
 	sf::Vector2f getEnnemiPos(){
 		return sf::Vector2f(location.x, location.y);
 	};

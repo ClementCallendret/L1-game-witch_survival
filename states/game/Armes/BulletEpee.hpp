@@ -5,22 +5,18 @@
 
 class BulletEpee : public Bullet
 {
-private :
-    Animation* anim;
-    Player* tireur;
-    //float angle;
+private:
+    Animation *anim;
+    Player *tireur;
 
-public :
+public:
+    BulletEpee(sf::Vector2f pos, float Rayon, float Degat, float Speed, int Life, Animation *anim, Player *joueur);
+    ~BulletEpee(){};
 
-    BulletEpee(sf::Vector2f pos, float Rayon, float Degat, float Speed, int Life, Animation* anim, Player* joueur);
-    ~BulletEpee() {};
-    
-    void hit(Ennemi* enemy);
+    void hit(Ennemi *enemy);
 
     void update();
     void draw(sf::RenderWindow &window);
-
 };
-
 
 #endif

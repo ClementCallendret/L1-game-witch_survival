@@ -19,6 +19,7 @@ ArmeShield::ArmeShield(Player* joueur) : Arme(joueur)
 
 void ArmeShield::tirer(Ennemi* cible)
 {
+    // lorsque le bouclier n'a plus de vie on lance le cooldown de recharge
     if (vieProjectile > 0) clock.restart();
     else if (clock.getElapsedTime() >= cooldown)
     {

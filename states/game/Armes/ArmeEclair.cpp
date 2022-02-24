@@ -14,7 +14,6 @@ ArmeEclair::ArmeEclair(Player* joueur) : Arme(joueur)
 
     texture.loadFromFile("media/Lightning3.png");
     sprite.setTexture(texture);
-
     anim = Animation(sprite, 12,  sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
 }
 

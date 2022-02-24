@@ -5,19 +5,16 @@
 
 class BulletFireball : public Bullet
 {
-private :
+private:
     Animation anim;
     float angle;
 
-public :
-
+public:
     BulletFireball(sf::Vector2f pos, float Rayon, float Degat, float Speed, int Life, sf::Vector2f ciblePos, Animation a);
-    ~BulletFireball() {};
+    ~BulletFireball(){};
 
     void update();
     void draw(sf::RenderWindow &window);
-
 };
-
 
 #endif

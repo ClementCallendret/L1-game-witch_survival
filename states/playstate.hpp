@@ -5,9 +5,8 @@
 #include "gamestate.hpp"
 #include "game/Player.h"
 #include "game/map.h"
-#include "game/Animation.hpp"
-#include "game/ennemi.h"
-#include "game/Armes/Bullet.hpp"
+#include "game/ennemi_villageois.h"
+
 #include "game/Armes/Arme.hpp"
 #include "game/Armes/ArmeFireball.hpp"
 #include "game/Armes/ArmeHache.hpp"
@@ -47,6 +46,7 @@ private:
 	Arme* thunder;
 	Arme* shield;
 	Arme* epee;
+	sf::View* view;
 };
 
 #endif

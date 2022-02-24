@@ -13,7 +13,7 @@ class CGameEngine
 {
 public:
 
-	void Init(const char* title, int width=1600, int height=900, int bpp=0, bool fullscreen=false);
+	void Init(const char* title, float width=1600, float height=900, int bpp=0, bool fullscreen=false);
 	void Cleanup();
 
 	void ChangeState(CGameState* state);
@@ -28,7 +28,7 @@ public:
 	void Quit() { m_running = false; }
 
 	sf::RenderWindow* screen;
-
+	
 private:
 	// the stack of states
 	stack<CGameState*> states;

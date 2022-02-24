@@ -5,18 +5,16 @@
 
 class ArmeHache : public Arme
 {
-    private :
+private:
+    float range;
+    sf::Texture texture;
+    sf::Sprite sprite;
 
-        float range;
-        sf::Texture texture;
-        sf::Sprite sprite;
+public:
+    ArmeHache(Player *joueur);
+    ~ArmeHache(){};
 
-    public :
-        ArmeHache(Player* joueur);
-        ~ArmeHache() {};
-
-        void tirer(Ennemi* cible);
-
+    void tirer(Ennemi *cible);
 };
 
 #endif

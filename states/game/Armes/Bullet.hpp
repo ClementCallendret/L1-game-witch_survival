@@ -18,11 +18,11 @@ public:
     virtual ~Bullet() {};
 
     float getBulLife();
-    bool collision(Ennemi* enemy);
-    virtual void hit(Ennemi* enemy);
+    bool collision(Ennemi* enemy); // check les colisions entre un cercle et un rectangle
+    virtual void hit(Ennemi* enemy);  // fait des dégats au projectile et a l'ennemi
 
-    virtual void update() = 0;
-    virtual void draw(sf::RenderWindow &window) = 0;
+    virtual void update() = 0;  // purement virtuel car ils ont tous un comportement different
+    virtual void draw(sf::RenderWindow &window) = 0; // purment virtuel car ça dépend si on a un sprite ou une animation
 };
 
 #endif

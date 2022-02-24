@@ -9,9 +9,9 @@ ArmeOrbe::ArmeOrbe(Player* joueur) : Arme(joueur)
     vitesseProjectile = 0.03;
     tailleProjectile = 15;
     nombreProjectile = 4;
-    vieProjectile = 7;
+    vieProjectile = 7; // ici la vie represente la durré de vie des 
     level = 0;
-    nomArme = "FireBall";
+    nomArme = "Orbe";
     cooldown = sf::seconds(5);
 
     texture.loadFromFile("media/blueorbe.png");
@@ -22,7 +22,8 @@ ArmeOrbe::ArmeOrbe(Player* joueur) : Arme(joueur)
 
 void ArmeOrbe::tirer(Ennemi* cible)
 {
-    if(!ensemble.empty()) clock.restart();
+    if(!ensemble.empty()) 
+        clock.restart();
 
     if (clock.getElapsedTime() >= cooldown)
     {
@@ -33,25 +34,5 @@ void ArmeOrbe::tirer(Ennemi* cible)
             ensemble.push_back(b);
         }
         clock.restart();
-    }
-}
-
-void ArmeOrbe::update(Ennemi* cible)
-{
-    tirer();
-    // CHECKER COLLISION PEUT ETRE ICI
-
-    for (auto i = std::begin(ensemble); i != std::end(ensemble);)
-    {
-        Bullet* e = *i;
-        e->update(); // on fait bouger les projectiles grace a la fct update
-
-        if (e->getBulLife() == 0) // on efface les projectiles qui sont "mort"
-        {
-            i = ensemble.erase(i);
-            delete e;
-        }
-        else
-            i++;
     }
 }

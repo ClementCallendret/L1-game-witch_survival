@@ -14,7 +14,6 @@ ArmeFireball::ArmeFireball(Player* joueur) : Arme(joueur)
 
     texture.loadFromFile("media/fireball2.png");
     sprite.setTexture(texture);
-
     anim = Animation(sprite, 6,  sf::Vector2i(45, 19), 64, 39, 0.8, 0.5);
 }
 

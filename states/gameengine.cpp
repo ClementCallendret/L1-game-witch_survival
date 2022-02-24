@@ -1,9 +1,8 @@
 #include <iostream>
-
 #include "gameengine.hpp"
 #include "gamestate.hpp"
 
-void CGameEngine::Init(const char* title, int width, int height, int bpp, bool fullscreen)
+void CGameEngine::Init(const char* title, float width, float height, int bpp, bool fullscreen)
 {
 
 	// initialize SDL
@@ -24,7 +23,8 @@ void CGameEngine::Cleanup()
 		states.top()->Cleanup();
 		states.pop();
 	}
-
+	//delete screen; <-- a tester si vrmt necessaire ou pas
+	//delete view; <-- a tester aussi 
 	// switch back to windowed mode so other 
 	// programs won't get accidentally resized
 	if ( m_fullscreen ) {
@@ -93,3 +93,4 @@ void CGameEngine::Draw()
 	// let the state draw the screen
 	states.top()->Draw(this);
 }
+

@@ -47,5 +47,4 @@ void Bullet::hit(Ennemi *enemy)
 {
     life -= 1;
     enemy->PV -= degats;
-    printf("vie bullet : %d\nvie ennemi : %d\n\n", life, enemy->PV);
 }

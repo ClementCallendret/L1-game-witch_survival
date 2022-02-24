@@ -1,6 +1,5 @@
-
+// afin de mieux comprendre come,t les "states" fonctionnet ---> http://gamedevgeek.com/tutorials/managing-game-states-in-c/ <---
 #include <stdio.h>
-
 #include "playstate.hpp"
 #include "menustate.hpp"
 
@@ -9,9 +8,9 @@ CPlayState CPlayState::m_PlayState;
 void CPlayState::Init()
 {
 	player = new Player();
-	ennemi = new Ennemi(player);
+	ennemi = new villageois(player);
 	map = new Map();
-
+	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
 	baguette = new ArmeFireball(player);
 	hache = new ArmeHache(player);
 	orbe = new ArmeOrbe(player);
@@ -27,7 +26,7 @@ void CPlayState::Cleanup()
 	delete player;
 	delete ennemi;
 	delete map;
-
+	delete view;
 	delete baguette;
 	delete hache;
 	delete orbe;
@@ -78,14 +77,18 @@ void CPlayState::HandleEvents(CGameEngine *game)
 
 void CPlayState::Update(CGameEngine *game)
 {
+
 	player->inputs();
-	ennemi->inputs();
+	ennemi->update();
+
+	view->setCenter(player->getPlayerPos());
+	game->screen->setView(*view);
 
 	baguette->update(ennemi);
 	hache->update(ennemi);
-	orbe->update();
+	orbe->update(ennemi);
 	thunder->update(ennemi);
-	shield->update();
+	shield->update(ennemi);
 	epee->update(ennemi);
 }
 

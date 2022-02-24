@@ -15,7 +15,6 @@ class ArmeOrbe : public Arme
         ~ArmeOrbe() {};
 
         void tirer(Ennemi* cible = 0);
-        void update(Ennemi* cible = 0);
 
 };
 
