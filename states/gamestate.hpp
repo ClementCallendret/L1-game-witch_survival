@@ -21,8 +21,8 @@ public:
 		game->ChangeState(state);
 	}
 
-protected:
 	CGameState() { }
+	virtual ~CGameState() {}
 };
 
 #endif

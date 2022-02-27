@@ -15,6 +15,7 @@ public:
     ~ArmeHache(){};
 
     void tirer(Ennemi *cible);
+    void upgrade();
 };
 
 #endif

@@ -10,7 +10,7 @@ int main ( int argc, char *argv[] )
 	game.Init( "Engine Test v1.0" );
 
 	// load the menu
-	game.ChangeState( CMenuState::Instance() );
+	game.ChangeState(new CMenuState());
 
 	// main loop
 	while ( game.Running() )

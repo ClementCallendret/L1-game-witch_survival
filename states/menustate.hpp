@@ -18,15 +18,10 @@ public:
 	void Update(CGameEngine* game);
 	void Draw(CGameEngine* game);
 
-	static CMenuState* Instance() {
-		return &m_MenuState;
-	}
-
-protected:
 	CMenuState() { }
+	~CMenuState() {Cleanup();}
 
 private:
-	static CMenuState m_MenuState;
 	sf::Texture* tex_bg;
 	sf::Sprite* bg ;
 	MainMenu* menu;

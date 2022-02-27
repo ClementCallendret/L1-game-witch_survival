@@ -15,6 +15,8 @@ public:
     ~ArmeShield(){};
 
     void tirer(Ennemi *cible = 0);
+    void upgrade();
+    
     void update(Ennemi *cible = 0);
     void draw(sf::RenderWindow &window);
 };

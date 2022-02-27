@@ -20,7 +20,7 @@ public :
     void moveUp();
     void moveDown();
 
-    int ChoixPresse(){
+    int choixPresse(){
         return menuSelected;
     }
 

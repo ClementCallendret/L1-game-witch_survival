@@ -20,11 +20,11 @@ void CGameEngine::Cleanup()
 {
 	// cleanup the all states
 	while ( !states.empty() ) {
-		states.top()->Cleanup();
+		CGameState *s = states.top();
+		delete s;
 		states.pop();
 	}
-	//delete screen; <-- a tester si vrmt necessaire ou pas
-	//delete view; <-- a tester aussi 
+	
 	// switch back to windowed mode so other 
 	// programs won't get accidentally resized
 	if ( m_fullscreen ) {
@@ -37,13 +37,13 @@ void CGameEngine::Cleanup()
 
 void CGameEngine::ChangeState(CGameState* state) 
 {
-	// cleanup the current state
+	// On depile l'etat actuel
 	if ( !states.empty() ) {
-		states.top()->Cleanup();
+		CGameState *s = states.top();
+		delete s;
 		states.pop();
 	}
-
-	// store and init the new state
+	// On initialise le nouvel etat
 	states.push(state);
 	states.top()->Init();
 	printf("CGameEngine ChangeState done\n");
@@ -63,9 +63,10 @@ void CGameEngine::PushState(CGameState* state)
 
 void CGameEngine::PopState()
 {
-	// cleanup the current state
+	// Cleanup de l'etat actuel puis on depile
 	if ( !states.empty() ) {
-		states.top()->Cleanup();
+		CGameState *s = states.top();
+		delete s;
 		states.pop();
 	}
 

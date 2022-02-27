@@ -15,6 +15,11 @@ ArmeEclair::ArmeEclair(Player* joueur) : Arme(joueur)
     texture.loadFromFile("media/Lightning3.png");
     sprite.setTexture(texture);
     anim = Animation(sprite, 12,  sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
+
+    icoText.loadFromFile("media/icon_lightning.png");
+    icoSprite.setTexture(icoText);
+
+    description = {"Eclaire level 1", "La puissance du tonerre frappe un\nennemi aleatoire."};
 }
 
 void ArmeEclair::tirer(Ennemi* cible)
@@ -24,5 +29,26 @@ void ArmeEclair::tirer(Ennemi* cible)
         Bullet *b = new BulletEclair(joueur->getPlayerPos(), tailleProjectile, degats, vitesseProjectile, vieProjectile, cible, anim);
         ensemble.push_back(b);
         clock.restart();
+    }
+}
+
+void ArmeEclair::upgrade()
+{
+    switch(level)
+    {
+        case 0:
+        level++;
+        description = {"Eclaire level 2", "+20\% de dégats\n+1 éclair"};
+        break;
+        case 1:
+        level++;
+        nombreProjectile++;
+        degats *= 1.2;
+        description = {"Eclaire level 3", "+20\% de dégats\n"};
+        break;
+        default:
+        degats *= 1.2;
+        description[0] = "Eclair level " + (level+1);
+        break;
     }
 }

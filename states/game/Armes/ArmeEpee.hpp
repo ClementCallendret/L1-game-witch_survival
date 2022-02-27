@@ -16,6 +16,7 @@ public:
     ~ArmeEpee(){};
 
     void tirer(Ennemi *cible);
+    void upgrade();
 };
 
 #endif

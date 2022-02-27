@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include "playstate.hpp"
 #include "menustate.hpp"
-
-CPlayState CPlayState::m_PlayState;
+#include "upgradestate.hpp"
 
 void CPlayState::Init()
 {
@@ -11,13 +10,7 @@ void CPlayState::Init()
 	ennemi = new villageois(player);
 	map = new Map();
 	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
-	baguette = new ArmeFireball(player);
-	hache = new ArmeHache(player);
-	orbe = new ArmeOrbe(player);
-	thunder = new ArmeEclair(player);
-	shield = new ArmeShield(player);
-	epee = new ArmeEpee(player);
-
+	atirail =  {new ArmeEpee(player), new ArmeFireball(player), new ArmeHache(player), new ArmeEclair(player), new ArmeOrbe(player), new ArmeShield(player)};
 	printf("CPlayState Init\n");
 }
 
@@ -27,12 +20,11 @@ void CPlayState::Cleanup()
 	delete ennemi;
 	delete map;
 	delete view;
-	delete baguette;
-	delete hache;
-	delete orbe;
-	delete thunder;
-	delete shield;
-	delete epee;
+
+	for(auto a : atirail)
+	{
+		delete a;
+	}
 
 	printf("CPlayState Cleanup\n");
 }
@@ -63,9 +55,10 @@ void CPlayState::HandleEvents(CGameEngine *game)
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				Pause();
+				game->PushState(new CUpgradeState(this));
 				break;
 			default:
+			
 				break;
 			}
 			break;
@@ -84,12 +77,13 @@ void CPlayState::Update(CGameEngine *game)
 	view->setCenter(player->getPlayerPos());
 	game->screen->setView(*view);
 
-	baguette->update(ennemi);
-	hache->update(ennemi);
-	orbe->update(ennemi);
-	thunder->update(ennemi);
-	shield->update(ennemi);
-	epee->update(ennemi);
+	for(auto a : atirail)
+	{
+		if(a->level > 0)
+		{
+			a->update(ennemi);
+		}
+	}
 }
 
 void CPlayState::Draw(CGameEngine *game)
@@ -100,12 +94,13 @@ void CPlayState::Draw(CGameEngine *game)
 	player->draw(*(game->screen));
 	ennemi->draw(*(game->screen));
 
-	baguette->draw(*(game->screen));
-	hache->draw(*(game->screen));
-	orbe->draw(*(game->screen));
-	thunder->draw(*(game->screen));
-	shield->draw(*(game->screen));
-	epee->draw(*(game->screen));
+	for(auto a : atirail)
+	{
+		if(a->level > 0)
+		{
+			a->draw(*game->screen);
+		}
+	}
 
 	game->screen->display();
 }

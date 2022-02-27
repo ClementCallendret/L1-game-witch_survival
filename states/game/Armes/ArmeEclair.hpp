@@ -15,6 +15,7 @@ class ArmeEclair : public Arme
         ~ArmeEclair() {};
 
         void tirer(Ennemi* cible);
+        void upgrade();
 };
 
 #endif

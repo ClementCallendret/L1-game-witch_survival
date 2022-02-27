@@ -14,6 +14,7 @@ public:
     ~ArmeFireball(){};
 
     void tirer(Ennemi *cible);
+    void upgrade();
 };
 
 #endif

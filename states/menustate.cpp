@@ -5,7 +5,6 @@
 #include "menustate.hpp"
 #include "playstate.hpp"
 
-CMenuState CMenuState::m_MenuState;
 
 void CMenuState::Init()
 {
@@ -64,11 +63,11 @@ void CMenuState::HandleEvents(CGameEngine *game)
 
             case sf::Keyboard::Return:
 
-                switch (menu->ChoixPresse())
+                switch (menu->choixPresse())
                 {
                 case 0:
                     std::cout << "play pressed" << std::endl;
-                    game->ChangeState(CPlayState::Instance());
+                    game->ChangeState(new CPlayState());
                     break;
 
                 case 1:

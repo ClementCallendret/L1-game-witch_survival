@@ -2,7 +2,9 @@
 #define PLAYSTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "gamestate.hpp"
+
 #include "game/Player.h"
 #include "game/map.h"
 #include "game/ennemi_villageois.h"
@@ -18,6 +20,7 @@
 class CPlayState : public CGameState
 {
 public:
+
 	void Init();
 	void Cleanup();
 
@@ -28,24 +31,13 @@ public:
 	void Update(CGameEngine* game);
 	void Draw(CGameEngine* game);
 
-	static CPlayState* Instance() {
-		return &m_PlayState;
-	}
-
-protected:
 	CPlayState() { }
+	~CPlayState() {Cleanup();}
 
-private:
-	static CPlayState m_PlayState;
 	Player* player;
 	Ennemi* ennemi;
 	Map* map;
-    Arme* baguette; 
-	Arme* hache;
-	Arme* orbe;
-	Arme* thunder;
-	Arme* shield;
-	Arme* epee;
+	std::vector<Arme*> atirail;
 	sf::View* view;
 };
 
