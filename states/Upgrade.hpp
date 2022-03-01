@@ -14,6 +14,8 @@ private :
     int choixSelected = 0;
     sf::Font police;
     std::array<sf::Text[2], 3> options;
+    sf::Texture selecText;
+    sf::Sprite selec;
 
 public : 
     Upgrade(Player *joueur, std::vector<Arme *> weapons, sf::Vector2f position);

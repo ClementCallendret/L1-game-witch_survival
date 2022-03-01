@@ -79,7 +79,7 @@ void CPlayState::Update(CGameEngine *game)
 
 	for(auto a : atirail)
 	{
-		if(a->level > 0)
+		if(a->m_level > 0)
 		{
 			a->update(ennemi);
 		}
@@ -96,7 +96,7 @@ void CPlayState::Draw(CGameEngine *game)
 
 	for(auto a : atirail)
 	{
-		if(a->level > 0)
+		if(a->m_level > 0)
 		{
 			a->draw(*game->screen);
 		}

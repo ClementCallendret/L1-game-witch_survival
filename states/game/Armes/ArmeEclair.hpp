@@ -6,9 +6,9 @@ class ArmeEclair : public Arme
 {
     private :
 
-        sf::Texture texture;
-        sf::Sprite sprite;
-        Animation anim;
+        sf::Texture m_texture;
+        sf::Sprite m_sprite;
+        Animation m_anim;
 
     public :
         ArmeEclair(Player* joueur);

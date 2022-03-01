@@ -1,54 +1,95 @@
 #include "ArmeFireball.hpp"
 #include "BulletFireball.hpp"
 
-ArmeFireball::ArmeFireball(Player* joueur) : Arme(joueur)
+ArmeFireball::ArmeFireball(Player *joueur) : Arme(joueur)
 {
-    degats = 1;
-    vitesseProjectile = 2.5;
-    tailleProjectile = 10;
-    nombreProjectile = 1;
-    vieProjectile = 1;
-    level = 0;
-    nomArme = "Fireball";
-    cooldown = sf::seconds(2);
+    m_degats = 1;
+    m_vitesseProjectile = 2.5;
+    m_tailleProjectile = 10;
+    m_nombreProjectile = 1;
+    m_vieProjectile = 1;
+    m_level = 0;
+    m_nomArme = "Fireball";
+    m_cooldown = sf::seconds(2);
 
-    texture.loadFromFile("media/fireball2.png");
-    sprite.setTexture(texture);
-    anim = Animation(sprite, 6,  sf::Vector2i(45, 19), 64, 39, 0.8, 0.5);
+    m_texture.loadFromFile("media/fireball2.png");
+    m_sprite.setTexture(m_texture);
+    m_anim = Animation(m_sprite, 6, sf::Vector2i(45, 19), 64, 39, 0.8, 0.5);
 
-    icoText.loadFromFile("media/icon_fireball.png");
-    icoSprite.setTexture(icoText);
+    m_icoText.loadFromFile("media/icon_fireball.png");
+    m_icoSprite.setTexture(m_icoText);
 
-    description = {"Boule de feu level 1", "Envoie une boule de feu en direction\nd'un ennemi aleatoire."};
+    m_description = {"Boule de feu level 1", "Envoie une boule de feu en direction\nd'un ennemi aleatoire."};
 }
 
-void ArmeFireball::tirer(Ennemi* cible)
+void ArmeFireball::tirer(Ennemi *cible)
 {
-    if (clock.getElapsedTime() >= cooldown)
+    if (m_clock.getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletFireball(joueur->getPlayerPos(), tailleProjectile, degats, vitesseProjectile, vieProjectile, cible->getEnnemiPos(), anim);
-        ensemble.push_back(b);
-        clock.restart();
+        Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible->getEnnemiPos(), m_anim);
+        m_ensemble.push_back(b);
+        m_clock.restart();
     }
 }
 
 void ArmeFireball::upgrade()
 {
-    switch(level)
+    switch (m_level)
     {
-        case 0:
-        level++;
-        description = {"Eclaire level 2", "+20\% de dégats\n+1 éclair"};
+    case 0:
+        m_level++;
+        m_description = {"Boule de feu level 2", "+20\% de degats\n-5\% de cooldown"};
         break;
-        case 1:
-        level++;
-        nombreProjectile++;
-        degats *= 1.2;
-        description = {"Eclaire level 3", "+20\% de dégats\n"};
+    case 1:
+        m_level++;
+        m_cooldown *= (float)0.95;
+        m_degats *= 1.2;
+        m_description = {"Boule de feu level 3", "+20\% de degats\n-5\% de cooldown"};
         break;
-        default:
-        degats *= 1.2;
-        description[0] = "Eclair level " + (level+1);
+    case 2:
+        m_level++;
+        m_cooldown *= (float)0.95;
+        m_degats *= 1.2;
+        m_description = {"Boule de feu level 4", "+30\% degats et vitesse\n+1 penetration"};
+        break;
+    case 3:
+        m_level++;
+        m_vitesseProjectile *= 1.3;
+        m_degats *= 1.3;
+        m_vieProjectile++;
+        m_description = {"Boule de feu level 5", "+20\% de degats\n-5\% de cooldown"};
+        break;
+    case 4:
+        m_level++;
+        m_cooldown *= (float)0.95;
+        m_degats *= 1.2;
+        m_description = {"Boule de feu level 6", "+20\% de degats\n-5\% de cooldown"};
+        break;
+    case 5:
+        m_level++;
+        m_cooldown *= (float)0.95;
+        m_degats *= 1.2;
+        m_description = {"Boule de feu level 7", "+20\% de degats\n-5\% de cooldown"};
+        break;
+    case 6:
+        m_level++;
+        m_cooldown *= (float)0.95;
+        m_degats *= 1.2;
+        m_description = {"Boule de feu level 8", "+30\% de taille\n+1 penetration"};
+        break;
+    case 7:
+        m_level++;
+        m_vieProjectile++;
+        m_tailleProjectile *= 1.3;
+        m_anim.sprite.scale(1.3, 1.3);
+        m_description = {"Boule de feu level 9", "+20\% de degats\n-5\% de cooldown"};
+        break;
+    default:
+        m_level++;
+        std::stringstream titre ;
+        titre << "Boule de feu level " << m_level + 1;
+        m_degats *= 1.1;
+        m_description = {titre.str(), "+10\% de degats"};
         break;
     }
 }

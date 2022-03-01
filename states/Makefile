@@ -19,7 +19,7 @@ playstate.o : playstate.hpp playstate.cpp upgradestate.hpp game/Player.h gamesta
 Upgrade.o : Upgrade.cpp Upgrade.hpp game/Player.h game/Armes/Arme.hpp
 	g++ -Wall Upgrade.cpp -c
 
-upgradestate.o : playstate.hpp upgradestate.cpp upgradestate.hpp gamestate.hpp
+upgradestate.o : playstate.hpp upgradestate.cpp upgradestate.hpp gamestate.hpp Upgrade.hpp
 	g++ -Wall upgradestate.cpp -c 
 
 Class_Player.o : game/Player.h game/Class_Player.cpp

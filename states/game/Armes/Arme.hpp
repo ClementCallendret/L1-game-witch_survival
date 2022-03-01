@@ -3,31 +3,31 @@
 #include "Bullet.hpp"
 #include <string>
 #include <array>
-
+#include <sstream>
 
 class Arme
 {
 public : 
 
     // STATS
-    float degats, vitesseProjectile, tailleProjectile;
-    int nombreProjectile, vieProjectile, level;
-    std::string nomArme;
+    float m_degats, m_vitesseProjectile, m_tailleProjectile;
+    int m_nombreProjectile, m_vieProjectile, m_level;
+    std::string m_nomArme;
 
     // GESTION DU COOLDOWN
-    sf::Time cooldown;
-    sf::Clock clock;
+    sf::Time m_cooldown;
+    sf::Clock m_clock;
 
     // POINTEUR VERS LE JOUEUR POUR AVOIR ACCES A SA POSITION
-    Player* joueur;
+    Player* m_joueur;
 
     // TABLEAU DYNAMIQUE CONTENANT LES PROJECTILES
-    std::vector<Bullet *> ensemble;
+    std::vector<Bullet *> m_ensemble;
 
     // icone et liste d'ameliorations
-    sf::Texture icoText;
-    sf::Sprite icoSprite;
-    std::array<std::string, 2> description;
+    sf::Texture m_icoText;
+    sf::Sprite m_icoSprite;
+    std::array<std::string, 2> m_description;
 
 
     Arme(Player* joueur);  

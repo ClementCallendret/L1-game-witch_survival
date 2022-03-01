@@ -25,37 +25,20 @@ void BulletHache::update()
     if (distance < range)
     {
         location.x += speed * cos(angle); // fait avvancer le projectiles dans la bonne direction
+        location.y += speed * sin(angle);
 
         distance += abs(speed * sin(angle)) + abs(speed * cos(angle));
     }
-    else // lorsque la hache a atteint sa range max elle revient vers le joueur
+    else // lorsque la hache a atteint sa range max elle fait demi tour
     {
-        float pente;
-        float Cx = tireur->getPlayerPos().x;
-        float Cy = tireur->getPlayerPos().y;
+        location.x += speed * cos(angle+M_PI); // fait avvancer le projectiles dans la bonne direction
+        location.y += speed * sin(angle+M_PI);
 
-        if(location.x == Cx)
-            pente = (location.y - Cy) / 0.01;
-        else
-            pente = (location.y - Cy) / (location.x - Cx);
-
-        float angleRetour = atan(pente);
-
-        if (location.x > Cx)
-            angleRetour += M_PI;
-
-        location.x += speed * cos(angleRetour);
-        location.y += speed * sin(angleRetour);
-
-        distance += abs(speed * cos(angleRetour)) + abs(speed * sin(angleRetour));
-
-        float module = sqrt(pow(Cx - location.x, 2) + pow(Cy - location.y, 2));
-
-        if(distance > 2*range || module < 5)
-            life = 0;
+        distance += abs(speed * sin(angle+M_PI)) + abs(speed * cos(angle+M_PI));
+        if(distance >= 2*range) life = 0;
     }
 
-    sprite.rotate(10); // on fait tournoyer la hache
+    sprite.rotate(20); // on fait tournoyer la hache
 }
 
 void BulletHache::hit(Ennemi *enemy)

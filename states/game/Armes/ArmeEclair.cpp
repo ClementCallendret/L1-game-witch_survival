@@ -1,54 +1,94 @@
 #include "ArmeEclair.hpp"
 #include "BulletEclair.hpp"
 
-ArmeEclair::ArmeEclair(Player* joueur) : Arme(joueur)
+ArmeEclair::ArmeEclair(Player *joueur) : Arme(joueur)
 {
-    degats = 1;
-    vitesseProjectile = 2.5;
-    tailleProjectile = 25;
-    nombreProjectile = 1;
-    vieProjectile = 1;
-    level = 0;
-    nomArme = "Lightning";
-    cooldown = sf::seconds(2);
+    m_degats = 1;
+    m_vitesseProjectile = 2.5;
+    m_tailleProjectile = 25;
+    m_nombreProjectile = 1;
+    m_vieProjectile = 1;
+    m_level = 0;
+    m_nomArme = "Lightning";
+    m_cooldown = sf::seconds(3);
 
-    texture.loadFromFile("media/Lightning3.png");
-    sprite.setTexture(texture);
-    anim = Animation(sprite, 12,  sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
+    m_texture.loadFromFile("media/Lightning3.png");
+    m_sprite.setTexture(m_texture);
+    m_anim = Animation(m_sprite, 12, sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
 
-    icoText.loadFromFile("media/icon_lightning.png");
-    icoSprite.setTexture(icoText);
+    m_icoText.loadFromFile("media/icon_lightning.png");
+    m_icoSprite.setTexture(m_icoText);
 
-    description = {"Eclaire level 1", "La puissance du tonerre frappe un\nennemi aleatoire."};
+    m_description = {"Eclaire level 1", "La puissance du tonerre frappe un\nennemi aleatoire."};
 }
 
-void ArmeEclair::tirer(Ennemi* cible)
+void ArmeEclair::tirer(Ennemi *cible)
 {
-    if (clock.getElapsedTime() >= cooldown)
+    if (m_clock.getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletEclair(joueur->getPlayerPos(), tailleProjectile, degats, vitesseProjectile, vieProjectile, cible, anim);
-        ensemble.push_back(b);
-        clock.restart();
+        Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible, m_anim);
+        m_ensemble.push_back(b);
+        m_clock.restart();
     }
 }
 
 void ArmeEclair::upgrade()
 {
-    switch(level)
+    switch (m_level)
     {
-        case 0:
-        level++;
-        description = {"Eclaire level 2", "+20\% de dégats\n+1 éclair"};
+    case 0:
+        m_level++;
+        m_description = {"Eclaire level 2", "+20\% de degats\n+1 eclair"};
         break;
-        case 1:
-        level++;
-        nombreProjectile++;
-        degats *= 1.2;
-        description = {"Eclaire level 3", "+20\% de dégats\n"};
+    case 1:
+        m_level++;
+        m_nombreProjectile++;
+        m_degats *= 1.2;
+        m_description = {"Eclaire level 3", "+20\% de degats\n+1 eclair"};
         break;
-        default:
-        degats *= 1.2;
-        description[0] = "Eclair level " + (level+1);
+    case 2:
+        m_level++;
+        m_nombreProjectile++;
+        m_degats *= 1.2;
+        m_description = {"Eclaire level 4", "-0.5s de cooldown\n+2 eclair"};
+        break;
+    case 3:
+        m_level++;
+        m_nombreProjectile+=2;
+        m_cooldown -= sf::seconds(0.5);
+        m_description = {"Eclaire level 5", "+20\% de degats\n+1 eclair"};
+        break;
+    case 4:
+        m_level++;
+        m_nombreProjectile++;
+        m_degats *= 1.2;
+        m_description = {"Eclaire level 6", "+20\% de degats\n+1 eclair"};
+        break;
+    case 5:
+        m_level++;
+        m_nombreProjectile++;
+        m_degats *= 1.2;
+        m_description = {"Eclaire level 7", "+20\% de degats\n+1 eclair"};
+        break;
+    case 6:
+        m_level++;
+        m_nombreProjectile++;
+        m_degats *= 1.2;
+        m_description = {"Eclaire level 8", "-50\% de cooldown\n+50\% de taille"};
+        break;
+    case 7:
+        m_level++;
+        m_cooldown /= (float)2;
+        m_tailleProjectile *= 1.5;
+        m_anim.sprite.scale(1.5, 1.5);
+        m_description = {"Eclaire level 9", "+10\% de degats\n+1 eclair"};
+        break;
+    default:
+        m_level++;
+        std::stringstream titre ;
+        titre << "Eclair level " << m_level + 1;
+        m_degats *= 1.1;
+        m_description = {titre.str(), "+10\% de degats"};
         break;
     }
 }

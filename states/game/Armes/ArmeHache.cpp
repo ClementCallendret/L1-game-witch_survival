@@ -1,56 +1,96 @@
 #include "ArmeHache.hpp"
 #include "BulletHache.hpp"
 
-ArmeHache::ArmeHache(Player* joueur) : Arme(joueur)
+ArmeHache::ArmeHache(Player *joueur) : Arme(joueur)
 {
-    degats = 2;
-    vitesseProjectile = 3;
-    tailleProjectile = 20;
-    nombreProjectile = 1;
-    vieProjectile = 1;
-    level = 0;
-    nomArme = "Haches";
-    cooldown = sf::seconds(3.5);
-    range = 500;
+    m_degats = 2;
+    m_vitesseProjectile = 5;
+    m_tailleProjectile = 20;
+    m_nombreProjectile = 1;
+    m_vieProjectile = 1;
+    m_level = 0;
+    m_nomArme = "Haches";
+    m_cooldown = sf::seconds(3.5);
+    m_range = 250;
 
-    texture.loadFromFile("media/hache.png");
-    sprite.setTexture(texture);
-    sprite.setOrigin(40, 55);
-    sprite.scale(0.4, 0.4);
+    m_texture.loadFromFile("media/hache.png");
+    m_sprite.setTexture(m_texture);
+    m_sprite.setOrigin(40, 55);
+    m_sprite.scale(0.4, 0.4);
 
-    icoText.loadFromFile("media/icon_hache.png");
-    icoSprite.setTexture(icoText);
+    m_icoText.loadFromFile("media/icon_hache.png");
+    m_icoSprite.setTexture(m_icoText);
 
-    description = {"Hache level 1", "Lance une hache tournoyante vers\nl'ennemi le plus proche (elle revient)"};
+    m_description = {"Hache level 1", "Lance une hache tournoyante vers\nl'ennemi le plus proche (elle revient)"};
 }
 
-void ArmeHache::tirer(Ennemi* cible)
+void ArmeHache::tirer(Ennemi *cible)
 {
-    if (clock.getElapsedTime() >= cooldown)
+    if (m_clock.getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletHache(joueur->getPlayerPos(), tailleProjectile, degats, vitesseProjectile, vieProjectile, sprite, joueur, range, cible->getEnnemiPos());
-        ensemble.push_back(b);
-        clock.restart();
+        Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, m_sprite, m_joueur, m_range, cible->getEnnemiPos());
+        m_ensemble.push_back(b);
+        m_clock.restart();
     }
 }
 
 void ArmeHache::upgrade()
 {
-    switch(level)
+    switch (m_level)
     {
-        case 0:
-        level++;
-        description = {"Eclaire level 2", "+20\% de dégats\n+1 éclair"};
+    case 0:
+        m_level++;
+        m_description = {"Hache level 2", "+10\% de range\n+20\% de degats"};
         break;
-        case 1:
-        level++;
-        nombreProjectile++;
-        degats *= 1.2;
-        description = {"Eclaire level 3", "+20\% de dégats\n"};
+    case 1:
+        m_level++;
+        m_range *= 1.1;
+        m_degats *= 1.2;
+        m_description = {"Hache level 3", "+10\% de range\n+10\% de vitesse"};
         break;
-        default:
-        degats *= 1.2;
-        description[0] = "Eclair level " + (level+1);
+    case 2:
+        m_level++;
+        m_range *= 1.1;
+        m_vitesseProjectile *= 1.1;
+        m_description = {"Hache level 4", "+25\% de taille\n+1 hache"};
+        break;
+    case 3:
+        m_level++;
+        m_tailleProjectile *= 1.25;
+        m_sprite.scale(1.25, 1.25);
+        m_nombreProjectile++;
+        m_description = {"Hache level 5", "+10\% de range\n+20\% de degats"};
+        break;
+    case 4:
+        m_level++;
+        m_range *= 1.1;
+        m_degats *= 1.2;
+        m_description = {"Hache level 6", "+10\% de range\n+10\% de vitesse"};
+        break;
+    case 5:
+        m_level++;
+        m_range *= 1.1;
+        m_vitesseProjectile *= 1.1;
+        m_description = {"Hache level 7", "+10\% de range\n+20\% de degats"};
+        break;
+    case 6:
+        m_level++;
+        m_range *= 1.1;
+        m_degats *= 1.2;
+        m_description = {"Hache level 8", "-20\% de cooldown\n+1 hache"};
+        break;
+    case 7:
+        m_level++;
+        m_cooldown *= (float)0.8;
+        m_nombreProjectile++;
+        m_description = {"Hache level 9", "+10\% de dégats\n"};
+        break;
+    default:
+        m_level++;
+        std::stringstream titre ;
+        titre << "Hache level " << m_level + 1;
+        m_degats *= 1.1;
+        m_description = {titre.str(), "+10\% de degats"};
         break;
     }
 }
