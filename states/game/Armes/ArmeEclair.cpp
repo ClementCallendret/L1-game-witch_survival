@@ -11,10 +11,11 @@ ArmeEclair::ArmeEclair(Player *joueur) : Arme(joueur)
     m_level = 0;
     m_nomArme = "Lightning";
     m_cooldown = sf::seconds(3);
+    m_clock = new sf::Clock;
 
     m_texture.loadFromFile("media/Lightning3.png");
-    m_sprite.setTexture(m_texture);
-    m_anim = Animation(m_sprite, 12, sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
+    m_sprite = new sf::Sprite(m_texture);
+    m_anim = new Animation(*m_sprite, 12, sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
 
     m_icoText.loadFromFile("media/icon_lightning.png");
     m_icoSprite.setTexture(m_icoText);
@@ -24,11 +25,11 @@ ArmeEclair::ArmeEclair(Player *joueur) : Arme(joueur)
 
 void ArmeEclair::tirer(Ennemi *cible)
 {
-    if (m_clock.getElapsedTime() >= m_cooldown)
+    if (m_clock->getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible, m_anim);
+        Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible, *m_anim);
         m_ensemble.push_back(b);
-        m_clock.restart();
+        m_clock->restart();
     }
 }
 
@@ -80,7 +81,7 @@ void ArmeEclair::upgrade()
         m_level++;
         m_cooldown /= (float)2;
         m_tailleProjectile *= 1.5;
-        m_anim.sprite.scale(1.5, 1.5);
+        m_anim->sprite.scale(1.5, 1.5);
         m_description = {"Eclaire level 9", "+10\% de degats\n+1 eclair"};
         break;
     default:

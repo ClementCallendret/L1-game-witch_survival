@@ -2,7 +2,6 @@
 
 Arme::Arme(Player *j) : m_joueur(j) 
 {
-    m_clock.restart();
 }
 
 Arme::~Arme()
@@ -15,6 +14,8 @@ Arme::~Arme()
         i = m_ensemble.erase(i);
         delete e;
     }
+    if(m_clock) delete m_clock;
+    if(m_sprite) delete m_sprite;
 }
 
 void Arme::update(Ennemi *cible)

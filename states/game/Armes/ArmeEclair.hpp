@@ -4,18 +4,12 @@
 
 class ArmeEclair : public Arme
 {
-    private :
+public:
+    ArmeEclair(Player *joueur);
+    ~ArmeEclair(){};
 
-        sf::Texture m_texture;
-        sf::Sprite m_sprite;
-        Animation m_anim;
-
-    public :
-        ArmeEclair(Player* joueur);
-        ~ArmeEclair() {};
-
-        void tirer(Ennemi* cible);
-        void upgrade();
+    void tirer(Ennemi *cible);
+    void upgrade();
 };
 
 #endif

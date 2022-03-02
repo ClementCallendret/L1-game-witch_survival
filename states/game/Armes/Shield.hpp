@@ -6,8 +6,6 @@
 class ArmeShield : public Arme
 {
 private:
-    sf::Texture m_texture;
-    sf::Sprite m_sprite;
     int m_nombreCharge;
     int m_vieMax;
 

@@ -7,8 +7,6 @@ class ArmeHache : public Arme
 {
 private:
     float m_range;
-    sf::Texture m_texture;
-    sf::Sprite m_sprite;
 
 public:
     ArmeHache(Player *joueur);

@@ -4,19 +4,12 @@
 
 class ArmeOrbe : public Arme
 {
-    private :
+public:
+    ArmeOrbe(Player *joueur);
+    ~ArmeOrbe(){};
 
-        sf::Texture m_texture;
-        sf::Sprite m_sprite;
-        Animation m_anim;
-
-    public :
-        ArmeOrbe(Player* joueur);
-        ~ArmeOrbe() {};
-
-        void tirer(Ennemi* cible = 0);
-        void upgrade();
-
+    void tirer(Ennemi *cible = 0);
+    void upgrade();
 };
 
 #endif

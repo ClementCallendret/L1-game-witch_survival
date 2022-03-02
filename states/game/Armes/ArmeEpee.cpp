@@ -11,11 +11,12 @@ ArmeEpee::ArmeEpee(Player *joueur) : Arme(joueur)
     m_level = 0;
     m_nomArme = "Epee";
     m_cooldown = sf::seconds(2);
+    m_clock = new sf::Clock;
 
     m_texture.loadFromFile("media/slashepee.png");
-    m_sprite.setTexture(m_texture);
-    m_sprite.setColor(sf::Color(255, 255, 255, 200));
-    m_animGauche = Animation(m_sprite, 7, sf::Vector2i(100, 32), 150, 64, 2, 0.4);
+    m_sprite = new sf::Sprite(m_texture);
+    m_sprite->setColor(sf::Color(255, 255, 255, 200));
+    m_anim = new Animation(*m_sprite, 7, sf::Vector2i(100, 32), 150, 64, 2, 0.4);
 
     m_icoText.loadFromFile("media/icon_epee.png");
     m_icoSprite.setTexture(m_icoText);
@@ -25,11 +26,11 @@ ArmeEpee::ArmeEpee(Player *joueur) : Arme(joueur)
 
 void ArmeEpee::tirer(Ennemi *cible)
 {
-    if (m_clock.getElapsedTime() >= m_cooldown)
+    if (m_clock->getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletEpee(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, &m_animGauche, m_joueur);
+        Bullet *b = new BulletEpee(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, m_anim, m_joueur);
         m_ensemble.push_back(b);
-        m_clock.restart();
+        m_clock->restart();
     }
 }
 
@@ -56,7 +57,7 @@ void ArmeEpee::upgrade()
     case 3:
         m_level++;
         m_tailleProjectile *= 1.2;
-        m_animGauche.sprite.scale(1.5, 1.15);
+        m_anim->sprite.scale(1.5, 1.15);
         m_nombreProjectile++;
         m_description = {"Epee level 5", "+20\% de degats\n-10\% de cooldown"};
         break;
@@ -81,7 +82,7 @@ void ArmeEpee::upgrade()
     case 7:
         m_level++;
         m_tailleProjectile *= 1.2;
-        m_animGauche.sprite.scale(1.5, 1.15);
+        m_anim->sprite.scale(1.5, 1.15);
         m_description = {"Epee level 9", "+10\% de degats"};
         break;
     default:

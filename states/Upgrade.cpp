@@ -6,6 +6,7 @@
 Upgrade::Upgrade(Player *j, std::vector<Arme *> w, sf::Vector2f position) : joueur(j), weapons(w)
 {
     std::shuffle(weapons.begin(), weapons.end(), std::random_device());
+    std::sort(weapons.begin(), weapons.end(), [](Arme* lhs, Arme* rhs){ return lhs->m_levelMax < rhs->m_levelMax;});
 
     police.loadFromFile("media/Pixel.ttf");
 
@@ -64,6 +65,11 @@ void Upgrade::moveDown()
     else
         selec.move(sf::Vector2f(0, 240));
 }
+
+void Upgrade::choose(){
+        weapons[choixSelected]->upgrade();
+
+    }
 
 void Upgrade::draw(sf::RenderWindow &window)
 {

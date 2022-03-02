@@ -12,11 +12,12 @@ ArmeShield::ArmeShield(Player *joueur) : Arme(joueur)
     m_level = 0;
     m_nomArme = "Shield";
     m_cooldown = sf::seconds(10);
+    m_clock = new sf::Clock;
 
     m_texture.loadFromFile("media/shield.png");
-    m_sprite.setTexture(m_texture);
-    m_sprite.setOrigin(sf::Vector2f(15, 15));
-    m_sprite.scale(2, 2);
+    m_sprite = new sf::Sprite(m_texture);
+    m_sprite->setOrigin(sf::Vector2f(15, 15));
+    m_sprite->scale(1.75, 1.75);
 
     m_icoText.loadFromFile("media/icon_shield.png");
     m_icoSprite.setTexture(m_icoText);
@@ -28,11 +29,11 @@ void ArmeShield::tirer(Ennemi *cible)
 {
     // lorsque le bouclier n'a plus de vie on lance le cooldown de recharge
     if (m_nombreCharge == m_nombreProjectile)
-        m_clock.restart();
-    else if (m_clock.getElapsedTime() >= m_cooldown)
+        m_clock->restart();
+    else if (m_clock->getElapsedTime() >= m_cooldown)
     {
         m_nombreCharge++;
-        m_clock.restart();
+        m_clock->restart();
     }
 }
 
@@ -59,8 +60,8 @@ void ArmeShield::update(Ennemi *cible)
         }
     }
     tirer(cible);
-    m_sprite.setPosition(m_joueur->getPlayerPos());
-    m_sprite.rotate(20);
+    m_sprite->setPosition(m_joueur->getPlayerPos());
+    m_sprite->rotate(20);
 }
 
 bool ArmeShield::collision(Ennemi *enemy)
@@ -99,13 +100,13 @@ void ArmeShield::draw(sf::RenderWindow &window)
 {
     if (m_nombreCharge == 1)
     {
-        m_sprite.setColor(sf::Color(15, 150, 170, 100));
-        window.draw(m_sprite);
+        m_sprite->setColor(sf::Color(15, 150, 170, 100));
+        window.draw(*m_sprite);
     }
     else if (m_nombreCharge == 2)
     {
-        m_sprite.setColor(sf::Color(230, 200, 20, 100));
-        window.draw(m_sprite);
+        m_sprite->setColor(sf::Color(230, 200, 20, 100));
+        window.draw(*m_sprite);
     }
 }
 

@@ -11,12 +11,16 @@ public :
 
     // STATS
     float m_degats, m_vitesseProjectile, m_tailleProjectile;
-    int m_nombreProjectile, m_vieProjectile, m_level;
+    int m_nombreProjectile, m_vieProjectile, m_level, m_levelMax = 0;
     std::string m_nomArme;
 
     // GESTION DU COOLDOWN
     sf::Time m_cooldown;
-    sf::Clock m_clock;
+    sf::Clock* m_clock = 0;
+
+    sf::Texture m_texture;
+    sf::Sprite* m_sprite = 0;
+    Animation* m_anim = 0;
 
     // POINTEUR VERS LE JOUEUR POUR AVOIR ACCES A SA POSITION
     Player* m_joueur;

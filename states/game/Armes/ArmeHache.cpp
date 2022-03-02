@@ -11,12 +11,13 @@ ArmeHache::ArmeHache(Player *joueur) : Arme(joueur)
     m_level = 0;
     m_nomArme = "Haches";
     m_cooldown = sf::seconds(3.5);
+    m_clock = new sf::Clock;
     m_range = 250;
 
     m_texture.loadFromFile("media/hache.png");
-    m_sprite.setTexture(m_texture);
-    m_sprite.setOrigin(40, 55);
-    m_sprite.scale(0.4, 0.4);
+    m_sprite = new sf::Sprite(m_texture);
+    m_sprite->setOrigin(40, 55);
+    m_sprite->scale(0.4, 0.4);
 
     m_icoText.loadFromFile("media/icon_hache.png");
     m_icoSprite.setTexture(m_icoText);
@@ -26,11 +27,11 @@ ArmeHache::ArmeHache(Player *joueur) : Arme(joueur)
 
 void ArmeHache::tirer(Ennemi *cible)
 {
-    if (m_clock.getElapsedTime() >= m_cooldown)
+    if (m_clock->getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, m_sprite, m_joueur, m_range, cible->getEnnemiPos());
+        Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_sprite, m_joueur, m_range, cible->getEnnemiPos());
         m_ensemble.push_back(b);
-        m_clock.restart();
+        m_clock->restart();
     }
 }
 
@@ -57,7 +58,7 @@ void ArmeHache::upgrade()
     case 3:
         m_level++;
         m_tailleProjectile *= 1.25;
-        m_sprite.scale(1.25, 1.25);
+        m_sprite->scale(1.25, 1.25);
         m_nombreProjectile++;
         m_description = {"Hache level 5", "+10\% de range\n+20\% de degats"};
         break;

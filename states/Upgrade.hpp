@@ -23,9 +23,6 @@ public :
     void moveUp();
     void moveDown();
 
-    void choose(){
-        weapons[choixSelected]->upgrade();
-    }
+    void choose();
 };
-
 #endif

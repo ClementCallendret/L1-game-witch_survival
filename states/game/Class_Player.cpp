@@ -43,3 +43,11 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite)
     }
 }
 
+void Player::heal(float n)
+{
+    PV += n;
+    if(PV > pvMax)
+    {
+        PV = pvMax;
+    }
+}

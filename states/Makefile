@@ -1,5 +1,5 @@
-mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o Animation.o Shield.o
-	g++ main.o gameengine.o MainMenu.o menustate.o playstate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o Animation.o Shield.o -o mainOut -lsfml-graphics -lsfml-window -lsfml-system
+mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
+	g++ main.o gameengine.o MainMenu.o menustate.o playstate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o -o mainOut -lsfml-graphics -lsfml-window -lsfml-system
 
 main.o : main.cpp gameengine.hpp menustate.hpp
 	g++ -Wall main.cpp -c
@@ -13,7 +13,7 @@ MainMenu.o : MainMenu.hpp MainMenu.cpp
 menustate.o : menustate.hpp menustate.cpp gamestate.hpp MainMenu.hpp gameengine.hpp playstate.hpp
 	g++ -Wall menustate.cpp -c 
 
-playstate.o : playstate.hpp playstate.cpp upgradestate.hpp game/Player.h gamestate.hpp menustate.hpp game/Player.h game/map.h game/ennemi_villageois.h game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/Shield.hpp game/Armes/ArmeEpee.hpp
+playstate.o : playstate.hpp playstate.cpp upgradestate.hpp game/Player.h gamestate.hpp menustate.hpp game/Player.h game/map.h game/ennemi_villageois.h game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/Shield.hpp game/Armes/ArmeEpee.hpp game/Armes/ArmeLivre.hpp game/Armes/ArmeCrane.hpp game/Armes/ArmeChaudron.hpp game/Armes/ArmeElixir.hpp game/Armes/ArmeBalais.hpp
 	g++ -Wall playstate.cpp -c 
 
 Upgrade.o : Upgrade.cpp Upgrade.hpp game/Player.h game/Armes/Arme.hpp
@@ -69,6 +69,21 @@ ArmeEclair.o : game/Armes/ArmeEclair.hpp game/Armes/ArmeEclair.cpp game/Armes/Ar
 
 ArmeEpee.o : game/Armes/ArmeEpee.hpp game/Armes/ArmeEpee.cpp game/Armes/Arme.hpp game/Armes/BulletEpee.hpp
 	g++ -Wall game/Armes/ArmeEpee.cpp -c
+
+ArmeLivre.o : game/Armes/ArmeLivre.hpp game/Armes/ArmeLivre.cpp game/Armes/Arme.hpp
+	g++ -Wall game/Armes/ArmeLivre.cpp -c
+
+ArmeCrane.o : game/Armes/ArmeCrane.hpp game/Armes/ArmeCrane.cpp game/Armes/Arme.hpp
+	g++ -Wall game/Armes/ArmeCrane.cpp -c
+
+ArmeChaudron.o : game/Armes/ArmeChaudron.hpp game/Armes/ArmeChaudron.cpp game/Armes/Arme.hpp
+	g++ -Wall game/Armes/ArmeChaudron.cpp -c
+
+ArmeElixir.o : game/Armes/ArmeElixir.hpp game/Armes/ArmeElixir.cpp game/Armes/Arme.hpp
+	g++ -Wall game/Armes/ArmeElixir.cpp -c
+
+ArmeBalais.o : game/Armes/ArmeBalais.hpp game/Armes/ArmeBalais.cpp game/Armes/Arme.hpp
+	g++ -Wall game/Armes/ArmeBalais.cpp -c
 
 Animation.o : game/Animation.hpp game/Animation.cpp
 	g++ -Wall game/Animation.cpp -c

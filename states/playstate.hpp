@@ -16,6 +16,11 @@
 #include "game/Armes/ArmeEclair.hpp"
 #include "game/Armes/Shield.hpp"
 #include "game/Armes/ArmeEpee.hpp"
+#include "game/Armes/ArmeLivre.hpp"
+#include "game/Armes/ArmeCrane.hpp"
+#include "game/Armes/ArmeBalais.hpp"
+#include "game/Armes/ArmeChaudron.hpp"
+#include "game/Armes/ArmeElixir.hpp"
 
 class CPlayState : public CGameState
 {

@@ -11,10 +11,11 @@ ArmeFireball::ArmeFireball(Player *joueur) : Arme(joueur)
     m_level = 0;
     m_nomArme = "Fireball";
     m_cooldown = sf::seconds(2);
+    m_clock = new sf::Clock;
 
     m_texture.loadFromFile("media/fireball2.png");
-    m_sprite.setTexture(m_texture);
-    m_anim = Animation(m_sprite, 6, sf::Vector2i(45, 19), 64, 39, 0.8, 0.5);
+    m_sprite = new sf::Sprite(m_texture);
+    m_anim = new Animation(*m_sprite, 6, sf::Vector2i(45, 19), 64, 39, 0.8, 0.5);
 
     m_icoText.loadFromFile("media/icon_fireball.png");
     m_icoSprite.setTexture(m_icoText);
@@ -24,11 +25,11 @@ ArmeFireball::ArmeFireball(Player *joueur) : Arme(joueur)
 
 void ArmeFireball::tirer(Ennemi *cible)
 {
-    if (m_clock.getElapsedTime() >= m_cooldown)
+    if (m_clock->getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible->getEnnemiPos(), m_anim);
+        Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible->getEnnemiPos(), *m_anim);
         m_ensemble.push_back(b);
-        m_clock.restart();
+        m_clock->restart();
     }
 }
 
@@ -81,7 +82,7 @@ void ArmeFireball::upgrade()
         m_level++;
         m_vieProjectile++;
         m_tailleProjectile *= 1.3;
-        m_anim.sprite.scale(1.3, 1.3);
+        m_anim->sprite.scale(1.3, 1.3);
         m_description = {"Boule de feu level 9", "+20\% de degats\n-5\% de cooldown"};
         break;
     default:

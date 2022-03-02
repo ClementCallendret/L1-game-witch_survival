@@ -4,11 +4,6 @@
 
 class ArmeFireball : public Arme
 {
-private:
-    sf::Texture m_texture;
-    sf::Sprite m_sprite;
-    Animation m_anim;
-
 public:
     ArmeFireball(Player *joueur);
     ~ArmeFireball(){};
