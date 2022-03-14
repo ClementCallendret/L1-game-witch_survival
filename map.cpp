@@ -6,7 +6,7 @@ Map::Map()
 {
     // on cree la map avec le niveau precedemment defini
 
-    if (!load("media/tileset.png", sf::Vector2u(32, 32), level, 81, 40))
+    if (!load("media/tileset.png", sf::Vector2u(32, 32), level, 113, 104))
         throw ("Error la map charge pas mon reuf");
 }
 
