@@ -6,7 +6,7 @@ MainMenu::MainMenu()
 {
     if(!police.loadFromFile("media/Witch.ttf"))
     {
-        std::cout << "police non chargé" << std::endl;
+        std::cout << "police non chargée" << std::endl;
     }
 
     // JOUEUR
