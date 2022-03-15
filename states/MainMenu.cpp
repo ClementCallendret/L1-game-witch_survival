@@ -19,7 +19,7 @@ MainMenu::MainMenu()
     // CREDITS
     choix[1].setFont(police);
     choix[1].setFillColor(sf::Color::White);
-    choix[1].setString("Credit");
+    choix[1].setString("Credits");
     choix[1].setCharacterSize(100);
     choix[1].setPosition(400, 400);
 
