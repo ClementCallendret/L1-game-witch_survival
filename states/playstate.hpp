@@ -7,7 +7,10 @@
 
 #include "game/Player.h"
 #include "game/map.h"
+#include "game/ennemi.h"
 #include "game/ennemi_villageois.h"
+#include "game/ennemi_chevalier.h"
+
 
 #include "game/Armes/Arme.hpp"
 #include "game/Armes/ArmeFireball.hpp"

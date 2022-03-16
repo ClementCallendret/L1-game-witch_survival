@@ -7,7 +7,7 @@
 void CPlayState::Init()
 {
 	player = new Player();
-	ennemi = new villageois(player);
+	ennemi = new chevalier(player);
 	map = new Map();
 	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
 	atirail =  {new ArmeEpee(player), new ArmeFireball(player), new ArmeHache(player), new ArmeEclair(player), new ArmeOrbe(player), new ArmeShield(player), new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};

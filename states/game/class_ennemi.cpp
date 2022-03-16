@@ -8,8 +8,7 @@ Ennemi::Ennemi(Player* j)
 {   //definition du joueur avec le pointeur j
     joueur = j;
     //taille de l'image en pixel (a automatiser si y a le tps)
-    int tailleImg = 256;
-    taille = sf::Vector2f(tailleImg, tailleImg);
+    taille = sf::Vector2f(taille.x, taille.y);
 
 }
 
@@ -26,11 +25,12 @@ void Ennemi::draw(sf::RenderWindow &window)
 void Ennemi::update()
 {   //Definition variable pour les calculs
     float deplaX,deplaY,angle;
-    float tailleImg = 256;
+    float tailleImg = taille.x;
 
     //Recuperation pos joueur en x et y
     float posxP = joueur->getPlayerPos().x;
     float posyP = joueur->getPlayerPos().y;
+
 
     float  posxE = location.x + (tailleImg/2);
     float  posyE = location.y + (tailleImg/2);
@@ -51,27 +51,31 @@ void Ennemi::update()
         location.x -= speed * cos(angle);
         location.y -= speed * sin(angle); 
     }  
+    collision();
 }
 
 //Collision
 void Ennemi::collision()
 {  
-    //Recuperation pos joueur en x et y
-    float posxP = joueur->getPlayerPos().x;
-    float posyP = joueur->getPlayerPos().y;
-
-    posxP -= 16;
-    posyP -= 16;
-     //taille de l'image de l'ennemi
-    int tailleE = 256;
-    //taille de l'image du joueur
-    int tailleP = 32;
     // Detection collision
-    //Collision droite
 
-    if (location.x < (posxP + tailleP) && (location.x + tailleE) > posxP && location.y < (posyP + tailleP) && (location.y + tailleE) > posyP){
+    float playerLeftEdge = joueur->getPlayerPos().x;
+    float playerRightEdge = playerLeftEdge;
+    float playerTopEdge = joueur->getPlayerPos().y;
+    float playerBottomEdge = playerTopEdge;
+
+    float enemyLeftEdge = location.x;
+    float enemyRightEdge = enemyLeftEdge + taille.x;
+    float enemyTopEdge = location.y;
+    float enemyBottomEdge = enemyTopEdge + taille.y;
+
+    if ((playerRightEdge) > enemyLeftEdge && playerLeftEdge < enemyRightEdge &&
+        playerTopEdge < enemyBottomEdge && playerBottomEdge > enemyTopEdge){
         location.x = 0;
-        location.y = 0;
-}
-}
+        location.y = 0;     
+        joueur->PV-=degat;     
+        printf("PV joueur %d \n",joueur->PV);  
+        }
 
+
+}
