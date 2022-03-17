@@ -7,7 +7,7 @@ Bullet(pos, R, D, S, Life), anim(a), tireur(j)
 
 void BulletEpee::update()
 {
-    location = sf::Vector2f(tireur->getPlayerPos().x - 10*anim->num_frame, tireur->getPlayerPos().y);
+    location = sf::Vector2f(tireur->getPlayerPos().x - 20*anim->num_frame, tireur->getPlayerPos().y);
     anim->update();
 }
 

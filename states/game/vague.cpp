@@ -1,5 +1,4 @@
 #include "vague.hpp"
-#include <stdio.h>
 
 Vague::Vague(Player *p, sf::View *v) : joueur(p), vue(v)
 {

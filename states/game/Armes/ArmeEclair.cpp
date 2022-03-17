@@ -3,7 +3,7 @@
 
 ArmeEclair::ArmeEclair(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 20;
+    m_degats = 5;
     m_vitesseProjectile = 2.5;
     m_tailleProjectile = 25;
     m_nombreProjectile = 1;

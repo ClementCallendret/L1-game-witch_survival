@@ -19,7 +19,7 @@ protected:
 public:
 	Ennemi(Player* j, sf::Vector2f loc);
 	virtual ~Ennemi() {}
-	short PV;
+	int PV;
 	virtual void draw(sf::RenderWindow &window);
 	virtual void update();
     void collision();

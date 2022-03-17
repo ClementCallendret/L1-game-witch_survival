@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "ennemi.h"
-#include <stdio.h>
 #include <cmath>
 
 //Definition global du joueur
@@ -70,8 +69,7 @@ void Ennemi::collision()
 
     if ((playerRightEdge) > enemyLeftEdge && playerLeftEdge < enemyRightEdge &&
         playerTopEdge < enemyBottomEdge && playerBottomEdge > enemyTopEdge){   
-        joueur->PV-=degat;     
-        printf("PV joueur %d \n",joueur->PV);  
+        joueur->PV-=degat;
         }
 
 
