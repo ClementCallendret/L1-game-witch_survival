@@ -27,7 +27,7 @@ void BulletOrbe::hit(Ennemi *enemy)
 
 void BulletOrbe::draw(sf::RenderWindow &window)
 {
-    /* sf::CircleShape hitbox(rayon);
+    /*sf::CircleShape hitbox(rayon);
     hitbox.setFillColor(sf::Color(0, 255, 0, 127)); 
     hitbox.setOrigin(sf::Vector2f(rayon, rayon));
     hitbox.setPosition(location);

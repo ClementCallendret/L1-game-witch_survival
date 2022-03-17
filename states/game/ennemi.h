@@ -18,7 +18,9 @@ protected:
 
 public:
 	Ennemi(Player* j, sf::Vector2f loc);
-	virtual ~Ennemi() {}
+	virtual ~Ennemi() {
+		joueur->prendreXP(xp);
+	}
 	int PV;
 	virtual void draw(sf::RenderWindow &window);
 	virtual void update();

@@ -13,6 +13,7 @@ private:
 
 public:
     short PV = 100;
+	float xp = 0, xpMax = 20;
 	int pvMax = 100;
 	float speed = 3.;
 
@@ -21,6 +22,7 @@ public:
 	float degats_subis(float f){return 0.;}; // ici on mettra les degats de l'arme ennemie lorsque elle touche le joueur
 	float degats_infliges(float g){return 0.;}; // pareil qu'au dessus mais avec les degats de l'arme actuelle (il faudra donc le mettre a jour pendant le jeu)
 
+	bool prendreXP(float n);
 	void heal(float n);
 
 	sf::Vector2f getPlayerPos() {return location;};

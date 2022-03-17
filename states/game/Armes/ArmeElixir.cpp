@@ -16,7 +16,7 @@ void ArmeElixir::update()
 {
     if(m_clock->getElapsedTime() >= m_cooldown)
     {
-        m_joueur->heal(m_level*0.01*m_joueur->pvMax);
+        m_joueur->heal(m_level*0.05*m_joueur->pvMax);
         m_clock->restart();
     }
 }
