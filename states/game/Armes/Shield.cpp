@@ -1,6 +1,6 @@
 #include "Shield.hpp"
 
-ArmeShield::ArmeShield(Player *joueur) : Arme(joueur)
+ArmeShield::ArmeShield(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
     m_degats = 0;
     m_vitesseProjectile = 0;
@@ -25,7 +25,7 @@ ArmeShield::ArmeShield(Player *joueur) : Arme(joueur)
     m_description = {"Bouclier level 1", "Un bouclier quoi  -_-  ! J'ai plus\nd'inspi."};
 }
 
-void ArmeShield::tirer(Ennemi *cible)
+void ArmeShield::tirer()
 {
     // lorsque le bouclier n'a plus de vie on lance le cooldown de recharge
     if (m_nombreCharge == m_nombreProjectile)
@@ -37,29 +37,33 @@ void ArmeShield::tirer(Ennemi *cible)
     }
 }
 
-void ArmeShield::update(Ennemi *cible)
+void ArmeShield::update()
 {
     // la partie avec ces deux if donne un certain nombre de frame d'invincibilité lorsque le bouclier est touché
     // m_vieProjectile = nb de frames restantes
     // m_vieMax = nb de frames totales
 
-    if(m_vieProjectile <= 0) 
+    if (m_vieProjectile <= 0)
     {
         m_vieProjectile = m_vieMax;
     }
-    if(m_vieProjectile < m_vieMax)
+    if (m_vieProjectile < m_vieMax)
     {
         m_vieProjectile--;
     }
     else
     {
-        if(collision(cible))
+        for (Ennemi *c : *ennemis)
         {
-            m_vieProjectile--;
-            if(m_nombreCharge > 0) m_nombreCharge--;
+            if (collision(c))
+            {
+                m_vieProjectile--;
+                if (m_nombreCharge > 0)
+                    m_nombreCharge--;
+            }
         }
     }
-    tirer(cible);
+    tirer();
     m_sprite->setPosition(m_joueur->getPlayerPos());
     m_sprite->rotate(20);
 }
@@ -93,7 +97,7 @@ bool ArmeShield::collision(Ennemi *enemy)
 
     float dx = distX - enemyTaille.x / 2;
     float dy = distY - enemyTaille.y / 2;
-    return ( (dx * dx + dy * dy ) <= (m_tailleProjectile * m_tailleProjectile));
+    return ((dx * dx + dy * dy) <= (m_tailleProjectile * m_tailleProjectile));
 }
 
 void ArmeShield::draw(sf::RenderWindow &window)
@@ -160,7 +164,7 @@ void ArmeShield::upgrade()
         break;
     default:
         m_level++;
-        std::stringstream titre ;
+        std::stringstream titre;
         titre << "Bouclier level " << m_level + 1;
         m_description = {titre.str(), "Ca fait rien du tout"};
         break;

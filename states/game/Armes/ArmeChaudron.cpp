@@ -1,6 +1,6 @@
 #include "ArmeChaudron.hpp"
 
-ArmeChaudron::ArmeChaudron(Player *joueur, std::vector<Arme *> *i) : Arme(joueur), inventaire(i)
+ArmeChaudron::ArmeChaudron(Player *joueur, std::vector<Arme *> *i, std::vector<Ennemi*>* en) : Arme(joueur, en), inventaire(i)
 {
     m_nomArme = "Potion verte";
     m_icoText.loadFromFile("media/icon_cauldron.png");

@@ -6,10 +6,10 @@
 class ArmeEpee : public Arme
 {
 public:
-    ArmeEpee(Player *joueur);
+    ArmeEpee(Player *joueur, std::vector<Ennemi*>* en = 0 );
     ~ArmeEpee(){};
 
-    void tirer(Ennemi *cible);
+    void tirer();
     void upgrade();
 };
 

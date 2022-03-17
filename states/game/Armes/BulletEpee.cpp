@@ -7,7 +7,7 @@ Bullet(pos, R, D, S, Life), anim(a), tireur(j)
 
 void BulletEpee::update()
 {
-    location = tireur->getPlayerPos();
+    location = sf::Vector2f(tireur->getPlayerPos().x - 10*anim->num_frame, tireur->getPlayerPos().y);
     anim->update();
 }
 
@@ -24,7 +24,7 @@ void BulletEpee::draw(sf::RenderWindow &window)
     hitbox.setPosition(location);
     window.draw(hitbox);
 
-    anim->sprite.setPosition(location);
+    anim->sprite.setPosition(tireur->getPlayerPos());
     window.draw(anim->sprite);
     if(anim->num_frame > anim->nbtot_frames - 1) { life = 0; anim->num_frame = 0;}
 }

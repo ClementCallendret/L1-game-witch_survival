@@ -86,7 +86,7 @@ void CUpgradeState::Draw(CGameEngine *game)
 
     (game->screen)->draw(*playstate->map);
 	playstate->player->draw(*(game->screen));
-	playstate->ennemi->draw(*(game->screen));
+	playstate->wave->draw(*(game->screen));
 
     game->screen->draw(*bg);
     ameliorations->draw(*(game->screen));

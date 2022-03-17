@@ -1,42 +1,50 @@
 #include "Arme.hpp"
 
-Arme::Arme(Player *j) : m_joueur(j) 
+Arme::Arme(Player *j, std::vector<Ennemi *> *en) : m_joueur(j), ennemis(en)
 {
 }
 
 Arme::~Arme()
 {
     // Lorsqu'on detruit un objet Arme, on détruit chaque projectile qui lui est associé car ce sont des pointeurs
-    
+
     for (auto i = std::begin(m_ensemble); m_ensemble.size() > 0;)
     {
         Bullet *e = *i;
         i = m_ensemble.erase(i);
         delete e;
     }
-    if(m_clock) delete m_clock;
-    if(m_sprite) delete m_sprite;
+    if (m_clock)
+        delete m_clock;
+    if (m_sprite)
+        delete m_sprite;
 }
 
-void Arme::update(Ennemi *cible)
+void Arme::update()
 {
-    tirer(cible);
+    tirer();
 
     for (auto i = std::begin(m_ensemble); i != std::end(m_ensemble);)
     {
         Bullet *e = *i;
         e->update(); // on fait bouger les projectiles grace a la fct update
 
-        if (e->getBulLife() == 0) // on efface les projectiles qui sont "mort" de la mémoire
+        if (e->getBulLife() <= 0) // on efface les projectiles qui sont "mort" de la mémoire
         {
             i = m_ensemble.erase(i);
             delete e;
         }
         else // on check les collisions pour les autres projectiles
         {
-            if (e->collision(cible))
+            if (!ennemis->empty())
             {
-                e->hit(cible);
+                for (Ennemi *c : *ennemis)
+                {
+                    if (e->collision(c))
+                    {
+                        e->hit(c);
+                    }
+                }
             }
             i++;
         }

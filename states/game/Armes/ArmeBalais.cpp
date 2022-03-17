@@ -1,7 +1,7 @@
 #include "ArmeBalais.hpp"
 
-ArmeBalais::ArmeBalais(Player *joueur) : 
-Arme(joueur)
+ArmeBalais::ArmeBalais(Player *joueur, std::vector<Ennemi*>* en) : 
+Arme(joueur, en)
 {
     m_nomArme = "Balais";
     m_icoText.loadFromFile("media/icon_broom.png");

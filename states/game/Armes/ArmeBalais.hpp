@@ -5,13 +5,13 @@
 class ArmeBalais : public Arme
 {
 public:
-    ArmeBalais(Player *joueur);
+    ArmeBalais(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeBalais(){};
 
-    void tirer(Ennemi *cible) {}
+    void tirer() {}
     void upgrade();
 
-    virtual void update(Ennemi *cible) {}
+    virtual void update() {}
     virtual void draw(sf::RenderWindow &window) {}
 };
 

@@ -5,10 +5,10 @@
 class ArmeOrbe : public Arme
 {
 public:
-    ArmeOrbe(Player *joueur);
+    ArmeOrbe(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeOrbe(){};
 
-    void tirer(Ennemi *cible = 0);
+    void tirer();
     void upgrade();
 };
 

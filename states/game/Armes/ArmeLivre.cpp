@@ -1,7 +1,7 @@
 #include "ArmeLivre.hpp"
 
-ArmeLivre::ArmeLivre(Player *joueur, std::vector<Arme *> *i) : 
-Arme(joueur), inventaire(i)
+ArmeLivre::ArmeLivre(Player *joueur, std::vector<Arme *> *i, std::vector<Ennemi*>* en) : 
+Arme(joueur, en), inventaire(i)
 {
     m_nomArme = "Grimmoire";
     m_icoText.loadFromFile("media/icon_book.png");

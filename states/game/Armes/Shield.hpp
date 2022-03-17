@@ -10,14 +10,14 @@ private:
     int m_vieMax;
 
 public:
-    ArmeShield(Player *joueur);
+    ArmeShield(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeShield(){};
 
-    void tirer(Ennemi *cible = 0);
+    void tirer();
     void upgrade();
     bool collision(Ennemi* ennemi);
     
-    void update(Ennemi *cible = 0);
+    void update();
     void draw(sf::RenderWindow &window);
 };
 

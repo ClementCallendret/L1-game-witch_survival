@@ -17,7 +17,8 @@ protected:
 	std::string name;
 
 public:
-	Ennemi(Player* j);
+	Ennemi(Player* j, sf::Vector2f loc);
+	virtual ~Ennemi() {}
 	short PV;
 	virtual void draw(sf::RenderWindow &window);
 	virtual void update();

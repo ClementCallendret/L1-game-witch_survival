@@ -9,10 +9,10 @@ private:
     float m_range;
 
 public:
-    ArmeHache(Player *joueur);
+    ArmeHache(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeHache(){};
 
-    void tirer(Ennemi *cible);
+    void tirer();
     void upgrade();
 };
 

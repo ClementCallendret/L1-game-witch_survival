@@ -1,7 +1,7 @@
 #include "ArmeCrane.hpp"
 
-ArmeCrane::ArmeCrane(Player *joueur, std::vector<Arme *> *i) : 
-Arme(joueur), inventaire(i)
+ArmeCrane::ArmeCrane(Player *joueur, std::vector<Arme *> *i, std::vector<Ennemi*>* en) : 
+Arme(joueur, en), inventaire(i)
 {
     m_nomArme = "Crane maudit";
     m_icoText.loadFromFile("media/icon_skull.png");

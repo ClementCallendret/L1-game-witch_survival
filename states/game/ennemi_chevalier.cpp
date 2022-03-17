@@ -1,8 +1,9 @@
 #include "ennemi_chevalier.h"
 #include <cmath>
 
-chevalier::chevalier(Player* j):Ennemi(j){
+chevalier::chevalier(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 2;
+    PV = 50;
     degat = 1;
     xp = 2;
     name = "chevalier";
@@ -11,7 +12,6 @@ chevalier::chevalier(Player* j):Ennemi(j){
     nv_texture.loadFromFile("media/chevalier.png");
 
     sprite.setTexture(texture);
-    location = sf::Vector2f(0,0);
     taille = sf::Vector2f(50,50);
 
 }

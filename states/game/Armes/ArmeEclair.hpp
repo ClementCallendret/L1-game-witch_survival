@@ -5,10 +5,10 @@
 class ArmeEclair : public Arme
 {
 public:
-    ArmeEclair(Player *joueur);
+    ArmeEclair(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeEclair(){};
 
-    void tirer(Ennemi *cible);
+    void tirer();
     void upgrade();
 };
 

@@ -1,9 +1,9 @@
 #include "ArmeEpee.hpp"
 #include "BulletEpee.hpp"
 
-ArmeEpee::ArmeEpee(Player *joueur) : Arme(joueur)
+ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi*>* en) : Arme(joueur, en)
 {
-    m_degats = 2;
+    m_degats = 10;
     m_vitesseProjectile = 3;
     m_tailleProjectile = 20;
     m_nombreProjectile = 1;
@@ -16,7 +16,7 @@ ArmeEpee::ArmeEpee(Player *joueur) : Arme(joueur)
     m_texture.loadFromFile("media/slashepee.png");
     m_sprite = new sf::Sprite(m_texture);
     m_sprite->setColor(sf::Color(255, 255, 255, 200));
-    m_anim = new Animation(*m_sprite, 7, sf::Vector2i(100, 32), 150, 64, 2, 0.4);
+    m_anim = new Animation(*m_sprite, 7, sf::Vector2i(90, 42), 150, 64, 1.7, 0.4);
 
     m_icoText.loadFromFile("media/icon_epee.png");
     m_icoSprite.setTexture(m_icoText);
@@ -24,7 +24,7 @@ ArmeEpee::ArmeEpee(Player *joueur) : Arme(joueur)
     m_description = {"Epee level 1", "Assene un coup tranchant qui oxcie\nles ennemis en face du personnage"};
 }
 
-void ArmeEpee::tirer(Ennemi *cible)
+void ArmeEpee::tirer()
 {
     if (m_clock->getElapsedTime() >= m_cooldown)
     {

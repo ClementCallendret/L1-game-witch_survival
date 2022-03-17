@@ -4,9 +4,8 @@
 #include <cmath>
 
 //Definition global du joueur
-Ennemi::Ennemi(Player* j)
+Ennemi::Ennemi(Player* j, sf::Vector2f loc) : joueur(j), location(loc)
 {   //definition du joueur avec le pointeur j
-    joueur = j;
     //taille de l'image en pixel (a automatiser si y a le tps)
     taille = sf::Vector2f(taille.x, taille.y);
 
@@ -70,9 +69,7 @@ void Ennemi::collision()
     float enemyBottomEdge = enemyTopEdge + taille.y;
 
     if ((playerRightEdge) > enemyLeftEdge && playerLeftEdge < enemyRightEdge &&
-        playerTopEdge < enemyBottomEdge && playerBottomEdge > enemyTopEdge){
-        location.x = 0;
-        location.y = 0;     
+        playerTopEdge < enemyBottomEdge && playerBottomEdge > enemyTopEdge){   
         joueur->PV-=degat;     
         printf("PV joueur %d \n",joueur->PV);  
         }

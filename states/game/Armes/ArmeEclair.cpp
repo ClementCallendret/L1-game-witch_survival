@@ -1,9 +1,9 @@
 #include "ArmeEclair.hpp"
 #include "BulletEclair.hpp"
 
-ArmeEclair::ArmeEclair(Player *joueur) : Arme(joueur)
+ArmeEclair::ArmeEclair(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 1;
+    m_degats = 20;
     m_vitesseProjectile = 2.5;
     m_tailleProjectile = 25;
     m_nombreProjectile = 1;
@@ -23,13 +23,23 @@ ArmeEclair::ArmeEclair(Player *joueur) : Arme(joueur)
     m_description = {"Eclaire level 1", "La puissance du tonerre frappe un\nennemi aleatoire."};
 }
 
-void ArmeEclair::tirer(Ennemi *cible)
+void ArmeEclair::tirer()
 {
-    if (m_clock->getElapsedTime() >= m_cooldown)
+    if (!ennemis->empty())
     {
-        Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible, *m_anim);
-        m_ensemble.push_back(b);
-        m_clock->restart();
+        if (m_clock->getElapsedTime() >= m_cooldown)
+        {
+            std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
+            auto p = ennemis->begin();
+            for (int i = 0; i < m_nombreProjectile && p!= ennemis->end(); i++)
+            {
+                Ennemi *e = *p;
+                Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, e, *m_anim);
+                m_ensemble.push_back(b);
+                m_clock->restart();
+                p++;
+            }
+        }
     }
 }
 
@@ -39,13 +49,13 @@ void ArmeEclair::upgrade()
     {
     case 0:
         m_level++;
-        m_description = {"Eclaire level 2", "+20\% de degats\n+1 eclair"};
+        m_description = {"Eclair level 2", "+20\% de degats\n+1 eclair"};
         break;
     case 1:
         m_level++;
         m_nombreProjectile++;
         m_degats *= 1.2;
-        m_description = {"Eclaire level 3", "+20\% de degats\n+1 eclair"};
+        m_description = {"Eclair level 3", "+20\% de degats\n+1 eclair"};
         break;
     case 2:
         m_level++;
@@ -55,7 +65,7 @@ void ArmeEclair::upgrade()
         break;
     case 3:
         m_level++;
-        m_nombreProjectile+=2;
+        m_nombreProjectile += 2;
         m_cooldown -= sf::seconds(0.5);
         m_description = {"Eclaire level 5", "+20\% de degats\n+1 eclair"};
         break;
@@ -86,7 +96,7 @@ void ArmeEclair::upgrade()
         break;
     default:
         m_level++;
-        std::stringstream titre ;
+        std::stringstream titre;
         titre << "Eclair level " << m_level + 1;
         m_degats *= 1.1;
         m_description = {titre.str(), "+10\% de degats"};

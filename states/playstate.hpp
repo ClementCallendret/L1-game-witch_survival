@@ -10,7 +10,7 @@
 #include "game/ennemi.h"
 #include "game/ennemi_villageois.h"
 #include "game/ennemi_chevalier.h"
-
+#include "game/vague.hpp"
 
 #include "game/Armes/Arme.hpp"
 #include "game/Armes/ArmeFireball.hpp"
@@ -43,7 +43,7 @@ public:
 	~CPlayState() {Cleanup();}
 
 	Player* player;
-	Ennemi* ennemi;
+	Vague* wave;
 	Map* map;
 	std::vector<Arme*> atirail;
 	sf::View* view;

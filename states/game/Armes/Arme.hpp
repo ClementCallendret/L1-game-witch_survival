@@ -3,6 +3,7 @@
 #include "Bullet.hpp"
 #include <string>
 #include <array>
+#include <random>
 #include <sstream>
 
 class Arme
@@ -33,14 +34,16 @@ public :
     sf::Sprite m_icoSprite;
     std::array<std::string, 2> m_description;
 
+    std::vector<Ennemi*>* ennemis;
 
-    Arme(Player* joueur);  
+
+    Arme(Player* joueur, std::vector<Ennemi*>* en = 0);  
     virtual ~Arme();
 
-    virtual void tirer(Ennemi* cible = 0) = 0; // purement virtuelle car chaque arme tire differement
+    virtual void tirer() = 0; // purement virtuelle car chaque arme tire differement
     virtual void upgrade() = 0;
     
-    virtual void update(Ennemi* cible);
+    virtual void update();
     virtual void draw(sf::RenderWindow& window);
 };
 

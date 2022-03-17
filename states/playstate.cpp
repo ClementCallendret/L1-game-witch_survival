@@ -7,21 +7,22 @@
 void CPlayState::Init()
 {
 	player = new Player();
-	ennemi = new chevalier(player);
 	map = new Map();
 	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
-	atirail =  {new ArmeEpee(player), new ArmeFireball(player), new ArmeHache(player), new ArmeEclair(player), new ArmeOrbe(player), new ArmeShield(player), new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};
+	wave = new Vague(player, view);
+	atirail = {new ArmeEpee(player, &wave->ensemble), new ArmeFireball(player, &wave->ensemble), new ArmeHache(player, &wave->ensemble), new ArmeEclair(player, &wave->ensemble), new ArmeOrbe(player, &wave->ensemble), new ArmeShield(player, &wave->ensemble), new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};
+
 	printf("CPlayState Init\n");
 }
 
 void CPlayState::Cleanup()
 {
 	delete player;
-	delete ennemi;
+	delete wave;
 	delete map;
 	delete view;
 
-	for(auto a : atirail)
+	for (auto a : atirail)
 	{
 		delete a;
 	}
@@ -58,7 +59,7 @@ void CPlayState::HandleEvents(CGameEngine *game)
 				game->PushState(new CUpgradeState(this));
 				break;
 			default:
-			
+
 				break;
 			}
 			break;
@@ -72,16 +73,16 @@ void CPlayState::Update(CGameEngine *game)
 {
 
 	player->inputs();
-	ennemi->update();
+	wave->update();
 
 	view->setCenter(player->getPlayerPos());
 	game->screen->setView(*view);
 
-	for(auto a : atirail)
+	for (auto a : atirail)
 	{
-		if(a->m_level > 0)
+		if (a->m_level > 0)
 		{
-			a->update(ennemi);
+			a->update();
 		}
 	}
 }
@@ -91,16 +92,15 @@ void CPlayState::Draw(CGameEngine *game)
 	game->screen->clear();
 	(game->screen)->draw(*map);
 
-	player->draw(*(game->screen));
-	ennemi->draw(*(game->screen));
-
-	for(auto a : atirail)
+	wave->draw(*(game->screen));
+	for (auto a : atirail)
 	{
-		if(a->m_level > 0)
+		if (a->m_level > 0)
 		{
 			a->draw(*game->screen);
 		}
 	}
+	player->draw(*(game->screen));
 
 	game->screen->display();
 }

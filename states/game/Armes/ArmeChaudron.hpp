@@ -8,13 +8,13 @@ private:
     std::vector<Arme *> *inventaire;
 
 public:
-    ArmeChaudron(Player *joueur, std::vector<Arme *> *inventaire);
+    ArmeChaudron(Player *joueur, std::vector<Arme *> *inventaire, std::vector<Ennemi*>* en = 0);
     ~ArmeChaudron(){};
 
-    void tirer(Ennemi *cible) {}
+    void tirer() {}
     void upgrade();
 
-    virtual void update(Ennemi *cible) {}
+    virtual void update() {}
     virtual void draw(sf::RenderWindow &window) {}
 };
 

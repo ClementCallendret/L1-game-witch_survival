@@ -1,9 +1,9 @@
 #include "ArmeFireball.hpp"
 #include "BulletFireball.hpp"
 
-ArmeFireball::ArmeFireball(Player *joueur) : Arme(joueur)
+ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 1;
+    m_degats = 15;
     m_vitesseProjectile = 2.5;
     m_tailleProjectile = 10;
     m_nombreProjectile = 1;
@@ -23,13 +23,17 @@ ArmeFireball::ArmeFireball(Player *joueur) : Arme(joueur)
     m_description = {"Boule de feu level 1", "Envoie une boule de feu en direction\nd'un ennemi aleatoire."};
 }
 
-void ArmeFireball::tirer(Ennemi *cible)
+void ArmeFireball::tirer()
 {
-    if (m_clock->getElapsedTime() >= m_cooldown)
+    if (!ennemis->empty())
     {
-        Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, cible->getEnnemiPos(), *m_anim);
-        m_ensemble.push_back(b);
-        m_clock->restart();
+        std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
+        if (m_clock->getElapsedTime() >= m_cooldown)
+        {
+            Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, ennemis->front()->getEnnemiPos(), *m_anim);
+            m_ensemble.push_back(b);
+            m_clock->restart();
+        }
     }
 }
 
@@ -87,7 +91,7 @@ void ArmeFireball::upgrade()
         break;
     default:
         m_level++;
-        std::stringstream titre ;
+        std::stringstream titre;
         titre << "Boule de feu level " << m_level + 1;
         m_degats *= 1.1;
         m_description = {titre.str(), "+10\% de degats"};

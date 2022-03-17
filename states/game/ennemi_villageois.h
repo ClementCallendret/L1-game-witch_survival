@@ -6,7 +6,8 @@
 
 class villageois: public Ennemi{
     public :
-    villageois(Player *j);
+    villageois(Player *j, sf::Vector2f loc);
+    ~villageois() {}
 
 
 };

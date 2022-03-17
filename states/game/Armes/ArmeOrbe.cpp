@@ -3,9 +3,9 @@
 #include <cmath>
 #define _USE_MATH_DEFINES
 
-ArmeOrbe::ArmeOrbe(Player *joueur) : Arme(joueur)
+ArmeOrbe::ArmeOrbe(Player *joueur, std::vector<Ennemi*>* en) : Arme(joueur, en)
 {
-    m_degats = 2;
+    m_degats = 8;
     m_vitesseProjectile = 0.03;
     m_tailleProjectile = 15;
     m_nombreProjectile = 1;
@@ -25,7 +25,7 @@ ArmeOrbe::ArmeOrbe(Player *joueur) : Arme(joueur)
     m_description = {"Orbe level 1", "Boule d'energie qui orbite autour\ndu personnage"};
 }
 
-void ArmeOrbe::tirer(Ennemi *cible)
+void ArmeOrbe::tirer()
 {
     if (!m_ensemble.empty())
         m_clock->restart();

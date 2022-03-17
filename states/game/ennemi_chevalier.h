@@ -6,7 +6,8 @@
 
 class chevalier: public Ennemi{
     public :
-    chevalier(Player *j);
+    chevalier(Player *j, sf::Vector2f loc);
+    ~chevalier() {}
     sf::Texture nv_texture;
     sf::Sprite nv_sprite{nv_texture};
     void update();

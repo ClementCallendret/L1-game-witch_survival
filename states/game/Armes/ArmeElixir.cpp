@@ -1,7 +1,7 @@
 #include "ArmeElixir.hpp"
 
-ArmeElixir::ArmeElixir(Player *joueur) : 
-Arme(joueur)
+ArmeElixir::ArmeElixir(Player *joueur, std::vector<Ennemi*>* en) : 
+Arme(joueur, en)
 {
     m_nomArme = "Elixir de vie";
     m_icoText.loadFromFile("media/icon_elixir.png");
@@ -12,7 +12,7 @@ Arme(joueur)
     m_clock = new sf::Clock;
 }
 
-void ArmeElixir::update(Ennemi *cible)
+void ArmeElixir::update()
 {
     if(m_clock->getElapsedTime() >= m_cooldown)
     {

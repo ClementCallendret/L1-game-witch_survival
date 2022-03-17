@@ -13,9 +13,29 @@ void Player::draw(sf::RenderWindow &window)
 {
     sprite.setPosition(location.x, location.y); // pour deplacer l'image de notre joueur il faut deja la placer 
 
-    // sf::CircleShape shape(200, f);
+    sf::RectangleShape totlife(sf::Vector2f(75, 5));
+    totlife.setFillColor(sf::Color::Black);
+    totlife.setOutlineColor(sf::Color::Black);
+    totlife.setOutlineThickness(1);
+    totlife.setOrigin(75/2, 2.5);
+    totlife.setPosition(location.x, location.y - 20);
+
+    sf::RectangleShape totXP = totlife;
+    totXP.setPosition(location.x, location.y - 30);
+
+    sf::RectangleShape lifebar(sf::Vector2f(PV*75/pvMax, 5));
+    lifebar.setFillColor(sf::Color::Red);
+    lifebar.setOrigin(75/2, 2.5);
+    lifebar.setPosition(location.x, location.y - 20);
+
+    sf::RectangleShape XPbar(sf::Vector2f(PV*75/pvMax, 5));
+    lifebar.setFillColor(sf::Color::Red);
+    lifebar.setOrigin(75/2, 2.5);
+    lifebar.setPosition(location.x, location.y - 20);
     // shape.setFillColor(sf::Color::Blue);
     // window.draw(shape);
+    window.draw(totlife);
+    window.draw(lifebar);
     window.draw(sprite);
 }
 

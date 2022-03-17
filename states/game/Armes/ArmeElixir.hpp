@@ -5,13 +5,13 @@
 class ArmeElixir : public Arme
 {
 public:
-    ArmeElixir(Player *joueur);
+    ArmeElixir(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeElixir(){};
 
-    void tirer(Ennemi *cible) {}
+    void tirer() {}
     void upgrade();
 
-    virtual void update(Ennemi *cible);
+    virtual void update();
     virtual void draw(sf::RenderWindow &window) {}
 };
 

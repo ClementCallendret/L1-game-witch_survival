@@ -1,9 +1,9 @@
 #include "ArmeHache.hpp"
 #include "BulletHache.hpp"
 
-ArmeHache::ArmeHache(Player *joueur) : Arme(joueur)
+ArmeHache::ArmeHache(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 2;
+    m_degats = 5;
     m_vitesseProjectile = 5;
     m_tailleProjectile = 20;
     m_nombreProjectile = 1;
@@ -25,13 +25,17 @@ ArmeHache::ArmeHache(Player *joueur) : Arme(joueur)
     m_description = {"Hache level 1", "Lance une hache tournoyante vers\nl'ennemi le plus proche (elle revient)"};
 }
 
-void ArmeHache::tirer(Ennemi *cible)
+void ArmeHache::tirer()
 {
-    if (m_clock->getElapsedTime() >= m_cooldown)
+    if (!ennemis->empty())
     {
-        Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_sprite, m_joueur, m_range, cible->getEnnemiPos());
-        m_ensemble.push_back(b);
-        m_clock->restart();
+        std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
+        if (m_clock->getElapsedTime() >= m_cooldown)
+        {
+            Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_sprite, m_joueur, m_range, ennemis->front()->getEnnemiPos());
+            m_ensemble.push_back(b);
+            m_clock->restart();
+        }
     }
 }
 
@@ -88,7 +92,7 @@ void ArmeHache::upgrade()
         break;
     default:
         m_level++;
-        std::stringstream titre ;
+        std::stringstream titre;
         titre << "Hache level " << m_level + 1;
         m_degats *= 1.1;
         m_description = {titre.str(), "+10\% de degats"};
