@@ -21,7 +21,6 @@ void Vague::update()
     {
         int x, y;
         Ennemi *e;
-        printf("%ld\n", ensemble.size());
         switch (rand() % 4)
         {
         case 0:
