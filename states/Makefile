@@ -13,7 +13,7 @@ MainMenu.o : MainMenu.hpp MainMenu.cpp
 menustate.o : menustate.hpp menustate.cpp gamestate.hpp MainMenu.hpp gameengine.hpp playstate.hpp
 	g++ -Wall menustate.cpp -c 
 
-playstate.o : playstate.hpp playstate.cpp upgradestate.hpp game/Player.h gamestate.hpp menustate.hpp game/Player.h game/map.h game/ennemi_villageois.h game/ennemi_chevalier.h game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/Shield.hpp game/Armes/ArmeEpee.hpp game/Armes/ArmeLivre.hpp game/Armes/ArmeCrane.hpp game/Armes/ArmeChaudron.hpp game/Armes/ArmeElixir.hpp game/Armes/ArmeBalais.hpp game/vague.hpp
+playstate.o : playstate.hpp playstate.cpp upgradestate.hpp game/Player.h gamestate.hpp menustate.hpp game/Player.h game/map.h game/ennemi_villageois.h game/ennemi_chevalier.h game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/Shield.hpp game/Armes/ArmeEpee.hpp game/Armes/ArmeLivre.hpp game/Armes/ArmeCrane.hpp game/Armes/ArmeChaudron.hpp game/Armes/ArmeElixir.hpp game/Armes/ArmeBalais.hpp game/vague1.hpp game/vague2.hpp
 	g++ -Wall playstate.cpp -c 
 
 Upgrade.o : Upgrade.cpp Upgrade.hpp game/Player.h game/Armes/Arme.hpp
@@ -34,7 +34,7 @@ ennemi_villageois.o : game/ennemi_villageois.cpp game/ennemi.h game/ennemi_villa
 ennemi_chevalier.o : game/ennemi_chevalier.cpp game/ennemi.h game/ennemi_chevalier.h
 	g++ -Wall game/ennemi_chevalier.cpp -c
 	
-vague.o : game/vague.hpp game/vague.cpp game/ennemi_villageois.h game/ennemi.h game/ennemi_chevalier.h
+vague.o : game/vague.hpp game/vague.cpp game/ennemi.h
 	g++ -Wall game/vague.cpp -c
 
 map.o : game/map.h game/map.cpp

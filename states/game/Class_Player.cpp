@@ -25,23 +25,8 @@ void Player::draw(sf::RenderWindow &window)
     lifebar.setOrigin(75/2, 2.5);
     lifebar.setPosition(location.x, location.y - 30);
     
-    sf::RectangleShape totXP(sf::Vector2f(1550, 15));
-    totXP.setOrigin(775, 0);
-    totXP.setPosition(location.x, location.y - 440);
-    totXP.setFillColor(sf::Color(255, 255, 255, 127));
-    totXP.setOutlineColor(sf::Color::Black);
-    totXP.setOutlineThickness(2);
-
-    sf::RectangleShape XPbar(sf::Vector2f(xp*1550/xpMax, 15));
-    XPbar.setOrigin(775, 0);
-    XPbar.setFillColor(sf::Color(20, 90, 180, 200));
-    XPbar.setPosition(location.x, location.y - 440);
-    // shape.setFillColor(sf::Color::Blue);
-    // window.draw(shape);
     window.draw(totlife);
     window.draw(lifebar);
-    window.draw(totXP);
-    window.draw(XPbar);
     window.draw(sprite);
 }
 

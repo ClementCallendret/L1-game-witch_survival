@@ -9,7 +9,7 @@ void CPlayState::Init()
 	player = new Player();
 	map = new Map();
 	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
-	wave = new Vague(player, view);
+	wave = new Vague2(player, view);
 	atirail = {new ArmeEpee(player, &wave->ensemble), new ArmeFireball(player, &wave->ensemble), new ArmeHache(player, &wave->ensemble), new ArmeEclair(player, &wave->ensemble), new ArmeOrbe(player, &wave->ensemble), new ArmeShield(player, &wave->ensemble), new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};
 
 	printf("CPlayState Init\n");
@@ -91,7 +91,21 @@ void CPlayState::Update(CGameEngine *game)
 }
 
 void CPlayState::Draw(CGameEngine *game)
-{
+{	
+	sf::Vector2f location = view->getCenter();
+	
+    sf::RectangleShape totXP(sf::Vector2f(1550, 15));
+    totXP.setOrigin(775, 0);
+    totXP.setPosition(location.x, location.y - 440);
+    totXP.setFillColor(sf::Color(255, 255, 255, 127));
+    totXP.setOutlineColor(sf::Color::Black);
+    totXP.setOutlineThickness(2);
+
+    sf::RectangleShape XPbar(sf::Vector2f(player->xp*1550/player->xpMax, 15));
+    XPbar.setOrigin(775, 0);
+    XPbar.setFillColor(sf::Color(20, 90, 180, 200));
+    XPbar.setPosition(location.x, location.y - 440);
+
 	game->screen->clear();
 	(game->screen)->draw(*map);
 
@@ -104,6 +118,8 @@ void CPlayState::Draw(CGameEngine *game)
 		}
 	}
 	player->draw(*(game->screen));
+	(game->screen)->draw(totXP);
+    (game->screen)->draw(XPbar);
 
 	game->screen->display();
 }
