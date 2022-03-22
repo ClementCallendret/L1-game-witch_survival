@@ -1,13 +1,13 @@
 #include "ennemi_villageois.h"
-#include <stdio.h>
 #include <cmath>
 
 villageois::villageois(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 0.2;
+    speed = 1;
     PV = 20;
     degat = 1;
     xp = 1;
     name = "villageois";
+    ratio = 1;
     if (!texture.loadFromFile("media/pegu.png"))
     return;
     texture.loadFromFile("media/pegu.png");

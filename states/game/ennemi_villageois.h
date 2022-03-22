@@ -13,10 +13,4 @@ class villageois: public Ennemi{
 };
 
 
-
-
-
-
-
-
 #endif

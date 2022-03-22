@@ -3,6 +3,7 @@
 #include "ennemi.h"
 #include "ennemi_villageois.h"
 #include "ennemi_chevalier.h"
+#include "ennemi_chauve-souris.h"
 #include <vector>
 
 class Vague {

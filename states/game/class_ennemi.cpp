@@ -36,6 +36,7 @@ void Ennemi::update()
     deplaX = posxP - posxE;
     deplaY = posyP - posyE;
 
+    //Pour éviter un bug quand on divise par 0
     if (deplaX < 0.1 && deplaX> -0.1){
         if (deplaX >= 0){
             deplaX = 0.2;
@@ -46,8 +47,10 @@ void Ennemi::update()
         deplaX = 1;
     }
 
-
+    // Calcul angle
     angle = atan(deplaY/deplaX);
+
+    //Pour éviter angle = 0
     
     if (angle < 0.1 && angle > -0.1){
         if (angle >= 0){
@@ -58,8 +61,6 @@ void Ennemi::update()
         }
     }
 
-    printf("angle : %f et deplaX : %f \n", angle,deplaX);
-    //Pour éviter angle = 0
 
 
     //si position ennemi < position joueur
@@ -73,11 +74,12 @@ void Ennemi::update()
         location.y -= speed * sin(angle); 
     }  
 
+    //Pour que l'anim se tourne quand le player est à droite ou à gauche d'elle
     if (posxP > location.x){
-        anim.sprite.setScale(-1,1);
+        anim.sprite.setScale(-ratio,ratio); //Pour ratio des randoms sur Twitter
     }
     else{
-        anim.sprite.setScale(1,1);
+        anim.sprite.setScale(ratio,ratio);
     }
 
     collision();
@@ -88,18 +90,22 @@ void Ennemi::collision()
 {  
     // Detection collision
 
+    //Def côté Player
     float playerLeftEdge = joueur->getPlayerPos().x - 10; //Pour une hitbox raisonnable a cause du chapeau, de la baguette etc..
     float playerRightEdge = joueur->getPlayerPos().x + 10;
     float playerTopEdge = joueur->getPlayerPos().y - 5;
     float playerBottomEdge = joueur->getPlayerPos().y + 11;
 
+    //Def côté ennemi
     float enemyLeftEdge = location.x - (taille.x/2);
     float enemyRightEdge = location.x + (taille.x/2);
     float enemyTopEdge = location.y - (taille.y/2);
     float enemyBottomEdge = location.y + (taille.y/2);
 
+    //Calcul incroyable pour détecter les collisions
     if ((playerRightEdge) > enemyLeftEdge && playerLeftEdge < enemyRightEdge &&
         playerTopEdge < enemyBottomEdge && playerBottomEdge > enemyTopEdge){   
+        //Action quand il y a une collision
         joueur->PV-=degat;
         }
 

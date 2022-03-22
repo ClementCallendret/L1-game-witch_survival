@@ -9,7 +9,7 @@ class Ennemi
 {
 protected:
 	Player* joueur;
-	float speed,degat,xp;
+	float speed,degat,xp,ratio;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	sf::Vector2f location;
