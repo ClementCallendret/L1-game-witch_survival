@@ -23,7 +23,7 @@ void BulletEclair::draw(sf::RenderWindow &window)
     hitbox.setOrigin(sf::Vector2f(rayon, rayon));
     hitbox.setPosition(location);
     window.draw(hitbox); */
-
+    
     anim.sprite.setPosition(location);
     window.draw(anim.sprite);
     if (anim.num_frame > anim.nbtot_frames - 1) life = 0;

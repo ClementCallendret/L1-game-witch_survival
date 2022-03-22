@@ -3,6 +3,7 @@
 Vague::Vague(Player *p, sf::View *v) : joueur(p), vue(v)
 {
     intervalle = 100;
+    level = 1;
 }
 
 Vague::~Vague()
@@ -12,6 +13,26 @@ Vague::~Vague()
         Ennemi *e = *i;
         i = ensemble.erase(i);
         delete e;
+    }
+}
+
+void Vague::spawn(sf::Vector2f pos)
+{
+    switch (level)
+    {
+    Ennemi *e; 
+    case 1:
+        e = new villageois(joueur, pos);
+        ensemble.push_back(e);
+        break;
+    case 2:
+        e = new chauveS(joueur, pos);
+        ensemble.push_back(e);
+        break;
+    case 3:
+        e = new chevalier(joueur, pos);
+        ensemble.push_back(e);
+        break;
     }
 }
 
@@ -25,20 +46,24 @@ void Vague::update()
         case 0:
             x = vue->getCenter().x - 820;
             y = rand() % 900;
+            y += vue->getCenter().y - 450;
             spawn(sf::Vector2f(x, y));
             break;
         case 1:
             x = vue->getCenter().x + 820;
             y = rand() % 900;
+            y += vue->getCenter().y - 450;
             spawn(sf::Vector2f(x, y));
             break;
         case 2:
             x = rand() % 1600;
+            x += vue->getCenter().x - 800;
             y = vue->getCenter().y - 470;
             spawn(sf::Vector2f(x, y));
             break;
         case 3:
             x = rand() % 1600;
+            x += vue->getCenter().x - 800;
             y = vue->getCenter().y + 470;
             spawn(sf::Vector2f(x, y));
             break;

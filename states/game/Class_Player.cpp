@@ -37,12 +37,14 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite)
     {
         location.x += speed;
         sprite.setScale(-1,1);
+        sens = 1;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         location.x -= speed;
         sprite.setScale(1,1);
+        sens = -1;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))

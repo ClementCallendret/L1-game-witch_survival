@@ -1,10 +1,11 @@
 #include "ArmeFireball.hpp"
 #include "BulletFireball.hpp"
+#include <stdio.h>
 
 ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 15;
-    m_vitesseProjectile = 2.5;
+    m_degats = 45;
+    m_vitesseProjectile = 7;
     m_tailleProjectile = 10;
     m_nombreProjectile = 1;
     m_vieProjectile = 1;
@@ -15,7 +16,7 @@ ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(jou
 
     m_texture.loadFromFile("media/fireball2.png");
     m_sprite = new sf::Sprite(m_texture);
-    m_anim = new Animation(*m_sprite, 6, sf::Vector2i(45, 19), 64, 39, 0.8, 0.5);
+    m_anim = new Animation(*m_sprite, 6, sf::Vector2i(35, 19), 64, 39, 0.8, 0.5);
 
     m_icoText.loadFromFile("media/icon_fireball.png");
     m_icoSprite.setTexture(m_icoText);

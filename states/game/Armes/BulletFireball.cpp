@@ -27,7 +27,7 @@ void BulletFireball::update()
     location.x += speed * cos(angle); // fait avvancer le projectiles dans la bonne direction
     location.y += speed * sin(angle);
     anim.update();
-    if(location.x < 0 || location.x > 1600 || location.y < 0 || location.y > 900)
+    if(location.x < 0 || location.x > 3617 || location.y < 0 || location.y > 3323)
     life = 0; //faudra mettre a jour les coordonés mais ca tu le projectile quand il sort de la map
 }
 

@@ -9,8 +9,10 @@ void CPlayState::Init()
 	player = new Player();
 	map = new Map();
 	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
-	wave = new Vague2(player, view);
+	wave = new Vague(player, view);
 	atirail = {new ArmeEpee(player, &wave->ensemble), new ArmeFireball(player, &wave->ensemble), new ArmeHache(player, &wave->ensemble), new ArmeEclair(player, &wave->ensemble), new ArmeOrbe(player, &wave->ensemble), new ArmeShield(player, &wave->ensemble), new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};
+	timer = new sf::Clock;
+	timer->restart();
 
 	printf("CPlayState Init\n");
 }
@@ -21,6 +23,7 @@ void CPlayState::Cleanup()
 	delete wave;
 	delete map;
 	delete view;
+	delete timer;
 
 	for (auto a : atirail)
 	{
@@ -71,6 +74,13 @@ void CPlayState::HandleEvents(CGameEngine *game)
 
 void CPlayState::Update(CGameEngine *game)
 {
+	if(timer->getElapsedTime() > sf::seconds(90))
+	wave->level = 2;
+	else if(timer->getElapsedTime() > sf::seconds(180))
+	wave->level = 3;
+	else if(timer->getElapsedTime() > sf::seconds(200))
+	wave->level = 4;
+
 	player->inputs();
 	for (auto a : atirail)
 	{
