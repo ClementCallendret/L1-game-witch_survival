@@ -127,21 +127,21 @@ void CPlayState::Draw(CGameEngine *game)
 void CPlayState::CameraStop() {
 	float posx; 
 	float posy;
-	if (player->getPlayerPos().x < 2753) 
+	if (player->getPlayerPos().x < 2817) 
 	posx =player->getPlayerPos().x;
 	else
-	posx = 2753;
+	posx = 2817;
 
-	if (player->getPlayerPos().x < -100) 
-	posx =-100;
+	if (player->getPlayerPos().x < 800) 
+	posx =800;
 
-	if (player->getPlayerPos().y < 2053) 
+	if (player->getPlayerPos().y < 2873) 
 	posy =player->getPlayerPos().y;
 	else
-	posy = 2053; 
+	posy = 2873; 
 
-	if (player->getPlayerPos().y < -500) 
-	posy =-500;
+	if (player->getPlayerPos().y < 449) 
+	posy =449;
 
 	view->setCenter(posx, posy);
 }
