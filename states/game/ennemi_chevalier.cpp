@@ -7,15 +7,17 @@ chevalier::chevalier(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     degat = 1;
     xp = 2;
     name = "chevalier";
-    if (!texture.loadFromFile("media/chevalier-image.png"))
+    if (!texture.loadFromFile("media/chevalier.png"))
     return;
-    nv_texture.loadFromFile("media/chevalier.png");
-
+    texture.loadFromFile("media/chevalier.png");
     sprite.setTexture(texture);
+    anim = Animation(sprite, 10,sf::Vector2i(25,25),52,52,1,0.3);
     taille = sf::Vector2f(50,50);
 
 }
 
+
+/*
 // Dessin du chevalier
 void chevalier::draw(sf::RenderWindow &window)
 {
@@ -25,14 +27,16 @@ void chevalier::draw(sf::RenderWindow &window)
     anim.update();
 }
 
+
+
 void chevalier::update()
 {   //Definition variable pour les calculs
     float deplaX,deplaY,angle;
     float tailleImg = taille.x;
 
     //Recuperation pos joueur en x et y
-    float posxP = joueur->getPlayerPos().x;
-    float posyP = joueur->getPlayerPos().y;
+    float posxP = joueur->getPlayerPos().x + 16; // On veut le viser le milieu du player et getPlayerPos().x retourne son coin en haut a gauche
+    float posyP = joueur->getPlayerPos().y + 16; // donc on rajoute la moitié de son image (32/2 = 16)
 
     if (posxP > location.x){
         anim.sprite.setScale(-1,1);
@@ -50,14 +54,15 @@ void chevalier::update()
     angle = atan(deplaY/deplaX);
 
     //si position ennemi < position joueur
-   if (posxE < posxP ){
+   if (posxE <= posxP ){
         location.x += speed * cos(angle);
         location.y += speed * sin(angle);
     }
     //si position ennemi > position joueur
-    else if (posxE > posxP ){
+    else {
         location.x -= speed * cos(angle);
         location.y -= speed * sin(angle); 
     }  
     collision();
 }
+*/

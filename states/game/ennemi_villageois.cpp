@@ -3,15 +3,17 @@
 #include <cmath>
 
 villageois::villageois(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 1;
+    speed = 0.2;
     PV = 20;
     degat = 1;
     xp = 1;
     name = "villageois";
-    if (!texture.loadFromFile("media/chevalier-image.png"))
+    if (!texture.loadFromFile("media/pegu.png"))
     return;
+    texture.loadFromFile("media/pegu.png");
     sprite.setTexture(texture);
-    location = sf::Vector2f(0,0);
-    taille = sf::Vector2f(50,50);
+    anim = Animation(sprite, 1,sf::Vector2i(15,23),47,31,1,0);
+    //nom, nb image, milieu, hauteur, largeur, ratio, vitesse
+    taille = sf::Vector2f(31,47);
 }
 
