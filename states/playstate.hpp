@@ -39,6 +39,8 @@ public:
 	void Update(CGameEngine* game);
 	void Draw(CGameEngine* game);
 
+	void CameraStop();
+
 	CPlayState() { }
 	~CPlayState() {Cleanup();}
 

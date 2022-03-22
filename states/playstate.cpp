@@ -71,19 +71,22 @@ void CPlayState::HandleEvents(CGameEngine *game)
 
 void CPlayState::Update(CGameEngine *game)
 {
-
 	player->inputs();
-	wave->update();
-
-	view->setCenter(player->getPlayerPos());
-	game->screen->setView(*view);
-
 	for (auto a : atirail)
 	{
 		if (a->m_level > 0)
 		{
 			a->update();
 		}
+	}
+	wave->update();
+
+	
+	CameraStop(); // camera au niveau du joueur qui va le suivre
+	game->screen->setView(*view);
+
+	if(player->newlevel){
+		game->PushState(new CUpgradeState(this));
 	}
 }
 
@@ -103,4 +106,26 @@ void CPlayState::Draw(CGameEngine *game)
 	player->draw(*(game->screen));
 
 	game->screen->display();
+}
+
+void CPlayState::CameraStop() {
+	float posx; 
+	float posy;
+	if (player->getPlayerPos().x < 2753) 
+	posx =player->getPlayerPos().x;
+	else
+	posx = 2753;
+
+	if (player->getPlayerPos().x < -100) 
+	posx =-100;
+
+	if (player->getPlayerPos().y < 2053) 
+	posy =player->getPlayerPos().y;
+	else
+	posy = 2053; 
+
+	if (player->getPlayerPos().y < -500) 
+	posy =-500;
+
+	view->setCenter(posx, posy);
 }

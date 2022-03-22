@@ -67,6 +67,7 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite)
     {
         location.y += speed;
     }
+    newlevel = 0;
 }
 
 void Player::heal(float n)
@@ -78,13 +79,12 @@ void Player::heal(float n)
     }
 }
 
-bool Player::prendreXP(float n){
+void Player::prendreXP(float n){
     if(xp + n >= xpMax)
     {
         xp = n - (xpMax - xp);
         xpMax *= 1.1;
-        return 1;
+        newlevel = 1;
     }
     else xp += n;
-    return 0;
 }
