@@ -10,5 +10,4 @@ class chauveS: public Ennemi{
 
 };
 
-
 #endif
