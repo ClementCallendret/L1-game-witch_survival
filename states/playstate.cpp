@@ -1,8 +1,9 @@
 // afin de mieux comprendre come,t les "states" fonctionnet ---> http://gamedevgeek.com/tutorials/managing-game-states-in-c/ <---
 #include <stdio.h>
+#include <sstream>
 #include "playstate.hpp"
-#include "menustate.hpp"
 #include "upgradestate.hpp"
+#include "pausestate.hpp"
 
 void CPlayState::Init()
 {
@@ -11,8 +12,10 @@ void CPlayState::Init()
 	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
 	wave = new Vague(player, view);
 	atirail = {new ArmeEpee(player, &wave->ensemble), new ArmeFireball(player, &wave->ensemble), new ArmeHache(player, &wave->ensemble), new ArmeEclair(player, &wave->ensemble), new ArmeOrbe(player, &wave->ensemble), new ArmeShield(player, &wave->ensemble), new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};
-	timer = new sf::Clock;
-	timer->restart();
+	clock.restart();
+	font.loadFromFile("media/Pixel.ttf");
+	timer.setFont(font);
+	timer.setCharacterSize(40);
 
 	printf("CPlayState Init\n");
 }
@@ -23,7 +26,6 @@ void CPlayState::Cleanup()
 	delete wave;
 	delete map;
 	delete view;
-	delete timer;
 
 	for (auto a : atirail)
 	{
@@ -59,7 +61,7 @@ void CPlayState::HandleEvents(CGameEngine *game)
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				game->PushState(new CUpgradeState(this));
+				game->PushState(new CPauseState(this));
 				break;
 			default:
 
@@ -74,12 +76,20 @@ void CPlayState::HandleEvents(CGameEngine *game)
 
 void CPlayState::Update(CGameEngine *game)
 {
-	if(timer->getElapsedTime() > sf::seconds(90))
-	wave->level = 2;
-	else if(timer->getElapsedTime() > sf::seconds(180))
-	wave->level = 3;
-	else if(timer->getElapsedTime() > sf::seconds(200))
-	wave->level = 4;
+	chrono += clock.getElapsedTime().asSeconds();
+	clock.restart();
+	wave->level = int(chrono/100 + 1);
+
+	int min = int(chrono) / 60;
+	int sec = int(chrono) % 60;
+	std::stringstream txt;
+
+	if(min < 10) txt << "0";
+	txt << min << ":";
+	if(sec < 10) txt << "0";
+	txt << sec;
+
+	timer.setString(txt.str());
 
 	player->inputs();
 	for (auto a : atirail)
@@ -116,6 +126,8 @@ void CPlayState::Draw(CGameEngine *game)
     XPbar.setFillColor(sf::Color(20, 90, 180, 200));
     XPbar.setPosition(location.x, location.y - 440);
 
+	timer.setPosition(location.x - 60, location.y - 380);
+
 	game->screen->clear();
 	(game->screen)->draw(*map);
 
@@ -130,6 +142,7 @@ void CPlayState::Draw(CGameEngine *game)
 	player->draw(*(game->screen));
 	(game->screen)->draw(totXP);
     (game->screen)->draw(XPbar);
+    (game->screen)->draw(timer);
 
 	game->screen->display();
 }

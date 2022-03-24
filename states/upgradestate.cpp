@@ -23,6 +23,7 @@ void CUpgradeState::Cleanup()
     delete bg;
     delete tex_bg;
     delete ameliorations;
+    playstate->clock.restart();
 
     printf("CMenuState Cleanup\n");
 }

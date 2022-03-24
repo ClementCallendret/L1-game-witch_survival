@@ -38,7 +38,7 @@ void CGameEngine::Cleanup()
 void CGameEngine::ChangeState(CGameState* state) 
 {
 	// On depile l'etat actuel
-	if ( !states.empty() ) {
+	while ( !states.empty() ) {
 		CGameState *s = states.top();
 		delete s;
 		states.pop();

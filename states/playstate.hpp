@@ -46,7 +46,10 @@ public:
 	Map* map;
 	std::vector<Arme*> atirail;
 	sf::View* view;
-	sf::Clock* timer;
+	sf::Clock clock;
+	float chrono;
+	sf::Font font;
+	sf::Text timer;
 };
 
 #endif
