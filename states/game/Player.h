@@ -7,7 +7,7 @@
 class Player
 {
 private:
-	sf::Vector2f location = sf::Vector2f(600, 450);
+	sf::Vector2f location = sf::Vector2f(1100, 850);
 	sf::Texture texture;
 	sf::Sprite sprite;
 
