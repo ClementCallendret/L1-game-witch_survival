@@ -7,7 +7,7 @@ int main ( int argc, char *argv[] )
 	CGameEngine game;
 
 	// initialize the engine
-	game.Init( "Engine Test v1.0" );
+	game.Init( "Witch SURVIVAL !!!!!!!!!" );
 
 	// load the menu
 	game.ChangeState(new CMenuState());
