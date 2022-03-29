@@ -7,14 +7,11 @@
 
 #include "game/Player.h"
 #include "game/map.h"
-<<<<<<< HEAD
 #include "game/ennemi.h"
 #include "game/ennemi_villageois.h"
 #include "game/ennemi_chevalier.h"
 #include "game/ennemi_chauve-souris.h"
 #include "game/ennemi_geant.h"
-=======
->>>>>>> ad842ce152d0e9fb7c95d6797573b6b7127e8a18
 #include "game/vague.hpp"
 
 #include "game/Armes/Arme.hpp"
