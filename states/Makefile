@@ -1,4 +1,4 @@
-mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
+mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
 	g++ main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o -o mainOut -lsfml-graphics -lsfml-window -lsfml-system
 
 main.o : main.cpp gameengine.hpp menustate.hpp
@@ -43,7 +43,11 @@ ennemi_chevalier.o : game/ennemi_chevalier.cpp game/ennemi.h game/ennemi_chevali
 ennemi_chauve-souris.o : game/ennemi_chauve-souris.cpp game/ennemi.h game/ennemi_chauve-souris.h
 	g++ -Wall game/ennemi_chauve-souris.cpp -c
 	
-vague.o : game/vague.hpp game/vague.cpp game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h
+ennemi_geant.o : game/ennemi_geant.cpp game/ennemi_geant.h
+	g++ -Wall game/ennemi_geant.cpp -c
+
+
+vague.o : game/vague.hpp game/vague.cpp game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h game/ennemi_geant.h
 	g++ -Wall game/vague.cpp -c
 
 map.o : game/map.h game/map.cpp
