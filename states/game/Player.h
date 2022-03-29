@@ -12,7 +12,7 @@ private:
 	sf::Sprite sprite;
 
 public:
-    short PV = 1000;
+    short PV = 100;
 	float xp = 0, xpMax = 20;
 	int pvMax = 100, sens = -1;
 	float speed = 3.;
