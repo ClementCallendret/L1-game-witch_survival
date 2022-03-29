@@ -95,6 +95,8 @@ void CPauseState::HandleEvents(CGameEngine *game)
                     game->PopState();
                 else
                 {
+                    playstate->view->setCenter(800, 450);
+                    game->screen->setView(*playstate->view);
                     game->ChangeState(new CMenuState());
                 }
                 break;

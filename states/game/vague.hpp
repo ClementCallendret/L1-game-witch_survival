@@ -10,7 +10,7 @@ class Vague {
 public:
     Player *joueur;
     sf::View *vue;
-    int intervalle, level;
+    int intervalle, level, kills;
     std::vector<Ennemi *> ensemble;
 
 

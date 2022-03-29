@@ -10,30 +10,32 @@ class Arme
 {
 public : 
 
-    // STATS
+    // Statistiques des projectiles de l'arme
     float m_degats, m_vitesseProjectile, m_tailleProjectile;
     int m_nombreProjectile, m_vieProjectile, m_level, m_levelMax = 0;
     std::string m_nomArme;
 
-    // GESTION DU COOLDOWN
+    // Timer pour le cooldown
     sf::Time m_cooldown;
     sf::Clock* m_clock = 0;
 
+    // Animation des projectiles
     sf::Texture m_texture;
     sf::Sprite* m_sprite = 0;
     Animation* m_anim = 0;
 
-    // POINTEUR VERS LE JOUEUR POUR AVOIR ACCES A SA POSITION
+    // Pointeur sur le joueur
     Player* m_joueur;
 
-    // TABLEAU DYNAMIQUE CONTENANT LES PROJECTILES
+    // Tableau des projectiles
     std::vector<Bullet *> m_ensemble;
 
-    // icone et liste d'ameliorations
+    // Icone et descriptions d'améliorations
     sf::Texture m_icoText;
     sf::Sprite m_icoSprite;
     std::array<std::string, 2> m_description;
 
+    // Liste des ennemis à viser
     std::vector<Ennemi*>* ennemis;
 
 
@@ -41,7 +43,7 @@ public :
     virtual ~Arme();
 
     virtual void tirer() = 0; // purement virtuelle car chaque arme tire differement
-    virtual void upgrade() = 0;
+    virtual void upgrade() = 0;  
     
     virtual void update();
     virtual void draw(sf::RenderWindow& window);

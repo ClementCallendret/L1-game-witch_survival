@@ -8,7 +8,7 @@ Bullet(pos, R, D, S, Life), anim(a), tireur(j), sens(s), distance(dist)
 
 void BulletEpee::update()
 {
-    location = sf::Vector2f(tireur->getPlayerPos().x + sens*distance*anim.num_frame, tireur->getPlayerPos().y - 0.13*rayon*anim.num_frame);
+    location = sf::Vector2f(tireur->getPlayerPos().x + sens*distance*anim.num_frame, tireur->getPlayerPos().y - 0.11*rayon*anim.num_frame);
     anim.update();
 }
 
@@ -19,11 +19,11 @@ void BulletEpee::hit(Ennemi *enemy)
 
 void BulletEpee::draw(sf::RenderWindow &window)
 {
-    /* sf::CircleShape hitbox(rayon);
+    sf::CircleShape hitbox(rayon);
     hitbox.setFillColor(sf::Color(255, 0, 0, 127));
     hitbox.setOrigin(sf::Vector2f(rayon, rayon));
     hitbox.setPosition(location);
-    window.draw(hitbox); */
+    window.draw(hitbox); 
 
     anim.sprite.setPosition(tireur->getPlayerPos());
     window.draw(anim.sprite);

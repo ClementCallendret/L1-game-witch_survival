@@ -22,9 +22,9 @@ public:
 	~CMenuState() {Cleanup();}
 
 private:
-	sf::Texture* tex_bg;
-	sf::Sprite* bg ;
-	MainMenu* menu;
+	sf::Texture tex_bg;
+	sf::Sprite bg ;
+	MainMenu* menu; // classe qui gère les textes et les options
 };
 
 #endif

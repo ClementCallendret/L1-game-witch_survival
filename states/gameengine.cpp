@@ -2,15 +2,14 @@
 #include "gameengine.hpp"
 #include "gamestate.hpp"
 
-void CGameEngine::Init(const char* title, float width, float height, int bpp, bool fullscreen)
+void CGameEngine::Init(const char* title, float width, float height)
 {
+	// Initialisation de la fenêtre SFML
 
-	// initialize SDL
 	sf::VideoMode resolution(width, height);
 	screen = new sf::RenderWindow(resolution, title);
 	screen->setFramerateLimit(60);
 
-	m_fullscreen = fullscreen;
 	m_running = true;
 
 	std::cout << "CGameEngine Init" << std::endl ;
@@ -18,17 +17,12 @@ void CGameEngine::Init(const char* title, float width, float height, int bpp, bo
 
 void CGameEngine::Cleanup()
 {
-	// cleanup the all states
+	// On vide toute la pile avant de fermer
+
 	while ( !states.empty() ) {
 		CGameState *s = states.top();
 		delete s;
 		states.pop();
-	}
-	
-	// switch back to windowed mode so other 
-	// programs won't get accidentally resized
-	if ( m_fullscreen ) {
-		screen->setSize(sf::Vector2u(1200, 800));
 	}
 
 	screen->close();
@@ -37,13 +31,16 @@ void CGameEngine::Cleanup()
 
 void CGameEngine::ChangeState(CGameState* state) 
 {
-	// On depile l'etat actuel
+	// On vide la pile
+
 	while ( !states.empty() ) {
 		CGameState *s = states.top();
 		delete s;
 		states.pop();
 	}
-	// On initialise le nouvel etat
+
+	// initialisation du nouvel état
+
 	states.push(state);
 	states.top()->Init();
 	printf("CGameEngine ChangeState done\n");
@@ -51,26 +48,30 @@ void CGameEngine::ChangeState(CGameState* state)
 
 void CGameEngine::PushState(CGameState* state)
 {
-	// pause current state
+	// Pause de l'état actuel
+
 	if ( !states.empty() ) {
 		states.top()->Pause();
 	}
 
-	// store and init the new state
+	// initialisation du nouvel état
+
 	states.push(state);
 	states.top()->Init();
 }
 
 void CGameEngine::PopState()
 {
-	// Cleanup de l'etat actuel puis on depile
+	// Cleanup de l'état actuel puis on dépile
+
 	if ( !states.empty() ) {
 		CGameState *s = states.top();
 		delete s;
 		states.pop();
 	}
 
-	// resume previous state
+	// Reprise de l'état précedent
+
 	if ( !states.empty() ) {
 		states.top()->Resume();
 	}
@@ -79,19 +80,16 @@ void CGameEngine::PopState()
 
 void CGameEngine::HandleEvents() 
 {
-	// let the state handle events
-	states.top()->HandleEvents(this);
+	states.top()->HandleEvents(this); // Récupère les entrés pour l'état actif
 }
 
 void CGameEngine::Update() 
 {
-	// let the state update the game
-	states.top()->Update(this);
+	states.top()->Update(this); // Actualise l'état actif
 }
 
 void CGameEngine::Draw() 
 {
-	// let the state draw the screen
-	states.top()->Draw(this);
+	states.top()->Draw(this); // Draw l'état actif
 }
 
