@@ -1,6 +1,5 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "gameengine.hpp"
 #include "menustate.hpp"
 #include "playstate.hpp"
@@ -34,7 +33,6 @@ void CMenuState::Resume()
 void CMenuState::HandleEvents(CGameEngine *game)
 {
     sf::Event event;
-    sf::Music music;
 
     if (game->screen->pollEvent(event))
     {
