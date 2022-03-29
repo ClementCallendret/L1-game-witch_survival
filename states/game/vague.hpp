@@ -4,6 +4,10 @@
 #include "ennemi_chauve-souris.h"
 #include "ennemi_chevalier.h"
 #include "ennemi_villageois.h"
+#include "ennemi_fantome.h"
+#include "ennemi_enervax.h"
+#include "ennemi_dragon.h"
+#include "ennemi_gargouille.h"
 #include <vector>
 
 class Vague {

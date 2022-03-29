@@ -1,5 +1,5 @@
-mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
-	g++ main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o -o mainOut -lsfml-graphics -lsfml-window -lsfml-system
+mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
+	g++ main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o -o mainOut -lsfml-graphics -lsfml-window -lsfml-system
 
 main.o : main.cpp gameengine.hpp menustate.hpp
 	g++ -Wall main.cpp -c
@@ -13,7 +13,7 @@ MainMenu.o : MainMenu.hpp MainMenu.cpp
 menustate.o : menustate.hpp menustate.cpp gamestate.hpp MainMenu.hpp gameengine.hpp playstate.hpp
 	g++ -Wall menustate.cpp -c 
 
-playstate.o : playstate.hpp playstate.cpp upgradestate.hpp pausestate.hpp game/Player.h gamestate.hpp menustate.hpp game/Player.h game/map.h game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/Shield.hpp game/Armes/ArmeEpee.hpp game/Armes/ArmeLivre.hpp game/Armes/ArmeCrane.hpp game/Armes/ArmeChaudron.hpp game/Armes/ArmeElixir.hpp game/Armes/ArmeBalais.hpp game/vague.hpp
+playstate.o : playstate.hpp playstate.cpp upgradestate.hpp pausestate.hpp game/Player.h gamestate.hpp menustate.hpp game/Player.h game/map.h game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/Shield.hpp game/Armes/ArmeEpee.hpp game/Armes/ArmeLivre.hpp game/Armes/ArmeCrane.hpp game/Armes/ArmeChaudron.hpp game/Armes/ArmeElixir.hpp game/Armes/ArmeBalais.hpp game/vague.hpp game/ennemi.h game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_dragon.h game/ennemi_enervax.h game/ennemi_fantome.h game/ennemi_gargouille.h game/ennemi_geant.h game/ennemi_geant.h game/ennemi_villageois.h
 	g++ -Wall playstate.cpp -c 
 
 pausestate.o : pausestate.hpp pausestate.cpp playstate.hpp gamestate.hpp gameengine.hpp
@@ -43,8 +43,19 @@ ennemi_chauve-souris.o : game/ennemi_chauve-souris.cpp game/ennemi.h game/ennemi
 ennemi_geant.o : game/ennemi_geant.cpp game/ennemi_geant.h
 	g++ -Wall game/ennemi_geant.cpp -c
 
+ennemi_fantome.o : game/ennemi_fantome.cpp game/ennemi_fantome.h
+	g++ -Wall game/ennemi_fantome.cpp -c
 
-vague.o : game/vague.hpp game/vague.cpp game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h game/ennemi_geant.h
+ennemi_enervax.o : game/ennemi_enervax.cpp game/ennemi_enervax.h
+	g++ -Wall game/ennemi_enervax.cpp -c
+
+ennemi_dragon.o : game/ennemi_dragon.cpp game/ennemi_dragon.h
+	g++ -Wall game/ennemi_dragon.cpp -c
+
+ennemi_gargouille.o : game/ennemi_gargouille.cpp game/ennemi_gargouille.h 
+	g++ -Wall game/ennemi_gargouille.cpp -c
+
+vague.o : game/vague.hpp game/vague.cpp game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h game/ennemi_geant.h game/ennemi_fantome.h game/ennemi_enervax.h game/ennemi_dragon.h game/ennemi_gargouille.h
 	g++ -Wall game/vague.cpp -c
 
 map.o : game/map.h game/map.cpp

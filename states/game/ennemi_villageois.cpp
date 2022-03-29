@@ -14,6 +14,6 @@ villageois::villageois(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     sprite.setTexture(texture);
     anim = Animation(sprite, 1,sf::Vector2i(15,23),47,31,1,0);
     //nom, nb image, milieu, hauteur, largeur, ratio, vitesse
-    taille = sf::Vector2f(31,47);
+    taille = sf::Vector2f(31,40);
 }
 

@@ -5,7 +5,7 @@ geant::geant(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.5;
     PV = 10;
     degat = 5;
-    xp = 10;
+    xp = 5;
     name = "Geant";
     ratio = 0.4;
     if (!texture.loadFromFile("media/geant.png"))

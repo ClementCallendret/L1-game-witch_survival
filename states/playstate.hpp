@@ -12,6 +12,10 @@
 #include "game/ennemi_chevalier.h"
 #include "game/ennemi_chauve-souris.h"
 #include "game/ennemi_geant.h"
+#include "game/ennemi_fantome.h"
+#include "game/ennemi_enervax.h"
+#include "game/ennemi_dragon.h"
+#include "game/ennemi_gargouille.h"
 #include "game/vague.hpp"
 
 #include "game/Armes/Arme.hpp"
