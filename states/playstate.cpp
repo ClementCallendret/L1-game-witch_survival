@@ -4,6 +4,7 @@
 #include "playstate.hpp"
 #include "upgradestate.hpp"
 #include "pausestate.hpp"
+#include "endstate.hpp"
 
 void CPlayState::Init()
 {
@@ -16,6 +17,10 @@ void CPlayState::Init()
 	font.loadFromFile("media/Pixel.ttf");
 	timer.setFont(font);
 	timer.setCharacterSize(40);
+	chrono = 0;
+	
+	music.openFromFile("media/Sounds/inGameMusic.ogg");
+	music.play();
 
 	printf("CPlayState Init\n");
 }
@@ -105,7 +110,13 @@ void CPlayState::Update(CGameEngine *game)
 	CameraStop(); // camera au niveau du joueur qui va le suivre
 	game->screen->setView(*view);
 
-	if(player->newlevel){
+	if(player->PV <= 0){       // mort
+		view->setCenter(800, 450);
+		game->screen->setView(*view);
+		int k = wave->kills;
+		game->ChangeState(new CEndState(k, chrono, 0));
+	}
+	else if(player->newlevel){  // monté de niveau
 		game->PushState(new CUpgradeState(this));
 	}
 }

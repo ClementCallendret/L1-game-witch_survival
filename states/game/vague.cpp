@@ -4,6 +4,7 @@ Vague::Vague(Player *p, sf::View *v) : joueur(p), vue(v)
 {
     intervalle = 100;
     level = 1;
+    kills = 0;
 }
 
 Vague::~Vague()
@@ -79,6 +80,7 @@ void Vague::update()
         {
             i = ensemble.erase(i);
             delete e;
+            kills++;
         }
         else
             i++;

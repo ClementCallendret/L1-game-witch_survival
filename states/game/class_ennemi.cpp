@@ -6,13 +6,20 @@
 Ennemi::Ennemi(Player* j, sf::Vector2f loc) : joueur(j), location(loc)
 {   //definition du joueur avec le pointeur j
     //taille de l'image en pixel (a automatiser si y a le tps)
-    taille = sf::Vector2f(taille.x, taille.y);
+    //taille = sf::Vector2f(taille.x, taille.y);
 
 }
 
 // Dessin de l'ennemi
 void Ennemi::draw(sf::RenderWindow &window)
 {
+    /* sf::RectangleShape hitbox;
+    hitbox.setSize(sf::Vector2f(31, 47));
+    hitbox.setOrigin(sf::Vector2f(31/2, 47/2));
+    hitbox.setPosition(location);
+    hitbox.setFillColor(sf::Color(0, 255, 0, 150));
+    window.draw(hitbox); */
+    
     // deplacer l'image
     anim.sprite.setPosition(location.x, location.y); 
     anim.update();

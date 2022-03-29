@@ -2,6 +2,7 @@
 #define PLAYSTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "gamestate.hpp"
 
@@ -59,6 +60,7 @@ public:
 	float chrono;
 	sf::Font font;
 	sf::Text timer;
+	sf::Music music;
 };
 
 #endif

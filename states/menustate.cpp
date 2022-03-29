@@ -1,6 +1,5 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
 #include "gameengine.hpp"
 #include "menustate.hpp"
 #include "playstate.hpp"
@@ -8,18 +7,15 @@
 
 void CMenuState::Init()
 {
-    tex_bg = new sf::Texture;
-    (*tex_bg).loadFromFile("media/menu_bg.jpg");
+    tex_bg.loadFromFile("media/menu_bg.jpg");
+    bg.setTexture(tex_bg);
 
-    bg = new sf::Sprite(*tex_bg);
     menu = new MainMenu();
 }
 
 void CMenuState::Cleanup()
 {
-    delete bg;
     delete menu;
-    delete tex_bg;
 
     printf("CMenuState Cleanup\n");
 }
@@ -99,7 +95,7 @@ void CMenuState::Update(CGameEngine *game)
 void CMenuState::Draw(CGameEngine *game)
 {
     game->screen->clear();
-    game->screen->draw(*bg);
+    game->screen->draw(bg);
     menu->draw(*(game->screen));
     game->screen->display();
 }

@@ -6,8 +6,7 @@ Arme::Arme(Player *j, std::vector<Ennemi *> *en) : m_joueur(j), ennemis(en)
 
 Arme::~Arme()
 {
-    // Lorsqu'on detruit un objet Arme, on détruit chaque projectile qui lui est associé car ce sont des pointeurs
-
+    // On supprime tous les ennemis, l'animation si il y en a une
     for (auto i = std::begin(m_ensemble); m_ensemble.size() > 0;)
     {
         Bullet *e = *i;
@@ -18,6 +17,8 @@ Arme::~Arme()
         delete m_clock;
     if (m_sprite)
         delete m_sprite;
+    if (m_anim)
+        delete m_anim;
 }
 
 void Arme::update()
@@ -27,7 +28,7 @@ void Arme::update()
     for (auto i = std::begin(m_ensemble); i != std::end(m_ensemble);)
     {
         Bullet *e = *i;
-        e->update(); // on fait bouger les projectiles grace a la fct update
+        e->update(); // on fait bouger chaque projectile grace a sa fct update
 
         if (e->getBulLife() <= 0) // on efface les projectiles qui sont "mort" de la mémoire
         {
@@ -40,7 +41,7 @@ void Arme::update()
             {
                 for (Ennemi *c : *ennemis)
                 {
-                    if (e->collision(c))
+                     if (e->collision(c))
                     {
                         e->hit(c);
                     }

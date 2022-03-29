@@ -6,13 +6,13 @@ int main ( int argc, char *argv[] )
 {
 	CGameEngine game;
 
-	// initialize the engine
+	// initialisation de l'engine
 	game.Init( "Witch SURVIVAL !!!!!!!!!" );
 
-	// load the menu
+	// lchargement du premier état(menu)
 	game.ChangeState(new CMenuState());
 
-	// main loop
+	// boucle principale
 	while ( game.Running() )
 	{
 		game.HandleEvents();
@@ -20,8 +20,8 @@ int main ( int argc, char *argv[] )
 		game.Draw();
 	}
 	
-	// cleanup the engine
+	// cleanup de l'engine
 	game.Cleanup();
-
+	
 	return 0;
 }

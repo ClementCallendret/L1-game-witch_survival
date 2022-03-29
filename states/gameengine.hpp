@@ -1,11 +1,8 @@
-
 #ifndef GAMEENGINE_HPP
 #define GAMEENGINE_HPP
 
 #include <SFML/Graphics.hpp>
 #include <stack>
-
-using namespace std;
 
 class CGameState;
 
@@ -13,12 +10,12 @@ class CGameEngine
 {
 public:
 
-	void Init(const char* title, float width=1600, float height=900, int bpp=0, bool fullscreen=false);
+	void Init(const char* title, float width=1600, float height=900);
 	void Cleanup();
 
-	void ChangeState(CGameState* state);  
-	void PushState(CGameState* state);
-	void PopState();
+	void ChangeState(CGameState* state); // vide la pile et change d'état
+	void PushState(CGameState* state);   // empile un état
+	void PopState();					 // dépile un état
 
 	void HandleEvents();
 	void Update();
@@ -30,11 +27,9 @@ public:
 	sf::RenderWindow* screen;
 	
 private:
-	// La pile des Etats 
-	stack<CGameState*> states;
 
+	std::stack<CGameState*> states; // La pile des états 
 	bool m_running;
-	bool m_fullscreen;
 };
 
 #endif
