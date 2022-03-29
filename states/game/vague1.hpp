@@ -3,6 +3,7 @@
 
 #include "vague.hpp"
 #include "ennemi_villageois.h"
+#include "ennemi_geant.h" //a supprimer
 
 class Vague1 : public Vague
 {
@@ -14,7 +15,7 @@ class Vague1 : public Vague
 
     void spawn(sf::Vector2f pos)
     {
-        Ennemi *e = new villageois(joueur, pos);
+        Ennemi *e = new geant(joueur, pos); //remettre villageois a la place de géant
         ensemble.push_back(e);
     }
 };

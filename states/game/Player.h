@@ -12,9 +12,9 @@ private:
 	sf::Sprite sprite;
 
 public:
-    short PV = 100;
+    short PV = 1000;
 	float xp = 0, xpMax = 20;
-	int pvMax = 100;
+	int pvMax = 1000;
 	float speed = 3.;
 	bool newlevel;
 

@@ -98,7 +98,7 @@ void ArmeEclair::upgrade()
         m_level++;
         std::stringstream titre;
         titre << "Eclair level " << m_level + 1;
-        m_degats *= 1.1;
+        m_degats *= 1.1; 
         m_description = {titre.str(), "+10\% de degats"};
         break;
     }

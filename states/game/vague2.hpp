@@ -3,6 +3,8 @@
 
 #include "vague.hpp"
 #include "ennemi_chevalier.h"
+#include "ennemi_geant.h"
+
 
 class Vague2 : public Vague
 {
@@ -15,7 +17,7 @@ public:
 
     void spawn(sf::Vector2f pos)
     {
-        Ennemi *e = new chevalier(joueur, pos);
+        Ennemi *e = new chevalier(joueur, pos); //remplacer gant par chevalier
         ensemble.push_back(e);
     }
 };

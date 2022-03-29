@@ -10,6 +10,6 @@ public:
 
     void tirer();
     void upgrade();
-};
+}; 
 
 #endif
