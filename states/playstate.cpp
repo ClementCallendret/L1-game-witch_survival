@@ -18,6 +18,9 @@ void CPlayState::Init()
 	timer.setFont(font);
 	timer.setCharacterSize(40);
 	chrono = 0;
+	
+	music.openFromFile("media/Sounds/inGameMusic.ogg");
+	music.play();
 
 	printf("CPlayState Init\n");
 }
