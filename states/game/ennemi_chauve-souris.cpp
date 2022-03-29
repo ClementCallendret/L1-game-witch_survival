@@ -2,8 +2,8 @@
 #include <cmath>
 
 chauveS::chauveS(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 4;
-    PV = 1;
+    speed = 3.5;
+    PV = 5;
     degat = 1;
     xp = 2;
     name = "Chauve-souris";

@@ -6,6 +6,8 @@
 class ArmeEpee : public Arme
 {
 public:
+    float distance = 20;
+
     ArmeEpee(Player *joueur, std::vector<Ennemi*>* en = 0 );
     ~ArmeEpee(){};
 

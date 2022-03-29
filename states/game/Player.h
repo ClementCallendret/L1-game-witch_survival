@@ -7,14 +7,14 @@
 class Player
 {
 private:
-	sf::Vector2f location = sf::Vector2f(600, 450);
+	sf::Vector2f location = sf::Vector2f(1100, 850);
 	sf::Texture texture;
 	sf::Sprite sprite;
 
 public:
     short PV = 1000;
 	float xp = 0, xpMax = 20;
-	int pvMax = 1000;
+	int pvMax = 100, sens = -1;
 	float speed = 3.;
 	bool newlevel;
 

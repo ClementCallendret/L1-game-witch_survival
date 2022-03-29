@@ -1,14 +1,14 @@
 #include "ArmeEpee.hpp"
 #include "BulletEpee.hpp"
 
-ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi*>* en) : Arme(joueur, en)
+ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 10;
+    m_degats = 3;
     m_vitesseProjectile = 3;
     m_tailleProjectile = 20;
     m_nombreProjectile = 1;
     m_vieProjectile = 1;
-    m_level = 0;
+    m_level = 1;
     m_nomArme = "Epee";
     m_cooldown = sf::seconds(2);
     m_clock = new sf::Clock;
@@ -28,8 +28,13 @@ void ArmeEpee::tirer()
 {
     if (m_clock->getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletEpee(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, m_anim, m_joueur);
+        Bullet *b = new BulletEpee(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, m_joueur->sens, distance);
         m_ensemble.push_back(b);
+        if (m_nombreProjectile > 1)
+        {
+            Bullet *b2 = new BulletEpee(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, -(m_joueur->sens), distance);
+            m_ensemble.push_back(b2);
+        }
         m_clock->restart();
     }
 }
@@ -59,6 +64,7 @@ void ArmeEpee::upgrade()
         m_tailleProjectile *= 1.2;
         m_anim->sprite.scale(1.5, 1.15);
         m_nombreProjectile++;
+        distance = 30;
         m_description = {"Epee level 5", "+20\% de degats\n-10\% de cooldown"};
         break;
     case 4:
@@ -83,11 +89,12 @@ void ArmeEpee::upgrade()
         m_level++;
         m_tailleProjectile *= 1.2;
         m_anim->sprite.scale(1.5, 1.15);
+        distance = 45;
         m_description = {"Epee level 9", "+10\% de degats"};
         break;
     default:
         m_level++;
-        std::stringstream titre ;
+        std::stringstream titre;
         titre << "Epee level " << m_level + 1;
         m_degats *= 1.1;
         m_description = {titre.str(), "+10\% de degats"};
