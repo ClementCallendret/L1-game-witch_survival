@@ -17,6 +17,7 @@
 #include "game/ennemi_enervax.h"
 #include "game/ennemi_dragon.h"
 #include "game/ennemi_gargouille.h"
+#include "game/ennemi_loup.h"
 #include "game/vague.hpp"
 
 #include "game/Armes/Arme.hpp"

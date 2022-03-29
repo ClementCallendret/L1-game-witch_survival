@@ -8,6 +8,8 @@
 #include "ennemi_enervax.h"
 #include "ennemi_dragon.h"
 #include "ennemi_gargouille.h"
+#include "ennemi_arbre.h"
+#include "ennemi_loup.h"
 #include <vector>
 
 class Vague {
