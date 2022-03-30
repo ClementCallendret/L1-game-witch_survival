@@ -23,7 +23,7 @@ void Vague::spawn(sf::Vector2f pos)
     {
     Ennemi *e; 
     case 1:
-        e = new loup(joueur, pos);
+        e = new villageois(joueur, pos);
         ensemble.push_back(e);
         break;
     case 2:
