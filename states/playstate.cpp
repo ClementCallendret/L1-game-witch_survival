@@ -1,4 +1,4 @@
-// afin de mieux comprendre come,t les "states" fonctionnet ---> http://gamedevgeek.com/tutorials/managing-game-states-in-c/ <---
+// afin de mieux comprendre comment les "states" fonctionnent ---> http://gamedevgeek.com/tutorials/managing-game-states-in-c/ <---
 #include <stdio.h>
 #include <sstream>
 #include "playstate.hpp"
