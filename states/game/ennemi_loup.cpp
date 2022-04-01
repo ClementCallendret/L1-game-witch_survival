@@ -3,9 +3,9 @@
 
 loup::loup(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 2;
-    PV = 2;
-    degat = 2;
-    xp = 2;
+    PV = 80;
+    degat = 10;
+    xp = 5;
     name = "Loup";
     ratio = 0.3;
     if (!texture.loadFromFile("media/loup.png"))

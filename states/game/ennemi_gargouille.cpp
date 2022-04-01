@@ -2,10 +2,10 @@
 #include <cmath>
 
 gargouille::gargouille(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 2;
-    PV = 1;
-    degat = 1;
-    xp = 2;
+    speed = 2.5;
+    PV = 20;
+    degat = 3;
+    xp = 3;
     name = "Gargouille";
     ratio = 0.5;
     if (!texture.loadFromFile("media/gargouille.png"))

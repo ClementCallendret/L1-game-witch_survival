@@ -3,8 +3,8 @@
 
 arbre::arbre(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.7;
-    PV = 5;
-    degat = 1;
+    PV = 40;
+    degat = 2;
     xp = 2;
     name = "Arbre";
     ratio = 0.2;
