@@ -2,6 +2,7 @@
 #define MENUSTATE_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 #include "MainMenu.hpp"
 
@@ -25,6 +26,8 @@ private:
 	sf::Texture tex_bg;
 	sf::Sprite bg ;
 	MainMenu* menu; // classe qui gère les textes et les options
+	
+	sf::Music music;
 };
 
 #endif
