@@ -13,6 +13,8 @@ void CPauseState::Init()
     bg.setOrigin(sf::Vector2f(450, 450));
     bg.setScale(0.75, 0.75);
     bg.setPosition(playstate->view->getCenter());
+    music.openFromFile("media/Sounds/pause.ogg");
+    music.play();
 
     titlefont.loadFromFile("media/Witch.ttf");
     choixfont.loadFromFile("media/Pixel.ttf");
