@@ -14,7 +14,10 @@ void CUpgradeState::Init()
 
     bg->setOrigin(sf::Vector2f(450, 450));
     bg->setPosition(playstate->view->getCenter());
-
+	
+    music.openFromFile("media/Sounds/Level_Up.ogg");
+    music.play();
+	
     ameliorations = new Upgrade(playstate->player, playstate->atirail, bg->getPosition());
 }
 
