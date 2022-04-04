@@ -2,6 +2,7 @@
 #define PAUSESTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 #include "playstate.hpp"
 
@@ -35,6 +36,7 @@ private:
     std::array<sf::Text, 2> options;
     sf::Texture selecText;
     sf::Sprite selec;
+    sf::Music music;
 };
 
 #endif

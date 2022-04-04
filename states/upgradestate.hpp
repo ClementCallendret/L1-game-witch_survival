@@ -2,6 +2,7 @@
 #define UPGRADESTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 #include "playstate.hpp"
 #include "Upgrade.hpp"
@@ -28,6 +29,7 @@ private:
     CPlayState* playstate;
 	sf::Texture* tex_bg;
 	sf::Sprite* bg;
+	sf::Music music;
 	Upgrade* ameliorations;
 };
 

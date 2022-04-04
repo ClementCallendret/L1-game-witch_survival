@@ -68,6 +68,15 @@ void CPlayState::HandleEvents(CGameEngine *game)
 			case sf::Keyboard::Escape:
 				game->PushState(new CPauseState(this));
 				break;
+					
+			case sf::Keyboard::M:
+				music.pause();
+				break;
+
+			case sf::Keyboard::P:
+				music.play();
+				break;
+
 			default:
 
 				break;
@@ -79,7 +88,7 @@ void CPlayState::HandleEvents(CGameEngine *game)
 	}
 }
 
-void CPlayState::Update(CGameEngine *game)
+	void CPlayState::Update(CGameEngine *game)
 {
 	if (chrono < 300 && clock.getElapsedTime().asSeconds() + chrono >= 300)
 	{
@@ -135,8 +144,8 @@ void CPlayState::Update(CGameEngine *game)
 		int k = wave->kills;
 		game->ChangeState(new CEndState(k, chrono, 0));
 	}
-	else if (player->newlevel)
-	{ // monté de niveau
+	else if(player->newlevel){  // montée de niveau
+		music.setVolume(50);
 		game->PushState(new CUpgradeState(this));
 	}
 }

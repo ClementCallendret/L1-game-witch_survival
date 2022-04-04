@@ -11,6 +11,8 @@ void CMenuState::Init()
     bg.setTexture(tex_bg);
 
     menu = new MainMenu();
+    music.openFromFile("media/Sounds/Main_Menu.ogg");
+    music.play();
 }
 
 void CMenuState::Cleanup()
@@ -48,6 +50,14 @@ void CMenuState::HandleEvents(CGameEngine *game)
             case sf::Keyboard::Escape:
                 game->Quit();
                 break;
+                    
+            case sf::Keyboard::M:
+                music.pause();
+                break;
+
+            case sf::Keyboard::P:
+				music.play();
+				break;
 
             case sf::Keyboard::Up:
                 menu->moveUp();
