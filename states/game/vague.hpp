@@ -10,13 +10,15 @@
 #include "ennemi_gargouille.h"
 #include "ennemi_arbre.h"
 #include "ennemi_loup.h"
+#include "ennemi_geant.h"
 #include <vector>
 
 class Vague {
 public:
     Player *joueur;
     sf::View *vue;
-    int intervalle, level, kills;
+    float intervalle;
+    int level, kills;
     std::vector<Ennemi *> ensemble;
 
 

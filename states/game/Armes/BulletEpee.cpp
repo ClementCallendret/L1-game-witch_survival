@@ -19,11 +19,11 @@ void BulletEpee::hit(Ennemi *enemy)
 
 void BulletEpee::draw(sf::RenderWindow &window)
 {
-    sf::CircleShape hitbox(rayon);
+    /* sf::CircleShape hitbox(rayon);
     hitbox.setFillColor(sf::Color(255, 0, 0, 127));
     hitbox.setOrigin(sf::Vector2f(rayon, rayon));
     hitbox.setPosition(location);
-    window.draw(hitbox); 
+    window.draw(hitbox); */
 
     anim.sprite.setPosition(tireur->getPlayerPos());
     window.draw(anim.sprite);
