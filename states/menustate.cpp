@@ -3,6 +3,7 @@
 #include "gameengine.hpp"
 #include "menustate.hpp"
 #include "playstate.hpp"
+#include "creditstate.hpp"
 
 
 void CMenuState::Init()
