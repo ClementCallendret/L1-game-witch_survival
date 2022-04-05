@@ -28,6 +28,7 @@ private:
 	bool win;
 	sf::Font titlefont, txtfont;
 	sf::Text title, kill_txt, time_txt, quitter_txt;
+	sf::Music music
 };
 
 #endif
