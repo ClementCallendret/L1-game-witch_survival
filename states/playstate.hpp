@@ -59,6 +59,7 @@ public:
 	sf::View* view;
 	sf::Clock clock;
 	float chrono;
+	float volume = 100.;
 	sf::Font font;
 	sf::Text timer;
 	sf::Music music;

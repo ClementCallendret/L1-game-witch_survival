@@ -21,6 +21,7 @@ public:
 
 	CMenuState() { }
 	~CMenuState() {Cleanup();}
+	
 	float volume = 100.;
 
 private:
