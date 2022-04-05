@@ -78,6 +78,8 @@ void CMenuState::HandleEvents(CGameEngine *game)
 
                 case 1:
                     std::cout << "credit pressed" << std::endl;
+		    music.stop();
+                    game->PushState(new CCreditsState());	
                     break;
 
                 case 2:
