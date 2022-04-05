@@ -62,6 +62,7 @@ public:
 	sf::Font font;
 	sf::Text timer;
 	sf::Music music;
+	sf::Music musicBOSS;
 };
 
 #endif
