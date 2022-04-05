@@ -106,6 +106,11 @@ void CPlayState::HandleEvents(CGameEngine *game)
 		Ennemi *e = new dragon(player, sf::Vector2f(x, y));
 		wave->ensemble.push_back(e);
 	}
+	if (chrono < 1200 && clock.getElapsedTime().asSeconds() + chrono >= 1200) {
+		music.stop();
+		musicBOSS.setVolume(90.);
+		musicBOSS.play();
+	}
 	chrono += clock.getElapsedTime().asSeconds();
 	clock.restart();
 	wave->level = int(chrono / 100 + 1);

@@ -3,7 +3,11 @@
 
 chevalier::chevalier(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 2;
+<<<<<<< HEAD
     PV = 35;
+=======
+    PV = 30;
+>>>>>>> f6b9c168e4929d1e89e90ec52e6b5d0065b6616f
     degat = 1;
     xp = 2;
     name = "chevalier";

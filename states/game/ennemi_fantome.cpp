@@ -2,10 +2,14 @@
 #include <cmath>
 
 fantome::fantome(Player* j, sf::Vector2f loc): Ennemi(j, loc){
+<<<<<<< HEAD
     speed = 2;
+=======
+    speed = 1.5;
+>>>>>>> f6b9c168e4929d1e89e90ec52e6b5d0065b6616f
     PV = 25;
     degat = 2;
-    xp = 10;
+    xp = 2;
     name = "Fantome";
     ratio = 0.2;
     if (!texture.loadFromFile("media/fantome.png"))
