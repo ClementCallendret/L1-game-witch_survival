@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "creditstate.hpp"
+#include "menustate.hpp"
 
 
 void CCreditsState::Init()
@@ -43,6 +44,11 @@ void CCreditsState::HandleEvents(CGameEngine *game)
             {
             case sf::Keyboard::Escape:
                 game->Quit();
+                break;
+                    
+            case sf::Keyboard::R:
+                music.stop();
+                game->ChangeState(new CMenuState());
                 break;
          
             default :
