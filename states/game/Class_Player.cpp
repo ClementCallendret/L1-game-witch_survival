@@ -60,7 +60,7 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite) a
         if (location.y <= 45.)
             location.y = 45.;
             else {
-        location.y -= speed;
+        location.y -= speed; 
             }
     }
 
