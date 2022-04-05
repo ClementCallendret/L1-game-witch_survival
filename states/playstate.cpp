@@ -22,6 +22,11 @@ void CPlayState::Init()
 	music.openFromFile("media/Sounds/inGameMusic.ogg");
 	music.play();
 
+	text_shrek.loadFromFile("media/shrek.png");
+    sprite_shrek.setTexture(text_shrek);
+    anim_shrek = Animation(sprite_shrek, 9,sf::Vector2i(250,140),500,500,0.2,0.2);
+    anim_shrek.sprite.setPosition(640, 2200);
+
 	printf("CPlayState Init\n");
 }
 
@@ -184,6 +189,10 @@ void CPlayState::Draw(CGameEngine *game)
 			a->draw(*game->screen);
 		}
 	}
+
+	game->screen->draw(anim_shrek.sprite);
+	anim_shrek.update();
+
 	player->draw(*(game->screen));
 	(game->screen)->draw(totXP);
 	(game->screen)->draw(XPbar);

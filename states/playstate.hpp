@@ -63,6 +63,12 @@ public:
 	sf::Text timer;
 	sf::Music music;
 	sf::Music musicBOSS;
+
+	// SHREK 
+
+    sf::Texture text_shrek;
+    sf::Sprite sprite_shrek;
+    Animation anim_shrek;
 };
 
 #endif

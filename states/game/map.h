@@ -115,12 +115,6 @@ private:
     };
     sf::VertexArray m_vertices;
     sf::Texture m_tileset;
-
-    // SHREK 
-
-    sf::Texture text_shrek;
-    sf::Sprite sprite_shrek;
-    Animation anim_shrek;
     //bool sapasse( on va essayer de prendre la getPlayerPos());
 public:
     Map();

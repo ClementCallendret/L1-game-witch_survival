@@ -46,9 +46,6 @@ bool Map::load(const std::string &tileset, sf::Vector2u tileSize, const int *til
             quad[2].texCoords = sf::Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
             quad[3].texCoords = sf::Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
         }
-    text_shrek.loadFromFile("media/shrek.png");
-    sprite_shrek.setTexture(text_shrek);
-    anim_shrek = Animation(sprite_shrek, 9,sf::Vector2i(250,140),500,500,0.2,0.2);
 
     return true;
 }
