@@ -52,13 +52,23 @@ void CMenuState::HandleEvents(CGameEngine *game)
                 game->Quit();
                 break;
                     
+	    case sf::Keyboard::Add:
+                volume += 10.;
+                music.setVolume(volume);
+                break;
+
+            case sf::Keyboard::Subtract:
+                volume -= 10.;
+                music.setVolume(volume);
+                break;
+			    
             case sf::Keyboard::M:
                 music.pause();
                 break;
 
             case sf::Keyboard::P:
-				music.play();
-				break;
+		music.play();
+		break;
 
             case sf::Keyboard::Up:
                 menu->moveUp();
