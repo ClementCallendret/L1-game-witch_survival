@@ -14,6 +14,7 @@ void CPauseState::Init()
     bg.setScale(0.75, 0.75);
     bg.setPosition(playstate->view->getCenter());
     music.openFromFile("media/Sounds/pause.ogg");
+    msic.setVolume(50.);
     music.play();
 
     titlefont.loadFromFile("media/Witch.ttf");
