@@ -66,7 +66,7 @@ ennemi_loup.o : game/ennemi_loup.cpp game/ennemi_loup.h
 vague.o : game/vague.hpp game/vague.cpp game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h game/ennemi_geant.h game/ennemi_fantome.h game/ennemi_enervax.h game/ennemi_dragon.h game/ennemi_gargouille.h game/ennemi_arbre.h game/ennemi_loup.h
 	g++ -Wall game/vague.cpp -c
 
-map.o : game/map.h game/map.cpp
+map.o : game/map.h game/map.cpp game/Animation.hpp
 	g++ -Wall game/map.cpp -c
 
 Bullet.o : game/Armes/Bullet.hpp game/Armes/Bullet.cpp game/Animation.hpp game/Player.h game/ennemi.h

@@ -2,17 +2,10 @@
 #include <cmath>
 
 dragon::dragon(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-<<<<<<< HEAD
-    speed = 0.9;
-    PV = 1000;
-    degat = 5;
-    xp = 5;
-=======
     speed = 0.8;
     PV = 200;
     degat = 40;
     xp = 20;
->>>>>>> f6b9c168e4929d1e89e90ec52e6b5d0065b6616f
     name = "Dragon";
     ratio = 1;
     if (!texture.loadFromFile("media/dragon.png"))

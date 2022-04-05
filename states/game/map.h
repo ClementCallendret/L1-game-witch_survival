@@ -1,6 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 #include <SFML/Graphics.hpp>
+#include "Animation.hpp"
 
 class Map : public sf::Drawable, public sf::Transformable // On cree la class map du coup
 {
