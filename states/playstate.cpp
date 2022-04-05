@@ -1,4 +1,4 @@
-// afin de mieux comprendre come,t les "states" fonctionnet ---> http://gamedevgeek.com/tutorials/managing-game-states-in-c/ <---
+// afin de mieux comprendre comment les "states" fonctionnent ---> http://gamedevgeek.com/tutorials/managing-game-states-in-c/ <---
 #include <stdio.h>
 #include <sstream>
 #include "playstate.hpp"
@@ -18,7 +18,7 @@ void CPlayState::Init()
 	timer.setFont(font);
 	timer.setCharacterSize(40);
 	chrono = 0;
-	
+
 	music.openFromFile("media/Sounds/inGameMusic.ogg");
 	music.play();
 
@@ -68,6 +68,15 @@ void CPlayState::HandleEvents(CGameEngine *game)
 			case sf::Keyboard::Escape:
 				game->PushState(new CPauseState(this));
 				break;
+					
+			case sf::Keyboard::M:
+				music.pause();
+				break;
+
+			case sf::Keyboard::P:
+				music.play();
+				break;
+
 			default:
 
 				break;
@@ -79,19 +88,43 @@ void CPlayState::HandleEvents(CGameEngine *game)
 	}
 }
 
-void CPlayState::Update(CGameEngine *game)
+	void CPlayState::Update(CGameEngine *game)
 {
+	if (chrono < 300 && clock.getElapsedTime().asSeconds() + chrono >= 300)
+	{
+		float x = view->getCenter().x - 820;
+		float y = rand() % 900;
+		y += view->getCenter().y - 450;
+		Ennemi *e = new enervax(player, sf::Vector2f(x, y));
+		wave->ensemble.push_back(e);
+	}
+	if (chrono < 700 && clock.getElapsedTime().asSeconds() + chrono >= 700)
+	{
+		float x = view->getCenter().x - 820;
+		float y = rand() % 900;
+		y += view->getCenter().y - 450;
+		Ennemi *e = new dragon(player, sf::Vector2f(x, y));
+		wave->ensemble.push_back(e);
+	}
+	if (chrono < 1200 && clock.getElapsedTime().asSeconds() + chrono >= 1200) {
+		music.stop();
+		musicBOSS.setVolume(90.);
+		musicBOSS.play();
+	}
 	chrono += clock.getElapsedTime().asSeconds();
 	clock.restart();
-	wave->level = int(chrono/100 + 1);
+	wave->level = int(chrono / 100 + 1);
+	wave->intervalle = 100/(float(chrono / 100 + 1)/2);
 
 	int min = int(chrono) / 60;
 	int sec = int(chrono) % 60;
 	std::stringstream txt;
 
-	if(min < 10) txt << "0";
+	if (min < 10)
+		txt << "0";
 	txt << min << ":";
-	if(sec < 10) txt << "0";
+	if (sec < 10)
+		txt << "0";
 	txt << sec;
 
 	timer.setString(txt.str());
@@ -106,36 +139,37 @@ void CPlayState::Update(CGameEngine *game)
 	}
 	wave->update();
 
-	
 	CameraStop(); // camera au niveau du joueur qui va le suivre
 	game->screen->setView(*view);
 
-	if(player->PV <= 0){       // mort
+	if (player->PV <= 0)
+	{ // mort
 		view->setCenter(800, 450);
 		game->screen->setView(*view);
 		int k = wave->kills;
 		game->ChangeState(new CEndState(k, chrono, 0));
 	}
-	else if(player->newlevel){  // monté de niveau
+	else if(player->newlevel){  // montée de niveau
+		music.setVolume(50);
 		game->PushState(new CUpgradeState(this));
 	}
 }
 
 void CPlayState::Draw(CGameEngine *game)
-{	
+{
 	sf::Vector2f location = view->getCenter();
-	
-    sf::RectangleShape totXP(sf::Vector2f(1550, 15));
-    totXP.setOrigin(775, 0);
-    totXP.setPosition(location.x, location.y - 440);
-    totXP.setFillColor(sf::Color(255, 255, 255, 127));
-    totXP.setOutlineColor(sf::Color::Black);
-    totXP.setOutlineThickness(2);
 
-    sf::RectangleShape XPbar(sf::Vector2f(player->xp*1550/player->xpMax, 15));
-    XPbar.setOrigin(775, 0);
-    XPbar.setFillColor(sf::Color(20, 90, 180, 200));
-    XPbar.setPosition(location.x, location.y - 440);
+	sf::RectangleShape totXP(sf::Vector2f(1550, 15));
+	totXP.setOrigin(775, 0);
+	totXP.setPosition(location.x, location.y - 440);
+	totXP.setFillColor(sf::Color(255, 255, 255, 127));
+	totXP.setOutlineColor(sf::Color::Black);
+	totXP.setOutlineThickness(2);
+
+	sf::RectangleShape XPbar(sf::Vector2f(player->xp * 1550 / player->xpMax, 15));
+	XPbar.setOrigin(775, 0);
+	XPbar.setFillColor(sf::Color(20, 90, 180, 200));
+	XPbar.setPosition(location.x, location.y - 440);
 
 	timer.setPosition(location.x - 60, location.y - 380);
 
@@ -152,30 +186,31 @@ void CPlayState::Draw(CGameEngine *game)
 	}
 	player->draw(*(game->screen));
 	(game->screen)->draw(totXP);
-    (game->screen)->draw(XPbar);
-    (game->screen)->draw(timer);
+	(game->screen)->draw(XPbar);
+	(game->screen)->draw(timer);
 
 	game->screen->display();
 }
 
-void CPlayState::CameraStop() {
-	float posx; 
+void CPlayState::CameraStop()
+{
+	float posx;
 	float posy;
-	if (player->getPlayerPos().x < 2817) 
-	posx =player->getPlayerPos().x;
+	if (player->getPlayerPos().x < 2817)
+		posx = player->getPlayerPos().x;
 	else
-	posx = 2817;
+		posx = 2817;
 
-	if (player->getPlayerPos().x < 800) 
-	posx =800;
+	if (player->getPlayerPos().x < 800)
+		posx = 800;
 
-	if (player->getPlayerPos().y < 2873) 
-	posy =player->getPlayerPos().y;
+	if (player->getPlayerPos().y < 2873)
+		posy = player->getPlayerPos().y;
 	else
-	posy = 2873; 
+		posy = 2873;
 
-	if (player->getPlayerPos().y < 449) 
-	posy =449;
+	if (player->getPlayerPos().y < 449)
+		posy = 449;
 
 	view->setCenter(posx, posy);
 }

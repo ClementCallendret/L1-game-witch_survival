@@ -17,11 +17,15 @@ void CEndState::Init()
 
     if (win)
     {
+        music.openFromFile("media/Sounds/WIN.ogg");
+        music.setVolume(53);
         title.setString("STAGE COMPLETED");
         title.setPosition(450, 100);
     }
     else
     {
+        music.openFromFile("media/Sounds/Death.ogg");
+        music.play();
         title.setString("DEFEAT");
         title.setPosition(600, 100);
     }
