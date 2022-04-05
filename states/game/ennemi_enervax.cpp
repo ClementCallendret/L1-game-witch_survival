@@ -3,7 +3,7 @@
 
 enervax::enervax(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.8;
-    PV = 8;
+    PV = 80;
     degat = 5;
     xp = 5;
     name = "Enervax";

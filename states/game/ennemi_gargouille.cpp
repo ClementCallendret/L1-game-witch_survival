@@ -2,8 +2,8 @@
 #include <cmath>
 
 gargouille::gargouille(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 2;
-    PV = 1;
+    speed = 1.5;
+    PV = 30;
     degat = 1;
     xp = 2;
     name = "Gargouille";

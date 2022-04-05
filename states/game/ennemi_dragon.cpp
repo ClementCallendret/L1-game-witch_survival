@@ -2,8 +2,8 @@
 #include <cmath>
 
 dragon::dragon(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 0.8;
-    PV = 10;
+    speed = 0.9;
+    PV = 1000;
     degat = 5;
     xp = 5;
     name = "Dragon";

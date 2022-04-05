@@ -2,8 +2,8 @@
 #include <cmath>
 
 fantome::fantome(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 1;
-    PV = 2;
+    speed = 2;
+    PV = 25;
     degat = 2;
     xp = 10;
     name = "Fantome";
