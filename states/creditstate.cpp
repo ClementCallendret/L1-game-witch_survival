@@ -8,7 +8,7 @@ void CCreditsState::Init()
     tex_lane.loadFromFile("media/wut.jpg");
     lane.setTexture(tex_lane); 
 
-    music.openFromFile("media/Sounds/Main_Menu.ogg");
+    music.openFromFile("media/Sounds/credits.ogg");
     music.play();
 }
 

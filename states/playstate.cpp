@@ -73,7 +73,22 @@ void CPlayState::HandleEvents(CGameEngine *game)
 			case sf::Keyboard::Escape:
 				game->PushState(new CPauseState(this));
 				break;
-					
+				
+			case sf::Keyboard::Add:
+                volume += 10.;
+                if (volume > 100) {
+                    volume = 100.;
+                 }
+                music.setVolume(volume);
+                break;
+
+            case sf::Keyboard::Subtract:
+                volume -= 10.;
+                if (volume < 0) {
+                    volume = 0.;
+                 }
+                 music.setVolume(volume);
+                 break;
 			case sf::Keyboard::M:
 				music.pause();
 				break;
