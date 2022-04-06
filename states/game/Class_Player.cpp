@@ -44,7 +44,7 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite) a
         gauche = 0;
         droite = 0;
     }
-    if (haut && bas){
+    if (haut && bas){ 
         haut = 0;
         bas = 0;
     }
