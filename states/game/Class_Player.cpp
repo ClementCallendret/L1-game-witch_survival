@@ -62,6 +62,7 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite) a
             location.x += speed; //Si juste fleche droite activee, on va a droite
         }
         sprite.setScale(-1,1); //Pour changer où regarde la perso (pas qu'il fasse du moonwalk)
+        sens = 1; //Pour le sens des armes
     }
 
     if (gauche){ //Même principe qu'en haut mais avec la fleche gauche appuyee
@@ -77,6 +78,7 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite) a
             location.x -= speed;
         }
         sprite.setScale(1,1);
+        sens = -1; 
         }
 
     if (haut && (droite == 0) && (gauche == 0)){ //Si juste fleche haut activee
@@ -98,11 +100,8 @@ void Player::inputs()  // deplacement de notre joueur (Haut/Bas/Gauche/Droite) a
     else if (location.y >= 3283.){
         location.y = 3283.;
     }
-
     newlevel = 0;
 }
-
-
 
 void Player::heal(float n)
 {
