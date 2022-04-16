@@ -128,7 +128,7 @@ void CPlayState::HandleEvents(CGameEngine *game)
 	}
 	if (chrono < 1200 && clock.getElapsedTime().asSeconds() + chrono >= 1200) {
 		music.stop();
-		musicBOSS.setVolume(90.);
+		musicBOSS.setVolume(84.);
 		musicBOSS.play();
 	}
 	chrono += clock.getElapsedTime().asSeconds();
