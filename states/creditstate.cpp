@@ -5,7 +5,7 @@
 
 void CCreditsState::Init()
 {
-    tex_lane.loadFromFile("media/wut.jpg");
+    tex_lane.loadFromFile("media/credits.jpeg");
     lane.setTexture(tex_lane); 
 
     music.openFromFile("media/Sounds/credits.ogg");
