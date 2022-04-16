@@ -27,7 +27,7 @@ void Ennemi::update() //Deplacement de l'ennemi -> Objectif : suivre le joueur
     deplaX = posxP - posxE; //Début du calcul de fou
     deplaY = posyP - posyE;
 
-    if (deplaX<0.000001 && deplaX>0.000001){ //deplaX va être un diviseur donc il ne faut pas qu'il soit égale à 0
+    if (deplaX<0.000001 && deplaX>0.000001){ //Securite car deplaX va être un diviseur donc il ne faut pas qu'il soit égale à 0
         if (deplaX >0){ // si deplaX est positif
             deplaX = 0.01; //
         }
@@ -41,7 +41,7 @@ void Ennemi::update() //Deplacement de l'ennemi -> Objectif : suivre le joueur
     if (posxE < posxP){  //si position ennemi < position joueur
         location.x += speed * cos(angle);
         location.y += speed * sin(angle);
-        anim.sprite.setScale(-ratio,ratio); //Pour ratio des randoms sur Twitter
+        anim.sprite.setScale(-ratio,ratio); 
     }
  
     else {    //si position ennemi >= position joueur
