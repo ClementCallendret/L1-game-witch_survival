@@ -3,7 +3,7 @@
 
 villageois::villageois(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 1;
-    PV = 20;
+    PV = 30;
     degat = 1;
     xp = 1;
     name = "villageois";

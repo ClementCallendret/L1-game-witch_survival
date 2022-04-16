@@ -3,7 +3,7 @@
 
 loup::loup(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 2;
-    PV = 2;
+    PV = 70;
     degat = 2;
     xp = 2;
     name = "Loup";

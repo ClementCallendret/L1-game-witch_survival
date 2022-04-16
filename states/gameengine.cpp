@@ -1,4 +1,3 @@
-#include <iostream>
 #include "gameengine.hpp"
 #include "gamestate.hpp"
 
@@ -11,8 +10,6 @@ void CGameEngine::Init(const char* title, float width, float height)
 	screen->setFramerateLimit(60);
 
 	m_running = true;
-
-	std::cout << "CGameEngine Init" << std::endl ;
 }
 
 void CGameEngine::Cleanup()
@@ -26,7 +23,6 @@ void CGameEngine::Cleanup()
 	}
 
 	screen->close();
-	printf("CGameEngine Cleanup\n");
 }
 
 void CGameEngine::ChangeState(CGameState* state) 
@@ -43,7 +39,6 @@ void CGameEngine::ChangeState(CGameState* state)
 
 	states.push(state);
 	states.top()->Init();
-	printf("CGameEngine ChangeState done\n");
 }
 
 void CGameEngine::PushState(CGameState* state)

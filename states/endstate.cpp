@@ -55,17 +55,14 @@ void CEndState::Init()
 
 void CEndState::Cleanup()
 {
-    printf("CEndState Cleanup\n");
 }
 
 void CEndState::Pause()
 {
-    printf("CEndState Pause\n");
 }
 
 void CEndState::Resume()
 {
-    printf("CEndState Resume\n");
 }
 
 void CEndState::HandleEvents(CGameEngine *game)

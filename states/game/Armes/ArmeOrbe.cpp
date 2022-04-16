@@ -5,7 +5,7 @@
 
 ArmeOrbe::ArmeOrbe(Player *joueur, std::vector<Ennemi*>* en) : Arme(joueur, en)
 {
-    m_degats = 20;
+    m_degats = 3;
     m_vitesseProjectile = 0.03;
     m_tailleProjectile = 15;
     m_nombreProjectile = 1;

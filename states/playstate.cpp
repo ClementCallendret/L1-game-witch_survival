@@ -22,7 +22,6 @@ void CPlayState::Init()
 	music.openFromFile("media/Sounds/inGameMusic.ogg");
 	music.play();
 
-	printf("CPlayState Init\n");
 }
 
 void CPlayState::Cleanup()
@@ -37,17 +36,14 @@ void CPlayState::Cleanup()
 		delete a;
 	}
 
-	printf("CPlayState Cleanup\n");
 }
 
 void CPlayState::Pause()
 {
-	printf("CPlayState Pause\n");
 }
 
 void CPlayState::Resume()
 {
-	printf("CPlayState Resume\n");
 }
 
 void CPlayState::HandleEvents(CGameEngine *game)

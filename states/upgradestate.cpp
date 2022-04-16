@@ -27,18 +27,14 @@ void CUpgradeState::Cleanup()
     delete tex_bg;
     delete ameliorations;
     playstate->clock.restart();
-
-    printf("CMenuState Cleanup\n");
 }
 
 void CUpgradeState::Pause()
 {
-    printf("CMenuState Pause\n");
 }
 
 void CUpgradeState::Resume()
 {
-    printf("CMenuState Resume\n");
 }
 
 void CUpgradeState::HandleEvents(CGameEngine *game)

@@ -45,18 +45,14 @@ void CPauseState::Init()
 void CPauseState::Cleanup()
 {
     playstate->clock.restart();
-
-    printf("CMenuState Cleanup\n");
 }
 
 void CPauseState::Pause()
 {
-    printf("CMenuState Pause\n");
 }
 
 void CPauseState::Resume()
 {
-    printf("CMenuState Resume\n");
 }
 
 void CPauseState::HandleEvents(CGameEngine *game)

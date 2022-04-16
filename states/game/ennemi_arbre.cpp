@@ -3,7 +3,7 @@
 
 arbre::arbre(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.7;
-    PV = 5;
+    PV = 45;
     degat = 1;
     xp = 2;
     name = "Arbre";

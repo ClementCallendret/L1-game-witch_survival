@@ -3,9 +3,9 @@
 
 enervax::enervax(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.8;
-    PV = 8;
+    PV = 3000;
     degat = 5;
-    xp = 5;
+    xp = 20;
     name = "Enervax";
     ratio = 0.4;
     if (!texture.loadFromFile("media/enervax.png"))

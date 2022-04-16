@@ -13,7 +13,7 @@ private:
 
 public:
     short PV = 100;
-	float xp = 0, xpMax = 20;
+	float xp = 0, xpMax = 10;
 	int pvMax = 100, sens = -1;
 	float speed = 3.;
 	bool newlevel;
