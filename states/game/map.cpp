@@ -1,6 +1,5 @@
 #include "map.h"
 #include "Animation.hpp"
-// c'est ici qu'il y aura la map ingame
 
 Map::Map()
 {
