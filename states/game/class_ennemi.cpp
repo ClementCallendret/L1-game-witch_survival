@@ -3,99 +3,60 @@
 #include <cmath>
 
 //Definition global du joueur
-Ennemi::Ennemi(Player* j, sf::Vector2f loc) : joueur(j), location(loc)
-{   //definition du joueur avec le pointeur j
-    //taille de l'image en pixel (a automatiser si y a le tps)
-    //taille = sf::Vector2f(taille.x, taille.y);
+Ennemi::Ennemi(Player* j, sf::Vector2f loc) : joueur(j), location(loc) //Parametre que va prendre la classe joueur
+{   
 
 }
 
-// Dessin de l'ennemi
-void Ennemi::draw(sf::RenderWindow &window)
-{
-    /* sf::RectangleShape hitbox;
-    hitbox.setSize(sf::Vector2f(31, 47));
-    hitbox.setOrigin(sf::Vector2f(31/2, 47/2));
-    hitbox.setPosition(location);
-    hitbox.setFillColor(sf::Color(0, 255, 0, 150));
-    window.draw(hitbox); */
-    
-    // deplacer l'image
-    anim.sprite.setPosition(location.x, location.y); 
+void Ennemi::draw(sf::RenderWindow &window) // Dessin de l'ennemi
+{   anim.sprite.setPosition(location.x, location.y); // deplacer l'image
     anim.update();
     window.draw(anim.sprite);
 }
 
-//Deplacement de l'ennemi -> Objectif : suivre le joueur
-void Ennemi::update()
-{   //Definition variable pour les calculs
-    float deplaX,deplaY,angle;
 
-    //Recuperation pos joueur en x et y
-    float posxP = joueur->getPlayerPos().x; // On veut le viser le milieu du player et getPlayerPos().x retourne son coin en haut a gauche
-    float posyP = joueur->getPlayerPos().y; // donc on rajoute la moitié de son image (32/2 = 16)
+void Ennemi::update() //Deplacement de l'ennemi -> Objectif : suivre le joueur
+{   float deplaX,deplaY,angle; //Definition variable pour les calculs
 
-    float  posxE = location.x;
+    float posxP = joueur->getPlayerPos().x; // On récupère les positions du joueur en x et en y
+    float posyP = joueur->getPlayerPos().y; // Elles correspondent au centre de l'ennemi
+
+    float  posxE = location.x; //Idem pour l'ennemi
     float  posyE = location.y;
-
-
-    //Calcul de l'angle que l'ennemi doit prendre 
-    deplaX = posxP - posxE;
+    
+    deplaX = posxP - posxE; //Début du calcul de fou
     deplaY = posyP - posyE;
 
-    //Pour éviter un bug quand on divise par 0
-    if (deplaX < 0.1 && deplaX> -0.1){
-        if (deplaX >= 0){
-            deplaX = 0.2;
+    if (deplaX<0.000001 && deplaX>0.000001){ //Securite car deplaX va être un diviseur donc il ne faut pas qu'il soit égale à 0
+        if (deplaX >0){ // si deplaX est positif
+            deplaX = 0.01; //
         }
         else{
-            deplaX = -0.2;
+            deplaX = -0.01;
         }
-        deplaX = 1;
     }
 
-    // Calcul angle
-    angle = atan(deplaY/deplaX);
-
-    //Pour éviter angle = 0
+    angle = atan(deplaY/deplaX); // Calcul de l'angle que l'ennemi doit prendre
     
-    if (angle < 0.1 && angle > -0.1){
-        if (angle >= 0){
-            angle = 0.2;
-        }
-        else{
-            angle = -0.2;
-        }
-    }
-
-
-
-    //si position ennemi < position joueur
-   if (posxE - posxP < 1){
+    if (posxE < posxP){  //si position ennemi < position joueur
         location.x += speed * cos(angle);
         location.y += speed * sin(angle);
+        anim.sprite.setScale(-ratio,ratio); 
     }
-    //si position ennemi > position joueur
-    else if (posxE - posxP > 1){
+ 
+    else {    //si position ennemi >= position joueur
         location.x -= speed * cos(angle);
         location.y -= speed * sin(angle); 
-    }  
-
-    //Pour que l'anim se tourne quand le player est à droite ou à gauche d'elle
-    if (posxP > location.x){
-        anim.sprite.setScale(-ratio,ratio); //Pour ratio des randoms sur Twitter
-    }
-    else{
         anim.sprite.setScale(ratio,ratio);
-    }
-
+    }  
     collision();
+
 }
 
 //Collision
 void Ennemi::collision()
 {  
-    // Detection collision
+    // Detection collision :
 
     //Def côté Player
     float playerLeftEdge = joueur->getPlayerPos().x - 10; //Pour une hitbox raisonnable a cause du chapeau, de la baguette etc..
@@ -104,16 +65,15 @@ void Ennemi::collision()
     float playerBottomEdge = joueur->getPlayerPos().y + 11;
 
     //Def côté ennemi
-    float enemyLeftEdge = location.x - (taille.x/2);
+    float enemyLeftEdge = location.x - (taille.x/2); //location.x retourne la position au milieu de l'ennemi,
+    float enemyTopEdge = location.y - (taille.y/2); // donc il faut soustraire la moitié de sa taille pour avoir le côté
     float enemyRightEdge = location.x + (taille.x/2);
-    float enemyTopEdge = location.y - (taille.y/2);
     float enemyBottomEdge = location.y + (taille.y/2);
 
     //Calcul incroyable pour détecter les collisions
     if ((playerRightEdge) > enemyLeftEdge && playerLeftEdge < enemyRightEdge &&
         playerTopEdge < enemyBottomEdge && playerBottomEdge > enemyTopEdge){   
-        //Action quand il y a une collision
-        joueur->PV-=degat;
+        joueur->PV -= degat; //On enlève des pv au joueur
         }
 
 

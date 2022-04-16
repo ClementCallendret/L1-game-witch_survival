@@ -1,5 +1,5 @@
-mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o ennemi_arbre.o ennemi_loup.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
-	g++ main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o ennemi_arbre.o ennemi_loup.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o -o mainOut -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+mainOut : main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o creditstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o ennemi_arbre.o ennemi_loup.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
+	g++ main.o gameengine.o MainMenu.o menustate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o creditstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o ennemi_arbre.o ennemi_loup.o vague.o map.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o -o mainOut -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
 main.o : main.cpp gameengine.hpp menustate.hpp
 	g++ -Wall main.cpp -c
@@ -22,6 +22,9 @@ pausestate.o : pausestate.hpp pausestate.cpp playstate.hpp gamestate.hpp gameeng
 endstate.o : endstate.hpp endstate.cpp menustate.hpp gamestate.hpp gameengine.hpp
 	g++ -Wall endstate.cpp -c
 
+creditstate.o : creditstate.hpp creditstate.cpp gamestate.hpp gameengine.hpp
+	g++ -Wall creditstate.cpp -c
+	
 Upgrade.o : Upgrade.cpp Upgrade.hpp game/Player.h game/Armes/Arme.hpp
 	g++ -Wall Upgrade.cpp -c
 
@@ -66,7 +69,7 @@ ennemi_loup.o : game/ennemi_loup.cpp game/ennemi_loup.h
 vague.o : game/vague.hpp game/vague.cpp game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h game/ennemi_geant.h game/ennemi_fantome.h game/ennemi_enervax.h game/ennemi_dragon.h game/ennemi_gargouille.h game/ennemi_arbre.h game/ennemi_loup.h
 	g++ -Wall game/vague.cpp -c
 
-map.o : game/map.h game/map.cpp
+map.o : game/map.h game/map.cpp game/Animation.hpp
 	g++ -Wall game/map.cpp -c
 
 Bullet.o : game/Armes/Bullet.hpp game/Armes/Bullet.cpp game/Animation.hpp game/Player.h game/ennemi.h

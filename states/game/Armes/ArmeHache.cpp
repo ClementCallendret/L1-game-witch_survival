@@ -9,7 +9,7 @@ ArmeHache::ArmeHache(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, e
     m_nombreProjectile = 1;
     m_vieProjectile = 1;
     m_level = 0;
-    m_nomArme = "Haches";
+    m_nomArme = "Haches"; 
     m_cooldown = sf::seconds(3.5);
     m_clock = new sf::Clock;
     m_range = 250;

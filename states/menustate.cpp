@@ -2,6 +2,7 @@
 #include "gameengine.hpp"
 #include "menustate.hpp"
 #include "playstate.hpp"
+#include "creditstate.hpp"
 
 
 void CMenuState::Init()
@@ -46,13 +47,29 @@ void CMenuState::HandleEvents(CGameEngine *game)
                 game->Quit();
                 break;
                     
+	        case sf::Keyboard::Add:
+                volume += 10.;
+                if (volume > 100) {
+                    volume = 100.;
+                 }
+                music.setVolume(volume);
+                break;
+
+            case sf::Keyboard::Subtract:
+                volume -= 10.;
+                if (volume < 0) {
+                    volume = 0.;
+                 }
+                 music.setVolume(volume);
+                 break;
+			    
             case sf::Keyboard::M:
                 music.pause();
                 break;
 
             case sf::Keyboard::P:
-				music.play();
-				break;
+		        music.play();
+		        break;
 
             case sf::Keyboard::Up:
                 menu->moveUp();
@@ -71,6 +88,12 @@ void CMenuState::HandleEvents(CGameEngine *game)
                     break;
 
                 case 1:
+<<<<<<< HEAD
+=======
+                    std::cout << "credit pressed" << std::endl;
+		            music.stop();
+                    game->PushState(new CCreditsState());	
+>>>>>>> 033773e6cdb2862e935dcf49b7944595da5f4261
                     break;
 
                 case 2:

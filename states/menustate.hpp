@@ -21,6 +21,8 @@ public:
 
 	CMenuState() { }
 	~CMenuState() {Cleanup();}
+	
+	float volume = 100.;
 
 private:
 	sf::Texture tex_bg;

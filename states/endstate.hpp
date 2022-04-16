@@ -2,6 +2,7 @@
 #define ENDSTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 
 class CEndState : public CGameState
@@ -27,6 +28,7 @@ private:
 	bool win;
 	sf::Font titlefont, txtfont;
 	sf::Text title, kill_txt, time_txt, quitter_txt;
+	sf::Music music;
 };
 
 #endif

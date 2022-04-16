@@ -1,5 +1,5 @@
 #include "map.h"
-
+#include "Animation.hpp"
 // c'est ici qu'il y aura la map ingame
 
 Map::Map()
@@ -7,7 +7,7 @@ Map::Map()
     // on cree la map avec le niveau precedemment defini
 
     if (!load("media/Tileset.png", sf::Vector2u(32, 32), level, 113, 104))
-        throw ("Error la map charge pas mon reuf");
+        throw ("Erreur la map ne charge pas");
 }
 
 bool Map::load(const std::string &tileset, sf::Vector2u tileSize, const int *tiles, int width, int height)

@@ -3,7 +3,11 @@
 
 geant::geant(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.5;
+<<<<<<< HEAD
     PV = 75;
+=======
+    PV = 100;
+>>>>>>> 033773e6cdb2862e935dcf49b7944595da5f4261
     degat = 5;
     xp = 5;
     name = "Geant";

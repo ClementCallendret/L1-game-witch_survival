@@ -5,9 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.hpp"
 
-class Ennemi
+
+class Ennemi  //Def de la classe Ennemi
+// Paramètre propre a chaque ennemi
 {
-protected:
+
+protected: //Caracteristiques des ennemis
+	
 	Player* joueur;
 	float speed,degat,xp,ratio;
 	sf::Texture texture;
@@ -18,20 +22,20 @@ protected:
 	Animation anim;
 
 public:
-	Ennemi(Player* j, sf::Vector2f loc);
-	virtual ~Ennemi() {
+	Ennemi(Player* j, sf::Vector2f loc); //Paramètre que l'ennemi utilisera
+	virtual ~Ennemi() { //On le met en virtual car c'est une classe de classe
 		joueur->prendreXP(xp);
 	}
-	int PV;
-	void draw(sf::RenderWindow &window);
-	void update();
-    void collision();
-	sf::Vector2f getEnnemiPos(){
-		return sf::Vector2f(location.x, location.y);
+	int PV; //Les points de vieeeessssss
+	void draw(sf::RenderWindow &window); //Dessin de l'ennemi avec son sprite
+	void update(); //update pour le déplacement des ennemis
+    void collision(); //on check les collisions entre l'ennemi et le player
+	sf::Vector2f getEnnemiPos(){ 
+		return sf::Vector2f(location.x, location.y); //on recup la position de l'ennemi
 	};
 
 	sf::Vector2f getEnnemiTaille(){
-		return sf::Vector2f(taille.x, taille.y);
+		return sf::Vector2f(taille.x, taille.y); //On recup la taille de l'ennemi
 	};
 	
 };

@@ -22,6 +22,12 @@ void CPlayState::Init()
 	music.openFromFile("media/Sounds/inGameMusic.ogg");
 	music.play();
 
+	text_shrek.loadFromFile("media/shrek.png");
+    sprite_shrek.setTexture(text_shrek);
+    anim_shrek = Animation(sprite_shrek, 9,sf::Vector2i(250,140),500,500,0.2,0.2);
+    anim_shrek.sprite.setPosition(640, 2200);
+
+	printf("CPlayState Init\n");
 }
 
 void CPlayState::Cleanup()
@@ -64,7 +70,22 @@ void CPlayState::HandleEvents(CGameEngine *game)
 			case sf::Keyboard::Escape:
 				game->PushState(new CPauseState(this));
 				break;
-					
+				
+			case sf::Keyboard::Add:
+                volume += 10.;
+                if (volume > 100) {
+                    volume = 100.;
+                 }
+                music.setVolume(volume);
+                break;
+
+            case sf::Keyboard::Subtract:
+                volume -= 10.;
+                if (volume < 0) {
+                    volume = 0.;
+                 }
+                 music.setVolume(volume);
+                 break;
 			case sf::Keyboard::M:
 				music.pause();
 				break;
@@ -102,10 +123,15 @@ void CPlayState::HandleEvents(CGameEngine *game)
 		Ennemi *e = new dragon(player, sf::Vector2f(x, y));
 		wave->ensemble.push_back(e);
 	}
+	if (chrono < 1200 && clock.getElapsedTime().asSeconds() + chrono >= 1200) {
+		music.stop();
+		musicBOSS.setVolume(84.);
+		musicBOSS.play();
+	}
 	chrono += clock.getElapsedTime().asSeconds();
 	clock.restart();
 	wave->level = int(chrono / 100 + 1);
-	wave->intervalle = 100/(float(chrono / 100 + 1)/2);
+	wave->intervalle = 100/float(chrono / 100 + 1);
 
 	int min = int(chrono) / 60;
 	int sec = int(chrono) % 60;
@@ -175,6 +201,10 @@ void CPlayState::Draw(CGameEngine *game)
 			a->draw(*game->screen);
 		}
 	}
+
+	game->screen->draw(anim_shrek.sprite);
+	anim_shrek.update();
+
 	player->draw(*(game->screen));
 	(game->screen)->draw(totXP);
 	(game->screen)->draw(XPbar);

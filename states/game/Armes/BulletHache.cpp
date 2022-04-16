@@ -8,7 +8,7 @@ Bullet(pos, R, D, S, Life), sprite(sp), tireur(j), range(rng)
     float pente;
     float Cx = ciblePos.x;
     float Cy = ciblePos.y;
-
+ 
     if (location.x == Cx)
         pente = (location.y - Cy) / 0.01;
     else
