@@ -42,17 +42,14 @@ void CPlayState::Cleanup()
 		delete a;
 	}
 
-	printf("CPlayState Cleanup\n");
 }
 
 void CPlayState::Pause()
 {
-	printf("CPlayState Pause\n");
 }
 
 void CPlayState::Resume()
 {
-	printf("CPlayState Resume\n");
 }
 
 void CPlayState::HandleEvents(CGameEngine *game)

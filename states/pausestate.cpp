@@ -14,7 +14,7 @@ void CPauseState::Init()
     bg.setScale(0.75, 0.75);
     bg.setPosition(playstate->view->getCenter());
     music.openFromFile("media/Sounds/pause.ogg");
-    music.setVolume(50.);
+    music.setVolume(90.);
     music.play();
 
     titlefont.loadFromFile("media/Witch.ttf");
@@ -46,18 +46,14 @@ void CPauseState::Init()
 void CPauseState::Cleanup()
 {
     playstate->clock.restart();
-
-    printf("CMenuState Cleanup\n");
 }
 
 void CPauseState::Pause()
 {
-    printf("CMenuState Pause\n");
 }
 
 void CPauseState::Resume()
 {
-    printf("CMenuState Resume\n");
 }
 
 void CPauseState::HandleEvents(CGameEngine *game)

@@ -90,9 +90,11 @@ void Vague::spawn(sf::Vector2f pos)
     case 12 :
         z = rand() % 2;
         if (z)
-            e = new enervax(joueur, pos);
+            {e = new enervax(joueur, pos);
+            e->PV = 800;}
         else
-            e = new dragon(joueur, pos);
+            {e = new dragon(joueur, pos);
+            e->PV = 1000;}
         ensemble.push_back(e);
         break;
     default :

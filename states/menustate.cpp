@@ -1,4 +1,3 @@
-#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "gameengine.hpp"
 #include "menustate.hpp"
@@ -19,18 +18,14 @@ void CMenuState::Init()
 void CMenuState::Cleanup()
 {
     delete menu;
-
-    printf("CMenuState Cleanup\n");
 }
 
 void CMenuState::Pause()
 {
-    printf("CMenuState Pause\n");
 }
 
 void CMenuState::Resume()
 {
-    printf("CMenuState Resume\n");
 }
 
 void CMenuState::HandleEvents(CGameEngine *game)
@@ -89,12 +84,10 @@ void CMenuState::HandleEvents(CGameEngine *game)
                 switch (menu->choixPresse())
                 {
                 case 0:
-                    std::cout << "play pressed" << std::endl;
                     game->ChangeState(new CPlayState());
                     break;
 
                 case 1:
-                    std::cout << "credit pressed" << std::endl;
 		            music.stop();
                     game->PushState(new CCreditsState());	
                     break;
