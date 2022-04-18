@@ -1,4 +1,5 @@
 #include "Shield.hpp"
+#include <sstream>
 
 ArmeShield::ArmeShield(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {

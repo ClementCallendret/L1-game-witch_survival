@@ -2,6 +2,7 @@
 #define BULLETECLAIR_HPP
 
 #include "Bullet.hpp"
+#include "../Animation.hpp"
 
 class BulletEclair : public Bullet
 {

@@ -1,4 +1,5 @@
 #include "ArmeChaudron.hpp"
+#include <sstream>
 
 ArmeChaudron::ArmeChaudron(Player *joueur, std::vector<Arme *> *i, std::vector<Ennemi*>* en) : Arme(joueur, en), inventaire(i)
 {

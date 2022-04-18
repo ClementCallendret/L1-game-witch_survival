@@ -2,6 +2,7 @@
 #define BULLETHACHE_HPP
 
 #include "Bullet.hpp"
+#include "../Player.h"
 
 class BulletHache : public Bullet
 {

@@ -2,6 +2,7 @@
 #define BULLETFIREBALL_HPP
 
 #include "Bullet.hpp"
+#include "../Animation.hpp"
 
 class BulletFireball : public Bullet
 {

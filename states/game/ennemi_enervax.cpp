@@ -1,17 +1,10 @@
 #include "ennemi_enervax.h"
-#include <cmath>
 
 enervax::enervax(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.8;
-<<<<<<< HEAD
     PV = 3000;
     degat = 5;
     xp = 20;
-=======
-    PV = 500;
-    degat = 30;
-    xp = 30;
->>>>>>> 033773e6cdb2862e935dcf49b7944595da5f4261
     name = "Enervax";
     ratio = 0.4;
     if (!texture.loadFromFile("media/enervax.png"))

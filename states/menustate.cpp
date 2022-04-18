@@ -1,8 +1,6 @@
-#include <SFML/Graphics.hpp>
 #include "gameengine.hpp"
 #include "menustate.hpp"
 #include "playstate.hpp"
-#include "creditstate.hpp"
 
 
 void CMenuState::Init()
@@ -88,12 +86,6 @@ void CMenuState::HandleEvents(CGameEngine *game)
                     break;
 
                 case 1:
-<<<<<<< HEAD
-=======
-                    std::cout << "credit pressed" << std::endl;
-		            music.stop();
-                    game->PushState(new CCreditsState());	
->>>>>>> 033773e6cdb2862e935dcf49b7944595da5f4261
                     break;
 
                 case 2:

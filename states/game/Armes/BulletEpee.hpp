@@ -2,6 +2,8 @@
 #define BULLETEPEE_HPP
 
 #include "Bullet.hpp"
+#include "../Animation.hpp"
+#include "../Player.h"
 
 class BulletEpee : public Bullet
 {

@@ -1,13 +1,15 @@
 #ifndef PLAYSTATE_HPP
 #define PLAYSTATE_HPP
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <vector>
+
 #include "gamestate.hpp"
 
 #include "game/Player.h"
 #include "game/map.h"
+#include "game/vague.hpp"
+
 #include "game/ennemi.h"
 #include "game/ennemi_villageois.h"
 #include "game/ennemi_chevalier.h"
@@ -18,7 +20,6 @@
 #include "game/ennemi_dragon.h"
 #include "game/ennemi_gargouille.h"
 #include "game/ennemi_loup.h"
-#include "game/vague.hpp"
 
 #include "game/Armes/Arme.hpp"
 #include "game/Armes/ArmeFireball.hpp"

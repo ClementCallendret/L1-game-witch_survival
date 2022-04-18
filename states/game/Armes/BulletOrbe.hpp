@@ -2,6 +2,8 @@
 #define BULLETFORBE_HPP
 
 #include "Bullet.hpp"
+#include "../Animation.hpp"
+#include "../Player.h"
 
 class BulletOrbe : public Bullet
 {

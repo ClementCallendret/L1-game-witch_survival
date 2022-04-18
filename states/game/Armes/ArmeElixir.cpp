@@ -1,4 +1,5 @@
 #include "ArmeElixir.hpp"
+#include <sstream>
 
 ArmeElixir::ArmeElixir(Player *joueur, std::vector<Ennemi*>* en) : 
 Arme(joueur, en)

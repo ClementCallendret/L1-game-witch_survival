@@ -2,7 +2,6 @@
 #define _PLAYER_H_
 
 #include <SFML/Graphics.hpp>
-#include <vector>
 
 class Player
 {

@@ -1,7 +1,6 @@
 #ifndef ENDSTATE_HPP
 #define ENDSTATE_HPP
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 

@@ -1,5 +1,6 @@
 #include "ArmeEpee.hpp"
 #include "BulletEpee.hpp"
+#include <sstream>
 
 ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
@@ -21,7 +22,7 @@ ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
     m_icoText.loadFromFile("media/icon_epee.png");
     m_icoSprite.setTexture(m_icoText);
 
-    m_description = {"Epee level 1", "Assene un coup tranchant qui oxcie\nles ennemis en face du personnage"};
+    m_description = {"Epee level 2", "+20\% de degats\n-10\% de cooldown"};
 }
 
 void ArmeEpee::tirer()

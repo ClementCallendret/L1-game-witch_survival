@@ -2,6 +2,7 @@
 #define SHIELD_HPP
 
 #include "Arme.hpp"
+#include "../Player.h"
 
 class ArmeShield : public Arme
 {

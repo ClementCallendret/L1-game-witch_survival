@@ -1,5 +1,7 @@
 #include "ArmeHache.hpp"
 #include "BulletHache.hpp"
+#include <sstream>
+#include <random>
 
 ArmeHache::ArmeHache(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {

@@ -2,9 +2,7 @@
 #define ARME_HPP
 #include "Bullet.hpp"
 #include <string>
-#include <array>
-#include <random>
-#include <sstream>
+#include <vector>
 
 class Arme
 {

@@ -1,4 +1,6 @@
 #include "ArmeLivre.hpp"
+#include <sstream>
+#include <random>
 
 ArmeLivre::ArmeLivre(Player *joueur, std::vector<Arme *> *i, std::vector<Ennemi*>* en) : 
 Arme(joueur, en), inventaire(i)

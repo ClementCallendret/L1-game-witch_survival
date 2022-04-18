@@ -1,12 +1,11 @@
 #include "MainMenu.hpp"
-#include <iostream>
 #include <string>
 
 MainMenu::MainMenu()
 {
     if(!police.loadFromFile("media/Witch.ttf"))
     {
-        std::cout << "police non chargée" << std::endl;
+        return;
     }
 
     // JOUEUR

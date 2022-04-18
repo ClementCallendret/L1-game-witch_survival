@@ -1,13 +1,8 @@
 #include "ennemi_villageois.h"
-#include <cmath>
 
 villageois::villageois(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 1;
-<<<<<<< HEAD
     PV = 30;
-=======
-    PV = 15;
->>>>>>> 033773e6cdb2862e935dcf49b7944595da5f4261
     degat = 1;
     xp = 1;
     name = "villageois";

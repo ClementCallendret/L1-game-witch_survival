@@ -1,4 +1,5 @@
 #include "ArmeBalais.hpp"
+#include <sstream>
 
 ArmeBalais::ArmeBalais(Player *joueur, std::vector<Ennemi*>* en) : 
 Arme(joueur, en)

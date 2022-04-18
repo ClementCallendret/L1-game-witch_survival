@@ -1,9 +1,7 @@
-#include <sstream>
-#include <SFML/Graphics.hpp>
-
 #include "gameengine.hpp"
 #include "endstate.hpp"
 #include "menustate.hpp"
+#include <sstream>
 
 void CEndState::Init()
 {

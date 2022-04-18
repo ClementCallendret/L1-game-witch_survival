@@ -1,5 +1,4 @@
 // afin de mieux comprendre comment les "states" fonctionnent ---> http://gamedevgeek.com/tutorials/managing-game-states-in-c/ <---
-#include <stdio.h>
 #include <sstream>
 #include "playstate.hpp"
 #include "upgradestate.hpp"
@@ -169,6 +168,12 @@ void CPlayState::HandleEvents(CGameEngine *game)
 	else if(player->newlevel){  // montée de niveau
 		music.setVolume(50);
 		game->PushState(new CUpgradeState(this));
+	}
+	else if(chrono >= 1200){
+		view->setCenter(800, 450);
+		game->screen->setView(*view);
+		int k = wave->kills;
+		game->ChangeState(new CEndState(k, chrono, 1));
 	}
 }
 

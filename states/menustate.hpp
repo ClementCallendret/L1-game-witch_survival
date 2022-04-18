@@ -1,7 +1,6 @@
 #ifndef MENUSTATE_H
 #define MENUSTATE_H
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 #include "MainMenu.hpp"

@@ -1,14 +1,11 @@
 #include "ArmeFireball.hpp"
 #include "BulletFireball.hpp"
-#include <stdio.h>
+#include <sstream>
+#include <random>
 
 ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-<<<<<<< HEAD
     m_degats = 20;
-=======
-    m_degats = 8;
->>>>>>> 033773e6cdb2862e935dcf49b7944595da5f4261
     m_vitesseProjectile = 7;
     m_tailleProjectile = 10;
     m_nombreProjectile = 1;

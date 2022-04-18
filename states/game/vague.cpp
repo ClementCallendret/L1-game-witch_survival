@@ -1,4 +1,5 @@
 #include "vague.hpp"
+#include <random>
 
 Vague::Vague(Player *p, sf::View *v) : joueur(p), vue(v)
 {

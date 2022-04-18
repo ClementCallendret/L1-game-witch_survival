@@ -1,5 +1,7 @@
 #include "ArmeEclair.hpp"
 #include "BulletEclair.hpp"
+#include <sstream>
+#include <random>
 
 ArmeEclair::ArmeEclair(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
@@ -61,11 +63,10 @@ void ArmeEclair::upgrade()
         m_level++;
         m_nombreProjectile++;
         m_degats *= 1.2;
-        m_description = {"Eclaire level 4", "-0.5s de cooldown\n+2 eclair"};
+        m_description = {"Eclaire level 4", "-0.5s de cooldown\n"};
         break;
     case 3:
         m_level++;
-        m_nombreProjectile += 2;
         m_cooldown -= sf::seconds(0.5);
         m_description = {"Eclaire level 5", "+20\% de degats\n+1 eclair"};
         break;

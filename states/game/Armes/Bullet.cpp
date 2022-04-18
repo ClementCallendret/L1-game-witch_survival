@@ -1,6 +1,4 @@
 #include "Bullet.hpp"
-#include <stdio.h>
-#include <cmath>
 
 Bullet::Bullet(sf::Vector2f pos, float R, float D, float S, int Life) : 
 location(pos), rayon(R), degats(D), speed(S), life(Life)

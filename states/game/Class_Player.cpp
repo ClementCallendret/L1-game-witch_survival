@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "stdio.h"
+
 Player::Player()
 { 
     if (!texture.loadFromFile("media/witch_test.gif"))

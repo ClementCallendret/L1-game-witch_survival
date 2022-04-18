@@ -1,5 +1,4 @@
 #include "Upgrade.hpp"
-#include <stdio.h>
 #include <algorithm>
 #include <random>
 

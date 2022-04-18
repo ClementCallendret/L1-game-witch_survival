@@ -1,7 +1,5 @@
 #ifndef BULLET_HPP
 #define BULLET_HPP
-#include "../Animation.hpp"
-#include "../Player.h"
 #include "../ennemi.h"
 #include <SFML/Graphics.hpp>
 

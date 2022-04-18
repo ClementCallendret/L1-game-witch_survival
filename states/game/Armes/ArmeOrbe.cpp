@@ -1,15 +1,12 @@
 #include "ArmeOrbe.hpp"
 #include "BulletOrbe.hpp"
+#include <sstream>
 #include <cmath>
 #define _USE_MATH_DEFINES
 
 ArmeOrbe::ArmeOrbe(Player *joueur, std::vector<Ennemi*>* en) : Arme(joueur, en)
 {
-<<<<<<< HEAD
     m_degats = 3;
-=======
-    m_degats = 5;
->>>>>>> 033773e6cdb2862e935dcf49b7944595da5f4261
     m_vitesseProjectile = 0.03;
     m_tailleProjectile = 15;
     m_nombreProjectile = 1;

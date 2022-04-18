@@ -1,4 +1,5 @@
 #include "ArmeCrane.hpp"
+#include <sstream>
 
 ArmeCrane::ArmeCrane(Player *joueur, std::vector<Arme *> *i, std::vector<Ennemi*>* en) : 
 Arme(joueur, en), inventaire(i)
