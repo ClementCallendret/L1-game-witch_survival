@@ -20,7 +20,10 @@ void CPlayState::Init()
 	chrono = 0;
 
 	music.openFromFile("media/Sounds/inGameMusic.ogg");
+	music.setLoop(true);
 	music.play();
+
+	musicBOSS.openFromFile("media/Sounds/BOSS_Music.ogg");
 
 	text_shrek.loadFromFile("media/shrek.png");
     sprite_shrek.setTexture(text_shrek);
@@ -123,9 +126,9 @@ void CPlayState::HandleEvents(CGameEngine *game)
 		Ennemi *e = new dragon(player, sf::Vector2f(x, y));
 		wave->ensemble.push_back(e);
 	}
-	if (chrono < 1200 && clock.getElapsedTime().asSeconds() + chrono >= 1200) {
+	if (chrono < 1080 && clock.getElapsedTime().asSeconds() + chrono >= 1080) {
 		music.stop();
-		musicBOSS.setVolume(84.);
+		musicBOSS.setVolume(81.);
 		musicBOSS.play();
 	}
 	chrono += clock.getElapsedTime().asSeconds();
