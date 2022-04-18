@@ -1,7 +1,6 @@
 #ifndef PAUSESTATE_HPP
 #define PAUSESTATE_HPP
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 #include "playstate.hpp"

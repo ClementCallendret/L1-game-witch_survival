@@ -1,7 +1,6 @@
 #ifndef UPGRADESTATE_HPP
 #define UPGRADESTATE_HPP
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "gamestate.hpp"
 #include "playstate.hpp"

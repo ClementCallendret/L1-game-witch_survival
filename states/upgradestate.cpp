@@ -1,6 +1,4 @@
-#include "gameengine.hpp"
 #include "upgradestate.hpp"
-
 
 void CUpgradeState::Init()
 {
