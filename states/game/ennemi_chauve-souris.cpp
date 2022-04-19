@@ -2,11 +2,7 @@
 
 chauveS::chauveS(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 2.5;
-<<<<<<< HEAD
-    PV = 10;
-=======
     PV = 15;
->>>>>>> 7601d4f619a448fbff6537633a58109dc7f0ef67
     degat = 1;
     xp = 2;
     name = "Chauve-souris";

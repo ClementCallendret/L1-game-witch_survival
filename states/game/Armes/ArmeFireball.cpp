@@ -5,11 +5,7 @@
 
 ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-<<<<<<< HEAD
     m_degats = 20;
-=======
-    m_degats = 8;
->>>>>>> 7601d4f619a448fbff6537633a58109dc7f0ef67
     m_vitesseProjectile = 7;
     m_tailleProjectile = 10;
     m_nombreProjectile = 1;

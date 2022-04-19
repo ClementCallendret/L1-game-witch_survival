@@ -86,11 +86,6 @@ void CMenuState::HandleEvents(CGameEngine *game)
                     break;
 
                 case 1:
-<<<<<<< HEAD
-=======
-		            music.stop();
-                    game->PushState(new CCreditsState());	
->>>>>>> 7601d4f619a448fbff6537633a58109dc7f0ef67
                     break;
 
                 case 2:
