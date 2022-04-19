@@ -11,7 +11,8 @@ void CPlayState::Init()
 	map = new Map();
 	view = new sf::View(sf::Vector2f(600, 450), sf::Vector2f(1600.0, 900.0));
 	wave = new Vague(player, view);
-	atirail = {new ArmeEpee(player, &wave->ensemble), new ArmeFireball(player, &wave->ensemble), new ArmeHache(player, &wave->ensemble), new ArmeEclair(player, &wave->ensemble), new ArmeOrbe(player, &wave->ensemble), new ArmeShield(player, &wave->ensemble), new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};
+	bouclier = new ArmeShield(player, &wave->ensemble);
+	atirail = {new ArmeEpee(player, &wave->ensemble), new ArmeFireball(player, &wave->ensemble), new ArmeHache(player, &wave->ensemble), new ArmeEclair(player, &wave->ensemble), new ArmeOrbe(player, &wave->ensemble), bouclier, new ArmeLivre(player, &atirail), new ArmeCrane(player, &atirail), new ArmeBalais(player), new ArmeElixir(player), new ArmeChaudron(player, &atirail)};
 	clock.restart();
 	font.loadFromFile("media/Pixel.ttf");
 	timer.setFont(font);
@@ -25,8 +26,6 @@ void CPlayState::Init()
     sprite_shrek.setTexture(text_shrek);
     anim_shrek = Animation(sprite_shrek, 9,sf::Vector2i(250,140),500,500,0.2,0.2);
     anim_shrek.sprite.setPosition(640, 2200);
-
-	printf("CPlayState Init\n");
 }
 
 void CPlayState::Cleanup()
@@ -104,7 +103,7 @@ void CPlayState::HandleEvents(CGameEngine *game)
 	}
 }
 
-	void CPlayState::Update(CGameEngine *game)
+void CPlayState::Update(CGameEngine *game)
 {
 	if (chrono < 300 && clock.getElapsedTime().asSeconds() + chrono >= 300)
 	{
@@ -146,6 +145,12 @@ void CPlayState::HandleEvents(CGameEngine *game)
 	timer.setString(txt.str());
 
 	player->inputs();
+	if(bouclier->m_vieProjectile == bouclier->m_vieMax || bouclier->m_nombreCharge <= 0){
+		player->bouclier = false;
+	}
+	else
+		player->bouclier = true;
+
 	for (auto a : atirail)
 	{
 		if (a->m_level > 0)

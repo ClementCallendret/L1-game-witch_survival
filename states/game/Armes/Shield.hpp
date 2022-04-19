@@ -6,10 +6,6 @@
 
 class ArmeShield : public Arme
 {
-private:
-    int m_nombreCharge;
-    int m_vieMax;
-
 public:
     ArmeShield(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeShield(){};
@@ -20,6 +16,9 @@ public:
     
     void update();
     void draw(sf::RenderWindow &window);
+
+    int m_nombreCharge;
+    int m_vieMax;
 };
 
 #endif

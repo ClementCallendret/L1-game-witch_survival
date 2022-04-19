@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "gamestate.hpp"
-
 #include "game/Player.h"
 #include "game/map.h"
 #include "game/vague.hpp"
@@ -56,6 +55,7 @@ public:
 	Player* player;
 	Vague* wave;
 	Map* map;
+	ArmeShield * bouclier;
 	std::vector<Arme*> atirail;
 	sf::View* view;
 	sf::Clock clock;

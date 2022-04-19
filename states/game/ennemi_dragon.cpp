@@ -3,7 +3,7 @@
 dragon::dragon(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 1;
     PV = 10000;
-    degat = 5;
+    degat = 4;
     xp = 30;
     name = "Dragon";
     ratio = 1;

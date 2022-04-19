@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+class ArmeShield;
+
 class Player
 {
 private:
@@ -15,7 +17,7 @@ public:
 	float xp = 0, xpMax = 10;
 	int pvMax = 100, sens = -1;
 	float speed = 3.;
-	bool newlevel;
+	bool newlevel, bouclier;
 
 	Player();
 	

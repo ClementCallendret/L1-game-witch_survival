@@ -9,7 +9,7 @@ ArmeShield::ArmeShield(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur,
     m_nombreProjectile = 1;
     m_vieProjectile = 50;
     m_vieMax = 50;
-    m_nombreCharge = 1;
+    m_nombreCharge = 0;
     m_level = 0;
     m_nomArme = "Shield";
     m_cooldown = sf::seconds(10);
@@ -121,6 +121,7 @@ void ArmeShield::upgrade()
     {
     case 0:
         m_level++;
+        m_nombreCharge++;
         m_description = {"Bouclier level 2", "-10\% de cooldown"};
         break;
     case 1:

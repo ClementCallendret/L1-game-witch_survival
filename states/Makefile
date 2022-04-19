@@ -37,7 +37,7 @@ Upgrade.o : Upgrade.cpp Upgrade.hpp game/Player.h game/Armes/Arme.hpp
 upgradestate.o : upgradestate.cpp upgradestate.hpp playstate.hpp gamestate.hpp Upgrade.hpp
 	g++ -Wall upgradestate.cpp -c 
 
-Class_Player.o : game/Player.h game/Class_Player.cpp
+Class_Player.o : game/Player.h game/Class_Player.cpp game/Armes/Shield.hpp
 	g++ -Wall game/Class_Player.cpp -c
 
 class_ennemi.o : game/ennemi.h game/class_ennemi.cpp game/Player.h game/Animation.hpp

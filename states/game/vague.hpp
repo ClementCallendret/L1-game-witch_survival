@@ -1,5 +1,6 @@
 #ifndef VAGUE_HPP
 #define VAGUE_HPP
+
 #include "ennemi.h"
 #include "ennemi_chauve-souris.h"
 #include "ennemi_chevalier.h"

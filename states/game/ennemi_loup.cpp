@@ -1,9 +1,9 @@
 #include "ennemi_loup.h"
 
 loup::loup(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 2;
+    speed = 1.75;
     PV = 70;
-    degat = 2;
+    degat = 1.5;
     xp = 2;
     name = "Loup";
     ratio = 0.3;

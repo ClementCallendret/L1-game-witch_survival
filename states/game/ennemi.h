@@ -5,7 +5,6 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.hpp"
 
-
 class Ennemi  //Def de la classe Ennemi
 // Paramètre propre a chaque ennemi
 {
