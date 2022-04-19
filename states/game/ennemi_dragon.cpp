@@ -3,8 +3,8 @@
 dragon::dragon(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 1;
     PV = 10000;
-    degat = 4;
-    xp = 30;
+    degat = 3;
+    xp = 50;
     name = "Dragon";
     ratio = 1;
     if (!texture.loadFromFile("media/dragon.png"))

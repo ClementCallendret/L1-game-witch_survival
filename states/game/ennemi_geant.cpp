@@ -1,10 +1,10 @@
 #include "ennemi_geant.h"
 
 geant::geant(Player* j, sf::Vector2f loc): Ennemi(j, loc){
-    speed = 0.5;
+    speed = 0.65;
     PV = 100;
     degat = 5;
-    xp = 5;
+    xp = 15;
     name = "Geant";
     ratio = 0.4;
     if (!texture.loadFromFile("media/geant.png"))
