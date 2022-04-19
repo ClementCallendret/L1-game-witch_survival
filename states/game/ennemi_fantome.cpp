@@ -1,10 +1,17 @@
 #include "ennemi_fantome.h"
 
 fantome::fantome(Player* j, sf::Vector2f loc): Ennemi(j, loc){
+<<<<<<< HEAD
     speed = 2.1;
     PV = 55;
     degat = 2;
     xp = 5;
+=======
+    speed = 1.5;
+    PV = 25;
+    degat = 2;
+    xp = 2;
+>>>>>>> 7601d4f619a448fbff6537633a58109dc7f0ef67
     name = "Fantome";
     ratio = 0.2;
     if (!texture.loadFromFile("media/fantome.png"))

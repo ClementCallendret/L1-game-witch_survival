@@ -28,7 +28,7 @@ public:
 	int PV; //Les points de vieeeessssss
 	void draw(sf::RenderWindow &window); //Dessin de l'ennemi avec son sprite
 	void update(); //update pour le déplacement des ennemis
-    void collision(); //on check les collisions entre l'ennemi et le player
+    	void collision(); //on check les collisions entre l'ennemi et le player
 	sf::Vector2f getEnnemiPos(){ 
 		return sf::Vector2f(location.x, location.y); //on recup la position de l'ennemi
 	};

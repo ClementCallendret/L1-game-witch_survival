@@ -1,10 +1,17 @@
 #include "ennemi_loup.h"
 
 loup::loup(Player* j, sf::Vector2f loc): Ennemi(j, loc){
+<<<<<<< HEAD
     speed = 1.75;
     PV = 70;
     degat = 1.5;
     xp = 2;
+=======
+    speed = 2;
+    PV = 80;
+    degat = 10;
+    xp = 5;
+>>>>>>> 7601d4f619a448fbff6537633a58109dc7f0ef67
     name = "Loup";
     ratio = 0.3;
     if (!texture.loadFromFile("media/loup.png"))

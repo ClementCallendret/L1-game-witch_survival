@@ -2,9 +2,15 @@
 
 enervax::enervax(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.8;
+<<<<<<< HEAD
     PV = 3000;
     degat = 3;
     xp = 20;
+=======
+    PV = 500;
+    degat = 30;
+    xp = 30;
+>>>>>>> 7601d4f619a448fbff6537633a58109dc7f0ef67
     name = "Enervax";
     ratio = 0.4;
     if (!texture.loadFromFile("media/enervax.png"))

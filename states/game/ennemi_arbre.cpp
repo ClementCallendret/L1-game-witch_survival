@@ -1,5 +1,6 @@
 #include "ennemi_arbre.h"
 
+<<<<<<< HEAD
 arbre::arbre(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     speed = 0.7;
     PV = 45;
@@ -8,6 +9,16 @@ arbre::arbre(Player* j, sf::Vector2f loc): Ennemi(j, loc){
     name = "Arbre";
     ratio = 0.2;
     if (!texture.loadFromFile("media/arbre.png"))
+=======
+arbre::arbre(Player* j, sf::Vector2f loc): Ennemi(j, loc){ //paramètre utilisé pour les deplacements de l'ennemi car il suit le joueur
+    speed = 0.7; //vitesse
+    PV = 40; //point de vie
+    degat = 2; //degats
+    xp = 2; //experience donnee quand tué
+    name = "Arbre"; //nom
+    ratio = 0.2; //Pour redimensionner l'image en jeu : image en jeu = image de base * ratio
+    if (!texture.loadFromFile("media/arbre.png")) //texture de l'arbre
+>>>>>>> 7601d4f619a448fbff6537633a58109dc7f0ef67
     return;
     texture.loadFromFile("media/arbre.png"); 
     sprite.setTexture(texture); //application de la texture
