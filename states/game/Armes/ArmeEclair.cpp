@@ -1,5 +1,5 @@
 #include "ArmeEclair.hpp"
-#include "BulletEclair.hpp"
+#include "../Bullets/BulletEclair.hpp"
 #include <sstream>
 #include <random>
 

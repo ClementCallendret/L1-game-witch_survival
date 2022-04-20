@@ -1,6 +1,6 @@
 #ifndef ARME_HPP
 #define ARME_HPP
-#include "Bullet.hpp"
+#include "../Bullets/Bullet.hpp"
 #include <string>
 #include <vector>
 

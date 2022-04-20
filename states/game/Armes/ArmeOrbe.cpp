@@ -1,5 +1,5 @@
 #include "ArmeOrbe.hpp"
-#include "BulletOrbe.hpp"
+#include "../Bullets/BulletOrbe.hpp"
 #include <sstream>
 #include <cmath>
 #define _USE_MATH_DEFINES

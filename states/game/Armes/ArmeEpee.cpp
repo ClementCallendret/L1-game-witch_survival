@@ -1,5 +1,5 @@
 #include "ArmeEpee.hpp"
-#include "BulletEpee.hpp"
+#include "../Bullets/BulletEpee.hpp"
 #include <sstream>
 
 ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)

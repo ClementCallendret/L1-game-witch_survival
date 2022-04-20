@@ -1,5 +1,5 @@
 #include "ArmeFireball.hpp"
-#include "BulletFireball.hpp"
+#include "../Bullets/BulletFireball.hpp"
 #include <sstream>
 #include <random>
 

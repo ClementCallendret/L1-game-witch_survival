@@ -1,115 +1,85 @@
-mainOut : main.o vague.o map.o Animation.o gameengine.o MainMenu.o menustate.o creditstate.o playstate.o pausestate.o endstate.o Upgrade.o upgradestate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o ennemi_arbre.o ennemi_loup.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Animation.o Shield.o
-	g++ main.o vague.o map.o Animation.o gameengine.o MainMenu.o menustate.o creditstate.o playstate.o pausestate.o Upgrade.o upgradestate.o endstate.o Class_Player.o class_ennemi.o ennemi_villageois.o ennemi_chevalier.o ennemi_chauve-souris.o ennemi_geant.o ennemi_fantome.o ennemi_enervax.o ennemi_dragon.o ennemi_gargouille.o ennemi_arbre.o ennemi_loup.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o Shield.o -o mainOut -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+mainOut : main.o Vague.o Map.o Animation.o GameEngine.o MainMenu.o MenuState.o CreditState.o PlayState.o PauseState.o EndState.o Upgrade.o UpgradeState.o Player.o CEnnemi.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o ArmeShield.o
+	g++ main.o Vague.o Map.o Animation.o GameEngine.o MainMenu.o MenuState.o CreditState.o PlayState.o PauseState.o EndState.o Upgrade.o UpgradeState.o Player.o CEnnemi.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o ArmeShield.o -o mainOut -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
-main.o : main.cpp gameengine.hpp menustate.hpp
-	g++ -Wall main.cpp -c
+main.o : game/main.cpp game/States/GameEngine.hpp game/States/MenuState.hpp
+	g++ -Wall game/main.cpp -c
 
-vague.o : game/vague.hpp game/vague.cpp game/ennemi.h game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h game/ennemi_fantome.h game/ennemi_enervax.h game/ennemi_dragon.h game/ennemi_gargouille.h game/ennemi_arbre.h game/ennemi_loup.h game/ennemi_geant.h
-	g++ -Wall game/vague.cpp -c
+Vague.o : game/Vague.hpp game/Vague.cpp game/Ennemis/CEnnemi.hpp game/Ennemis/ChauveSouris.hpp game/Ennemis/Chevalier.hpp game/Ennemis/Villageoi.hpp game/Ennemis/Fantome.hpp game/Ennemis/Enervax.hpp game/Ennemis/Dragon.hpp game/Ennemis/Gargouille.hpp game/Ennemis/Arbre.hpp game/Ennemis/Loup.hpp game/Ennemis/Geant.hpp
+	g++ -Wall game/Vague.cpp -c
 
-map.o : game/map.h game/map.cpp game/Animation.hpp
-	g++ -Wall game/map.cpp -c
+Map.o : game/Map.hpp game/Map.cpp game/Animation.hpp
+	g++ -Wall game/Map.cpp -c
 
 Animation.o : game/Animation.hpp game/Animation.cpp
 	g++ -Wall game/Animation.cpp -c
 
-gameengine.o : gameengine.hpp gameengine.cpp gamestate.hpp
-	g++ -Wall gameengine.cpp -c 
+GameEngine.o : game/States/GameEngine.hpp game/States/GameEngine.cpp game/States/GameState.hpp
+	g++ -Wall game/States/GameEngine.cpp -c 
 
-MainMenu.o : MainMenu.hpp MainMenu.cpp 
-	g++ -Wall MainMenu.cpp -c
+MainMenu.o : game/MainMenu.hpp game/MainMenu.cpp 
+	g++ -Wall game/MainMenu.cpp -c
 
-menustate.o : menustate.hpp menustate.cpp gamestate.hpp MainMenu.hpp playstate.hpp creditstate.hpp
-	g++ -Wall menustate.cpp -c 
+MenuState.o : game/States/MenuState.hpp game/States/MenuState.cpp game/States/GameState.hpp game/MainMenu.hpp game/States/PlayState.hpp game/States/CreditState.hpp
+	g++ -Wall game/States/MenuState.cpp -c 
 
-creditstate.o : creditstate.hpp creditstate.cpp gamestate.hpp menustate.hpp
-	g++ -Wall creditstate.cpp -c 
+CreditState.o : game/States/CreditState.hpp game/States/CreditState.cpp game/States/GameState.hpp game/States/MenuState.hpp
+	g++ -Wall game/States/CreditState.cpp -c 
 
-playstate.o : playstate.hpp playstate.cpp gamestate.hpp game/Player.h game/map.h game/vague.hpp game/ennemi.h game/ennemi_villageois.h game/ennemi_chevalier.h game/ennemi_chauve-souris.h game/ennemi_geant.h game/ennemi_fantome.h game/ennemi_enervax.h game/ennemi_dragon.h game/ennemi_gargouille.h game/ennemi_loup.h game/ennemi_chauve-souris.h game/ennemi_chevalier.h game/ennemi_villageois.h game/ennemi_geant.h game/ennemi_fantome.h game/ennemi_enervax.h game/ennemi_dragon.h game/ennemi_gargouille.h game/ennemi_arbre.h game/ennemi_loup.h game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/Shield.hpp game/Armes/ArmeEpee.hpp game/Armes/ArmeLivre.hpp game/Armes/ArmeCrane.hpp game/Armes/ArmeBalais.hpp game/Armes/ArmeChaudron.hpp game/Armes/ArmeElixir.hpp upgradestate.hpp pausestate.hpp endstate.hpp
-	g++ -Wall playstate.cpp -c 
+PlayState.o : game/States/PlayState.hpp game/States/PlayState.cpp game/States/GameState.hpp game/Player.hpp game/Map.hpp game/Vague.hpp game/Ennemis/CEnnemi.hpp game/Ennemis/Enervax.hpp game/Ennemis/Dragon.hpp game/Armes/Arme.hpp game/Armes/ArmeFireball.hpp game/Armes/ArmeHache.hpp game/Armes/ArmeOrbe.hpp game/Armes/ArmeEclair.hpp game/Armes/ArmeShield.hpp game/Armes/ArmeEpee.hpp game/Armes/ArmeLivre.hpp game/Armes/ArmeCrane.hpp game/Armes/ArmeBalais.hpp game/Armes/ArmeChaudron.hpp game/Armes/ArmeElixir.hpp game/States/UpgradeState.hpp game/States/PauseState.hpp game/States/EndState.hpp
+	g++ -Wall game/States/PlayState.cpp -c 
 
-pausestate.o : pausestate.hpp pausestate.cpp playstate.hpp menustate.hpp gamestate.hpp
-	g++ -Wall pausestate.cpp -c
+PauseState.o : game/States/PauseState.hpp game/States/PauseState.cpp game/States/PlayState.hpp game/States/MenuState.hpp game/States/GameState.hpp
+	g++ -Wall game/States/PauseState.cpp -c
 
-endstate.o : endstate.hpp endstate.cpp menustate.hpp gamestate.hpp 
-	g++ -Wall endstate.cpp -c
+EndState.o : game/States/EndState.hpp game/States/EndState.cpp game/States/MenuState.hpp game/States/GameState.hpp
+	g++ -Wall game/States/EndState.cpp -c
 	
-Upgrade.o : Upgrade.cpp Upgrade.hpp game/Player.h game/Armes/Arme.hpp
-	g++ -Wall Upgrade.cpp -c
+Upgrade.o : game/Upgrade.cpp game/Upgrade.hpp game/Player.hpp game/Armes/Arme.hpp
+	g++ -Wall game/Upgrade.cpp -c
 
-upgradestate.o : upgradestate.cpp upgradestate.hpp playstate.hpp gamestate.hpp Upgrade.hpp
-	g++ -Wall upgradestate.cpp -c 
+UpgradeState.o : game/States/UpgradeState.cpp game/States/UpgradeState.hpp game/States/PlayState.hpp game/States/GameState.hpp game/Upgrade.hpp
+	g++ -Wall game/States/UpgradeState.cpp -c 
 
-Class_Player.o : game/Player.h game/Class_Player.cpp game/Armes/Shield.hpp
-	g++ -Wall game/Class_Player.cpp -c
+Player.o : game/Player.hpp game/Player.cpp
+	g++ -Wall game/Player.cpp -c
 
-class_ennemi.o : game/ennemi.h game/class_ennemi.cpp game/Player.h game/Animation.hpp
-	g++ -Wall game/class_ennemi.cpp -c
+CEnnemi.o : game/Ennemis/CEnnemi.hpp game/Ennemis/CEnnemi.cpp game/Player.hpp game/Animation.hpp
+	g++ -Wall game/Ennemis/CEnnemi.cpp -c
 
-ennemi_villageois.o : game/ennemi_villageois.cpp game/ennemi.h game/ennemi_villageois.h 
-	g++ -Wall game/ennemi_villageois.cpp -c
+Bullet.o : game/Bullets/Bullet.hpp game/Bullets/Bullet.cpp game/Ennemis/CEnnemi.hpp
+	g++ -Wall game/Bullets/Bullet.cpp -c
 
-ennemi_chevalier.o : game/ennemi_chevalier.cpp game/ennemi.h game/ennemi_chevalier.h
-	g++ -Wall game/ennemi_chevalier.cpp -c
+BulletFireball.o : game/Bullets/BulletFireball.hpp game/Bullets/BulletFireball.cpp game/Bullets/Bullet.hpp game/Animation.hpp
+	g++ -Wall game/Bullets/BulletFireball.cpp -c
 
-ennemi_chauve-souris.o : game/ennemi_chauve-souris.cpp game/ennemi.h game/ennemi_chauve-souris.h
-	g++ -Wall game/ennemi_chauve-souris.cpp -c
-	
-ennemi_geant.o : game/ennemi_geant.cpp game/ennemi_geant.h game/ennemi.h
-	g++ -Wall game/ennemi_geant.cpp -c
+BulletHache.o : game/Bullets/BulletHache.hpp game/Bullets/BulletHache.cpp game/Bullets/Bullet.hpp game/Player.hpp
+	g++ -Wall game/Bullets/BulletHache.cpp -c 
 
-ennemi_fantome.o : game/ennemi_fantome.cpp game/ennemi_fantome.h game/ennemi.h
-	g++ -Wall game/ennemi_fantome.cpp -c
+BulletOrbe.o : game/Bullets/BulletOrbe.hpp game/Bullets/BulletOrbe.cpp game/Bullets/Bullet.hpp game/Animation.hpp game/Player.hpp
+	g++ -Wall game/Bullets/BulletOrbe.cpp -c
 
-ennemi_enervax.o : game/ennemi_enervax.cpp game/ennemi_enervax.h game/ennemi.h
-	g++ -Wall game/ennemi_enervax.cpp -c
+BulletEclair.o : game/Bullets/BulletEclair.hpp game/Bullets/BulletEclair.cpp game/Bullets/Bullet.hpp game/Animation.hpp
+	g++ -Wall game/Bullets/BulletEclair.cpp -c
 
-ennemi_dragon.o : game/ennemi_dragon.cpp game/ennemi_dragon.h game/ennemi.h
-	g++ -Wall game/ennemi_dragon.cpp -c
+BulletEpee.o : game/Bullets/BulletEpee.hpp game/Bullets/BulletEpee.cpp game/Bullets/Bullet.hpp game/Animation.hpp game/Player.hpp
+	g++ -Wall game/Bullets/BulletEpee.cpp -c
 
-ennemi_gargouille.o : game/ennemi_gargouille.cpp game/ennemi_gargouille.h game/ennemi.h
-	g++ -Wall game/ennemi_gargouille.cpp -c
-
-ennemi_arbre.o : game/ennemi_arbre.cpp game/ennemi_gargouille.h game/ennemi.h
-	g++ -Wall game/ennemi_arbre.cpp -c
-
-ennemi_loup.o : game/ennemi_loup.cpp game/ennemi_loup.h game/ennemi.h
-	g++ -Wall game/ennemi_loup.cpp -c
-
-Bullet.o : game/Armes/Bullet.hpp game/Armes/Bullet.cpp game/ennemi.h
-	g++ -Wall game/Armes/Bullet.cpp -c
-
-BulletFireball.o : game/Armes/BulletFireball.hpp game/Armes/BulletFireball.cpp game/Armes/Bullet.hpp game/Animation.hpp
-	g++ -Wall game/Armes/BulletFireball.cpp -c
-
-BulletHache.o : game/Armes/BulletHache.hpp game/Armes/BulletHache.cpp game/Armes/Bullet.hpp game/Player.h
-	g++ -Wall game/Armes/BulletHache.cpp -c 
-
-BulletOrbe.o : game/Armes/BulletOrbe.hpp game/Armes/BulletOrbe.cpp game/Armes/Bullet.hpp game/Animation.hpp game/Player.h
-	g++ -Wall game/Armes/BulletOrbe.cpp -c
-
-BulletEclair.o : game/Armes/BulletEclair.hpp game/Armes/BulletEclair.cpp game/Armes/Bullet.hpp game/Animation.hpp
-	g++ -Wall game/Armes/BulletEclair.cpp -c
-
-BulletEpee.o : game/Armes/BulletEpee.hpp game/Armes/BulletEpee.cpp game/Armes/Bullet.hpp game/Animation.hpp game/Player.h
-	g++ -Wall game/Armes/BulletEpee.cpp -c
-
-Arme.o : game/Armes/Arme.hpp game/Armes/Arme.cpp game/Armes/Bullet.hpp
+Arme.o : game/Armes/Arme.hpp game/Armes/Arme.cpp game/Bullets/Bullet.hpp
 	g++ -Wall game/Armes/Arme.cpp -c
 
-ArmeFireball.o : game/Armes/ArmeFireball.hpp game/Armes/ArmeFireball.cpp game/Armes/Arme.hpp game/Armes/BulletFireball.hpp
+ArmeFireball.o : game/Armes/ArmeFireball.hpp game/Armes/ArmeFireball.cpp game/Armes/Arme.hpp game/Bullets/BulletFireball.hpp
 	g++ -Wall game/Armes/ArmeFireball.cpp -c
 
-ArmeHache.o : game/Armes/ArmeHache.hpp game/Armes/ArmeHache.cpp game/Armes/Arme.hpp game/Armes/BulletHache.hpp
+ArmeHache.o : game/Armes/ArmeHache.hpp game/Armes/ArmeHache.cpp game/Armes/Arme.hpp game/Bullets/BulletHache.hpp
 	g++ -Wall game/Armes/ArmeHache.cpp -c
 
-ArmeOrbe.o : game/Armes/ArmeOrbe.hpp game/Armes/ArmeOrbe.cpp game/Armes/Arme.hpp game/Armes/BulletOrbe.hpp
+ArmeOrbe.o : game/Armes/ArmeOrbe.hpp game/Armes/ArmeOrbe.cpp game/Armes/Arme.hpp game/Bullets/BulletOrbe.hpp
 	g++ -Wall game/Armes/ArmeOrbe.cpp -c
 
-ArmeEclair.o : game/Armes/ArmeEclair.hpp game/Armes/ArmeEclair.cpp game/Armes/Arme.hpp game/Armes/BulletEclair.hpp
+ArmeEclair.o : game/Armes/ArmeEclair.hpp game/Armes/ArmeEclair.cpp game/Armes/Arme.hpp game/Bullets/BulletEclair.hpp
 	g++ -Wall game/Armes/ArmeEclair.cpp -c
 
-ArmeEpee.o : game/Armes/ArmeEpee.hpp game/Armes/ArmeEpee.cpp game/Armes/Arme.hpp game/Armes/BulletEpee.hpp
+ArmeEpee.o : game/Armes/ArmeEpee.hpp game/Armes/ArmeEpee.cpp game/Armes/Arme.hpp game/Bullets/BulletEpee.hpp
 	g++ -Wall game/Armes/ArmeEpee.cpp -c
 
 ArmeLivre.o : game/Armes/ArmeLivre.hpp game/Armes/ArmeLivre.cpp game/Armes/Arme.hpp
@@ -127,5 +97,5 @@ ArmeElixir.o : game/Armes/ArmeElixir.hpp game/Armes/ArmeElixir.cpp game/Armes/Ar
 ArmeBalais.o : game/Armes/ArmeBalais.hpp game/Armes/ArmeBalais.cpp game/Armes/Arme.hpp
 	g++ -Wall game/Armes/ArmeBalais.cpp -c
 
-Shield.o : game/Armes/Shield.hpp game/Armes/Shield.cpp game/Armes/Arme.hpp
-	g++ -Wall game/Armes/Shield.cpp -c
+ArmeShield.o : game/Armes/ArmeShield.hpp game/Armes/ArmeShield.cpp game/Armes/Arme.hpp
+	g++ -Wall game/Armes/ArmeShield.cpp -c
