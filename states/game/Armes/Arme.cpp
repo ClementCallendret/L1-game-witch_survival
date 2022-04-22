@@ -1,4 +1,5 @@
 #include "Arme.hpp"
+#include "../Collision.hpp"
 
 Arme::Arme(Player *j, std::vector<Ennemi *> *en) : m_joueur(j), ennemis(en)
 {
@@ -41,7 +42,7 @@ void Arme::update()
             {
                 for (Ennemi *c : *ennemis)
                 {
-                     if (e->collision(c))
+                    if (e->collision(c))
                     {
                         e->hit(c);
                     }

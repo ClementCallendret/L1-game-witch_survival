@@ -18,4 +18,6 @@ void ArmeBalais::upgrade()
     titre << "Balais lvl " << m_level + 1;
     m_description[0] = titre.str();
     m_joueur->speed *= 1.07;
+
+    if(m_level > 5) m_levelMax = 1;
 }

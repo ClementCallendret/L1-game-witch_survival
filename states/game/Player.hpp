@@ -2,13 +2,12 @@
 #define PLAYER_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Animation.hpp"
 
 class Player
 {
 private:
 	sf::Vector2f location = sf::Vector2f(1100, 850);
-	sf::Texture texture;
-	sf::Sprite sprite;
 
 public:
     short PV = 100;
@@ -16,6 +15,11 @@ public:
 	int pvMax = 100, sens = -1;
 	float speed = 3.;
 	bool newlevel, bouclier;
+
+	sf::Texture texture;
+	sf::Sprite sprite;
+	Animation anim;
+	
 
 	Player();
 	
@@ -27,7 +31,7 @@ public:
 
 	sf::Vector2f getPlayerPos() {return location;};
 	void draw(sf::RenderWindow &window); // mettre ici si le niveau de l'arme est superieur a 1 on l'affiche et on l'update
-	void inputs();
+	void update();
 	bool levelup(){
 		return newlevel;
 	}

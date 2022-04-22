@@ -14,9 +14,8 @@ public:
         xp = 2;
         name = "chevalier";
         ratio = 1;
-        if (!texture.loadFromFile("media/chevalier.png"))
-            return;
-        texture.loadFromFile("media/chevalier.png");
+        if (!Collision::CreateTextureAndBitmask(texture, "media/chevalier.png"))
+            throw "texture not loaded (chevalier)";
         sprite.setTexture(texture);
         anim = Animation(sprite, 10, sf::Vector2i(25, 25), 52, 52, 1, 0.3);
         // nom, nb image, milieu, hauteur, largeur, ratio, vitesse

@@ -1,5 +1,6 @@
 #include "ArmeOrbe.hpp"
 #include "../Bullets/BulletOrbe.hpp"
+#include "../Collision.hpp"
 #include <sstream>
 #include <cmath>
 #define _USE_MATH_DEFINES
@@ -8,7 +9,6 @@ ArmeOrbe::ArmeOrbe(Player *joueur, std::vector<Ennemi*>* en) : Arme(joueur, en)
 {
     m_degats = 1.5;
     m_vitesseProjectile = 0.03;
-    m_tailleProjectile = 15;
     m_nombreProjectile = 1;
     m_vieProjectile = 7; // ici la vie represente la durré de vie des
     m_level = 0;
@@ -16,7 +16,9 @@ ArmeOrbe::ArmeOrbe(Player *joueur, std::vector<Ennemi*>* en) : Arme(joueur, en)
     m_cooldown = sf::seconds(5);
     m_clock = new sf::Clock;
 
-    m_texture.loadFromFile("media/blueorbe.png");
+    if(!Collision::CreateTextureAndBitmask(m_texture, "media/blueorbe.png"))
+        throw "texture not loaded (orbe)";
+        
     m_sprite = new sf::Sprite(m_texture);
     m_anim = new Animation(*m_sprite, 4, sf::Vector2i(31, 29), 64, 62, 1, 0.4);
 
@@ -36,7 +38,7 @@ void ArmeOrbe::tirer()
         for (int i = 0; i < m_nombreProjectile; i++)
         {
             float angle = i * (2 * M_PI / m_nombreProjectile);
-            Bullet *b = new BulletOrbe(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, angle, *m_anim, m_joueur);
+            Bullet *b = new BulletOrbe(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, angle, m_joueur);
             m_ensemble.push_back(b);
         }
         m_clock->restart();
@@ -65,7 +67,6 @@ void ArmeOrbe::upgrade()
         break;
     case 3:
         m_level++;
-        m_tailleProjectile *= 1.3;
         m_anim->sprite.scale(1.3, 1.3);
         m_vitesseProjectile *= 1.2;
         m_description = {"Orbe level 5", "+20\% de degats\n+1 orbe"};

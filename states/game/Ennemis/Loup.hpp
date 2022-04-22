@@ -14,9 +14,8 @@ public:
         xp = 2;
         name = "Loup";
         ratio = 0.3;
-        if (!texture.loadFromFile("media/loup.png"))
-            return;
-        texture.loadFromFile("media/loup.png");
+        if (!Collision::CreateTextureAndBitmask(texture, "media/loup.png"))
+            throw "texture not loaded (loup)";
         sprite.setTexture(texture);
         anim = Animation(sprite, 8, sf::Vector2i(80, 115), 160, 230, 0.3, 0.2);
         // nom, nb image, milieu, LARGEUR, HAUTEUR, ratio, vitesse

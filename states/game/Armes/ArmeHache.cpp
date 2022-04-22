@@ -1,5 +1,6 @@
 #include "ArmeHache.hpp"
 #include "../Bullets/BulletHache.hpp"
+#include "../Collision.hpp"
 #include <sstream>
 #include <random>
 
@@ -7,19 +8,19 @@ ArmeHache::ArmeHache(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, e
 {
     m_degats = 2;
     m_vitesseProjectile = 5;
-    m_tailleProjectile = 20;
     m_nombreProjectile = 1;
     m_vieProjectile = 1;
-    m_level = 0;
+    m_level = 3;
     m_nomArme = "Haches"; 
     m_cooldown = sf::seconds(3.5);
     m_clock = new sf::Clock;
     m_range = 250;
 
-    m_texture.loadFromFile("media/hache.png");
+    if(!Collision::CreateTextureAndBitmask(m_texture, "media/hache.png"))
+        throw "texture not loaded (hache)";
+
     m_sprite = new sf::Sprite(m_texture);
-    m_sprite->setOrigin(40, 55);
-    m_sprite->scale(0.4, 0.4);
+    m_anim = new Animation(*m_sprite, 1, sf::Vector2i(40, 55), 100, 95, 0.5, 0.2);
 
     m_icoText.loadFromFile("media/icon_hache.png");
     m_icoSprite.setTexture(m_icoText);
@@ -31,12 +32,18 @@ void ArmeHache::tirer()
 {
     if (!ennemis->empty())
     {
-        std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
         if (m_clock->getElapsedTime() >= m_cooldown)
         {
-            Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_sprite, m_joueur, m_range, ennemis->front()->getEnnemiPos());
-            m_ensemble.push_back(b);
-            m_clock->restart();
+            std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
+            auto p = ennemis->begin();
+            for (int i = 0; i < m_nombreProjectile && p!= ennemis->end(); i++)
+            {
+                Ennemi *e = *p;
+                Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, m_range, e->getEnnemiPos());
+                m_ensemble.push_back(b);
+                m_clock->restart();
+                p++;
+            }
         }
     }
 }
@@ -63,7 +70,6 @@ void ArmeHache::upgrade()
         break;
     case 3:
         m_level++;
-        m_tailleProjectile *= 1.25;
         m_sprite->scale(1.25, 1.25);
         m_nombreProjectile++;
         m_description = {"Hache level 5", "+10\% de range\n+20\% de degats"};

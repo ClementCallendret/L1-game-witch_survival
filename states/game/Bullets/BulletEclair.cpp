@@ -1,14 +1,22 @@
 #include "BulletEclair.hpp"
+#include "../Collision.hpp"
 
-BulletEclair::BulletEclair(sf::Vector2f pos, float R, float D, float S, int Life, Ennemi *C, Animation a) : 
-Bullet(pos, R, D, S, Life), cible(C), anim(a)
+BulletEclair::BulletEclair(sf::Vector2f pos, float D, float S, int Life, Ennemi *C, Animation a, float scl) : 
+Bullet(pos, D, S, Life, a), cible(C)
 {
     location = cible->getEnnemiPos();
+    anim->sprite.setPosition(location);
+
+    hitbox.setTexture(texture);
+    hitbox.setOrigin(19, 11.5);
+    hitbox.setScale(scl, scl);
+    hitbox.setPosition(location);
 }
 
 void BulletEclair::update()
 {
-    anim.update();
+    anim->update();
+    life--;
 }
 
 void BulletEclair::hit(Ennemi *enemy)
@@ -16,15 +24,11 @@ void BulletEclair::hit(Ennemi *enemy)
     enemy->PV -= degats;
 }
 
+bool BulletEclair::collision(Ennemi* enemy){
+    return Collision::PixelPerfectTest(hitbox, enemy->anim.sprite);
+}
+
 void BulletEclair::draw(sf::RenderWindow &window)
 {
-    /* sf::CircleShape hitbox(rayon);
-    hitbox.setFillColor(sf::Color(255, 0, 0, 127));
-    hitbox.setOrigin(sf::Vector2f(rayon, rayon));
-    hitbox.setPosition(location);
-    window.draw(hitbox); */
-    
-    anim.sprite.setPosition(location);
-    window.draw(anim.sprite);
-    if (anim.num_frame > anim.nbtot_frames - 1) life = 0;
+    window.draw(anim->sprite);
 }

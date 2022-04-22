@@ -1,8 +1,11 @@
 #include "Bullet.hpp"
+#include "../Collision.hpp"
+#include <stdio.h>
 
-Bullet::Bullet(sf::Vector2f pos, float R, float D, float S, int Life) : 
-location(pos), rayon(R), degats(D), speed(S), life(Life)
+Bullet::Bullet(sf::Vector2f pos, float D, float S, int Life, Animation a) : 
+location(pos), degats(D), speed(S), life(Life)
 {
+    anim = new Animation {a};
 }
 
 float Bullet::getBulLife()
@@ -12,37 +15,17 @@ float Bullet::getBulLife()
 
 bool Bullet::collision(Ennemi *enemy)
 {
-    sf::Vector2f enemyPos = enemy->getEnnemiPos();
-    sf::Vector2f enemyTaille = enemy->getEnnemiTaille();
-
-    float distX = abs(location.x - enemyPos.x - enemyTaille.x / 2);
-    float distY = abs(location.y - enemyPos.y - enemyTaille.y / 2);
-
-    if (distX > (enemyTaille.x / 2 + rayon))
-    {
-        return false;
-    }
-    if (distY > (enemyTaille.y / 2 + rayon))
-    {
-        return false;
-    }
-
-    if (distX <= (enemyTaille.x / 2))
-    {
-        return true;
-    }
-    if (distY <= (enemyTaille.y / 2))
-    {
-        return true;
-    }
-
-    float dx = distX - enemyTaille.x / 2;
-    float dy = distY - enemyTaille.y / 2;
-    return ( (dx * dx + dy * dy ) <= (rayon * rayon));
+    return Collision::PixelPerfectTest(anim->sprite, enemy->anim.sprite);
 }
 
 void Bullet::hit(Ennemi *enemy)
 {
     life -= 1;
     enemy->PV -= degats;
+}
+
+void Bullet::draw(sf::RenderWindow &window)
+{
+    anim->sprite.setPosition(location);
+    window.draw(anim->sprite);
 }

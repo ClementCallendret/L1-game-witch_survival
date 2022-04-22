@@ -6,7 +6,7 @@ ArmeChaudron::ArmeChaudron(Player *joueur, std::vector<Arme *> *i, std::vector<E
     m_nomArme = "Potion verte";
     m_icoText.loadFromFile("media/icon_cauldron.png");
     m_icoSprite.setTexture(m_icoText);
-    m_description = {"Potion verte lvl 1", "+10\% de taille pour toutes les\narmes actives"};
+    m_description = {"Potion verte lvl 1", "+5\% de taille pour toutes les\narmes actives"};
     m_level = 0;
 }
 
@@ -18,14 +18,11 @@ void ArmeChaudron::upgrade()
     m_description[0] = titre.str();
     for (Arme *a : *inventaire)
     {
-        if (a->m_level > 0 && a->m_nomArme != "Shield")
-        {
-            a->m_tailleProjectile *= 1.1;
-            if(a->m_anim)
+        if (a->m_level > 0 && a->m_nomArme != "Shield" && a->m_anim) 
             a->m_anim->sprite.scale(1.1, 1.1);
-            else if(a->m_sprite)
-            a->m_sprite->scale(1.1, 1.1);
-        }
+
+        if (a->m_nomArme == "Lightning")
+            a->m_tailleProjectile *= 1.1;
     }
     if (m_level > 5)
         m_levelMax = 1;

@@ -12,7 +12,7 @@ public:
 
     void tirer();
     void upgrade();
-    bool collision(Ennemi* ennemi);
+    bool collide(Ennemi* ennemi);
     
     void update();
     void draw(sf::RenderWindow &window);

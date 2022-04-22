@@ -2,8 +2,8 @@
 #include <cmath>
 #define _USE_MATH_DEFINES
 
-BulletHache::BulletHache(sf::Vector2f pos, float R, float D, float S, int Life, sf::Sprite sp, Player* j, float rng, sf::Vector2f ciblePos) : 
-Bullet(pos, R, D, S, Life), sprite(sp), tireur(j), range(rng)
+BulletHache::BulletHache(sf::Vector2f pos, float D, float S, int Life, Animation a, Player* j, float rng, sf::Vector2f ciblePos) : 
+Bullet(pos, D, S, Life, a), tireur(j), range(rng)
 {
     float pente;
     float Cx = ciblePos.x;
@@ -38,22 +38,11 @@ void BulletHache::update()
         if(distance >= 2*range) life = 0;
     }
 
-    sprite.rotate(20); // on fait tournoyer la hache
+    anim->sprite.rotate(20); // on fait tournoyer la hache
+    anim->update();
 }
 
 void BulletHache::hit(Ennemi *enemy)
 {
     enemy->PV -= degats;
-}
-
-void BulletHache::draw(sf::RenderWindow &window)
-{
-    /* sf::CircleShape hitbox(rayon);
-    hitbox.setFillColor(sf::Color(255, 0, 0, 127));
-    hitbox.setOrigin(sf::Vector2f(rayon, rayon));
-    hitbox.setPosition(location);
-    window.draw(hitbox); */
-
-    sprite.setPosition(location);
-    window.draw(sprite);
 }

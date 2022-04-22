@@ -1,5 +1,6 @@
 #include "ArmeFireball.hpp"
 #include "../Bullets/BulletFireball.hpp"
+#include "../Collision.hpp"
 #include <sstream>
 #include <random>
 
@@ -7,7 +8,6 @@ ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(jou
 {
     m_degats = 20;
     m_vitesseProjectile = 7;
-    m_tailleProjectile = 10;
     m_nombreProjectile = 1;
     m_vieProjectile = 1;
     m_level = 0;
@@ -15,7 +15,9 @@ ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(jou
     m_cooldown = sf::seconds(2);
     m_clock = new sf::Clock;
 
-    m_texture.loadFromFile("media/fireball2.png");
+    if(!Collision::CreateTextureAndBitmask(m_texture, "media/fireball.png"))
+        throw "texture not loaded (fireball)";
+
     m_sprite = new sf::Sprite(m_texture);
     m_anim = new Animation(*m_sprite, 6, sf::Vector2i(35, 19), 64, 39, 0.8, 0.5);
 
@@ -32,7 +34,7 @@ void ArmeFireball::tirer()
         std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
         if (m_clock->getElapsedTime() >= m_cooldown)
         {
-            Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, ennemis->front()->getEnnemiPos(), *m_anim);
+            Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, ennemis->front()->getEnnemiPos(), *m_anim);
             m_ensemble.push_back(b);
             m_clock->restart();
         }
@@ -87,7 +89,6 @@ void ArmeFireball::upgrade()
     case 7:
         m_level++;
         m_vieProjectile++;
-        m_tailleProjectile *= 1.3;
         m_anim->sprite.scale(1.3, 1.3);
         m_description = {"Boule de feu level 9", "+20\% de degats\n-5\% de cooldown"};
         break;

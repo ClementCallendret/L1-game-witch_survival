@@ -4,6 +4,8 @@
 
 class ArmeEclair : public Arme
 {
+    private :
+    float m_tailleProjectile;
 public:
     ArmeEclair(Player *joueur, std::vector<Ennemi*>* en = 0);
     ~ArmeEclair(){};

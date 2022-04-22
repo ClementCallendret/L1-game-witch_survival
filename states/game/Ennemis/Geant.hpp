@@ -14,9 +14,8 @@ public:
         xp = 15;
         name = "Geant";
         ratio = 0.4;
-        if (!texture.loadFromFile("media/geant.png"))
-            return;
-        texture.loadFromFile("media/geant.png");
+        if (!Collision::CreateTextureAndBitmask(texture, "media/geant.png"))
+            throw "texture not loaded (geant)";
         sprite.setTexture(texture);
         anim = Animation(sprite, 40, sf::Vector2i(102, 80), 160, 204, 1, 0.5);
         // nom, nb image, milieu, LARGEUR, HAUTEUR, ratio, vitesse

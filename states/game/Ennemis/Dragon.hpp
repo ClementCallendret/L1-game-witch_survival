@@ -14,9 +14,8 @@ public:
         xp = 50;
         name = "Dragon";
         ratio = 1;
-        if (!texture.loadFromFile("../../media/dragon.png"))
-            return;
-        texture.loadFromFile("../../media/dragon.png");
+        if (!Collision::CreateTextureAndBitmask(texture, "media/dragon.png"))
+            throw "texture not loaded (dragon)";
         sprite.setTexture(texture);
         anim = Animation(sprite, 11, sf::Vector2i(70, 100), 220, 220, 1, 0.2);
         taille = sf::Vector2f(180, 200);

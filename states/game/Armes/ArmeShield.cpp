@@ -1,14 +1,14 @@
 #include "ArmeShield.hpp"
+#include "../Collision.hpp"
 #include <sstream>
 
 ArmeShield::ArmeShield(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
     m_degats = 0;
     m_vitesseProjectile = 0;
-    m_tailleProjectile = 32;
     m_nombreProjectile = 1;
     m_vieProjectile = 70;
-    m_vieMax = 70;
+    m_vieMax = 60;
     m_nombreCharge = 0;
     m_level = 0;
     m_nomArme = "Shield";
@@ -56,49 +56,26 @@ void ArmeShield::update()
     {
         for (Ennemi *c : *ennemis)
         {
-            if (collision(c))
-            {
-                m_vieProjectile--;
-                if (m_nombreCharge > 0)
-                    m_nombreCharge--;
-            }
+            collide(c);
         }
     }
+
     tirer();
     m_sprite->setPosition(m_joueur->getPlayerPos());
     m_sprite->rotate(20);
 }
 
-bool ArmeShield::collision(Ennemi *enemy)
+bool ArmeShield::collide(Ennemi *enemy)
 {
-    sf::Vector2f enemyPos = enemy->getEnnemiPos();
-    sf::Vector2f enemyTaille = enemy->getEnnemiTaille();
-    sf::Vector2f location = m_joueur->getPlayerPos();
-
-    float distX = abs(location.x - enemyPos.x - enemyTaille.x / 2);
-    float distY = abs(location.y - enemyPos.y - enemyTaille.y / 2);
-
-    if (distX > (enemyTaille.x / 2 + m_tailleProjectile))
+    if (Collision::PixelPerfectTest(m_joueur->anim.sprite, enemy->anim.sprite))
     {
-        return false;
-    }
-    if (distY > (enemyTaille.y / 2 + m_tailleProjectile))
-    {
-        return false;
-    }
+        m_vieProjectile--;
+        if (m_nombreCharge > 0)
+            m_nombreCharge--;
 
-    if (distX <= (enemyTaille.x / 2))
-    {
         return true;
     }
-    if (distY <= (enemyTaille.y / 2))
-    {
-        return true;
-    }
-
-    float dx = distX - enemyTaille.x / 2;
-    float dy = distY - enemyTaille.y / 2;
-    return ((dx * dx + dy * dy) <= (m_tailleProjectile * m_tailleProjectile));
+    return false;
 }
 
 void ArmeShield::draw(sf::RenderWindow &window)
@@ -132,7 +109,7 @@ void ArmeShield::upgrade()
     case 2:
         m_level++;
         m_cooldown *= (float)0.90;
-        m_description = {"Bouclier level 4", "+1 charge\n+100\% de temps d'invincibilité"};
+        m_description = {"Bouclier level 4", "+1 charge\n+100\% de temps d'invincibilite"};
         break;
     case 3:
         m_level++;
@@ -155,7 +132,7 @@ void ArmeShield::upgrade()
     case 6:
         m_level++;
         m_cooldown *= (float)0.90;
-        m_description = {"Bouclier level 8", "+100\% de temps d'invincibilité"};
+        m_description = {"Bouclier level 8", "+100\% de temps d'invincibilite"};
         break;
     case 7:
         m_level++;
@@ -163,6 +140,7 @@ void ArmeShield::upgrade()
         m_vieMax *= 2;
         m_vieProjectile = m_vieMax;
         m_description = {"Bouclier level 9", "On va s'arreter la"};
+        m_levelMax = 1;
         break;
     default:
         m_level++;

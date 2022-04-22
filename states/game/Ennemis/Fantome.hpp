@@ -14,9 +14,8 @@ public:
         xp = 5;
         name = "Fantome";
         ratio = 0.2;
-        if (!texture.loadFromFile("media/fantome.png"))
-            return;
-        texture.loadFromFile("media/fantome.png");
+        if (!Collision::CreateTextureAndBitmask(texture, "media/fantome.png"))
+            throw "texture not loaded (fantome)";
         sprite.setTexture(texture);
         anim = Animation(sprite, 6, sf::Vector2i(95, 200), 190, 400, 0.2, 0.08);
         // nom, nb image, milieu, LARGEUR, HAUTEUR, ratio, vitesse

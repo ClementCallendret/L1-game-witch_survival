@@ -2,6 +2,7 @@
 #define ENNEMI_VILLAGEOIS
 
 #include "CEnnemi.hpp"
+#include "../Collision.hpp"
 
 class villageois : public Ennemi
 {
@@ -14,9 +15,8 @@ public:
         xp = 1;
         name = "villageois";
         ratio = 1;
-        if (!texture.loadFromFile("media/pegu.png"))
-            return;
-        texture.loadFromFile("media/pegu.png");
+        if (!Collision::CreateTextureAndBitmask(texture, "media/pegu.png"))
+            throw "texture not loaded (villageois)";
         sprite.setTexture(texture);
         anim = Animation(sprite, 1, sf::Vector2i(15, 23), 47, 31, 1, 0);
         // nom, nb image, milieu, hauteur, largeur, ratio, vitesse

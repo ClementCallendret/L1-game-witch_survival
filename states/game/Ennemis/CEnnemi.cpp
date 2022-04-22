@@ -1,4 +1,5 @@
 #include "CEnnemi.hpp"
+#include "../Collision.hpp"
 #include <cmath>
 
 // Definition global du joueur
@@ -53,31 +54,9 @@ void Ennemi::update() // Deplacement de l'ennemi -> Objectif : suivre le joueur
         location.y -= speed * sin(angle);
         anim.sprite.setScale(ratio, ratio);
     }
-    collision();
-}
-
-// Collision
-void Ennemi::collision()
-{
-    // Detection collision :
-
-    // Def côté Player
-    float playerLeftEdge = joueur->getPlayerPos().x - 10; // Pour une hitbox raisonnable a cause du chapeau, de la baguette etc..
-    float playerRightEdge = joueur->getPlayerPos().x + 10;
-    float playerTopEdge = joueur->getPlayerPos().y - 5;
-    float playerBottomEdge = joueur->getPlayerPos().y + 11;
-
-    // Def côté ennemi
-    float enemyLeftEdge = location.x - (taille.x / 2); // location.x retourne la position au milieu de l'ennemi,
-    float enemyTopEdge = location.y - (taille.y / 2);  // donc il faut soustraire la moitié de sa taille pour avoir le côté
-    float enemyRightEdge = location.x + (taille.x / 2);
-    float enemyBottomEdge = location.y + (taille.y / 2);
-
-    // Calcul incroyable pour détecter les collisions
-    if ((playerRightEdge) > enemyLeftEdge && playerLeftEdge < enemyRightEdge &&
-        playerTopEdge < enemyBottomEdge && playerBottomEdge > enemyTopEdge)
-    {
+    
+    if(Collision::PixelPerfectTest(anim.sprite, joueur->anim.sprite)){
         if (!joueur->bouclier)
-            joueur->PV -= degat; // On enlève des pv au joueur
+        joueur->PV -= degat; // On enlève des pv au joueur
     }
 }

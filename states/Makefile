@@ -1,5 +1,5 @@
-mainOut : main.o Vague.o Map.o Animation.o GameEngine.o MainMenu.o MenuState.o CreditState.o PlayState.o PauseState.o EndState.o Upgrade.o UpgradeState.o Player.o CEnnemi.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o ArmeShield.o
-	g++ main.o Vague.o Map.o Animation.o GameEngine.o MainMenu.o MenuState.o CreditState.o PlayState.o PauseState.o EndState.o Upgrade.o UpgradeState.o Player.o CEnnemi.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o ArmeShield.o -o mainOut -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+mainOut : main.o Collision.o Vague.o Map.o Animation.o GameEngine.o MainMenu.o MenuState.o CreditState.o PlayState.o PauseState.o EndState.o Upgrade.o UpgradeState.o Player.o CEnnemi.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o ArmeShield.o
+	g++ main.o Collision.o Vague.o Map.o Animation.o GameEngine.o MainMenu.o MenuState.o CreditState.o PlayState.o PauseState.o EndState.o Upgrade.o UpgradeState.o Player.o CEnnemi.o Bullet.o BulletFireball.o BulletHache.o BulletOrbe.o BulletEclair.o BulletEpee.o Arme.o ArmeFireball.o ArmeHache.o ArmeOrbe.o ArmeEclair.o ArmeEpee.o ArmeLivre.o ArmeCrane.o ArmeChaudron.o ArmeElixir.o ArmeBalais.o ArmeShield.o -o mainOut -std=c++17 -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
 main.o : game/main.cpp game/States/GameEngine.hpp game/States/MenuState.hpp
 	g++ -Wall game/main.cpp -c
@@ -40,10 +40,10 @@ Upgrade.o : game/Upgrade.cpp game/Upgrade.hpp game/Player.hpp game/Armes/Arme.hp
 UpgradeState.o : game/States/UpgradeState.cpp game/States/UpgradeState.hpp game/States/PlayState.hpp game/States/GameState.hpp game/Upgrade.hpp
 	g++ -Wall game/States/UpgradeState.cpp -c 
 
-Player.o : game/Player.hpp game/Player.cpp
+Player.o : game/Player.hpp game/Player.cpp game/Collision.hpp
 	g++ -Wall game/Player.cpp -c
 
-CEnnemi.o : game/Ennemis/CEnnemi.hpp game/Ennemis/CEnnemi.cpp game/Player.hpp game/Animation.hpp
+CEnnemi.o : game/Ennemis/CEnnemi.hpp game/Ennemis/CEnnemi.cpp game/Player.hpp game/Animation.hpp game/Collision.hpp
 	g++ -Wall game/Ennemis/CEnnemi.cpp -c
 
 Bullet.o : game/Bullets/Bullet.hpp game/Bullets/Bullet.cpp game/Ennemis/CEnnemi.hpp
@@ -99,3 +99,6 @@ ArmeBalais.o : game/Armes/ArmeBalais.hpp game/Armes/ArmeBalais.cpp game/Armes/Ar
 
 ArmeShield.o : game/Armes/ArmeShield.hpp game/Armes/ArmeShield.cpp game/Armes/Arme.hpp
 	g++ -Wall game/Armes/ArmeShield.cpp -c
+
+Collision.o : game/Collision.hpp game/Collision.cpp
+	g++ -Wall game/Collision.cpp -c

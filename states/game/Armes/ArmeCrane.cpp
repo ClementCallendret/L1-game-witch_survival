@@ -7,7 +7,7 @@ Arme(joueur, en), inventaire(i)
     m_nomArme = "Crane maudit";
     m_icoText.loadFromFile("media/icon_skull.png");
     m_icoSprite.setTexture(m_icoText);
-    m_description = {"Crane maudit lvl 1", "+10\% de degats pour toutes les\narmes actives"};
+    m_description = {"Crane maudit lvl 1", "+5\% de degats pour toutes les\narmes actives"};
     m_level = 0;
 }
 
@@ -20,7 +20,7 @@ void ArmeCrane::upgrade()
     for(Arme* a : *inventaire)
     {
         if(a->m_level > 0)
-        a->m_cooldown *= (float)0.97;
+        a->m_degats *= 1.05;
     }
-    if(m_level > 3) m_levelMax = 1;
+    if(m_level > 5) m_levelMax = 1;
 }

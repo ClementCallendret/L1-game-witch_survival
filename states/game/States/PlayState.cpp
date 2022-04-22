@@ -147,10 +147,10 @@ void CPlayState::Update(CGameEngine *game)
 
 	timer.setString(txt.str());
 
-	player->inputs();
-	if(bouclier->m_vieProjectile == bouclier->m_vieMax || bouclier->m_nombreCharge <= 0){
+	player->update();
+	
+	if(bouclier->m_vieProjectile == bouclier->m_vieMax || bouclier->m_nombreCharge <= 0)
 		player->bouclier = false;
-	}
 	else
 		player->bouclier = true;
 

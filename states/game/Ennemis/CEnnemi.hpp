@@ -8,22 +8,20 @@
 class Ennemi // Def de la classe Ennemi
 // Paramètre propre a chaque ennemi
 {
-
 protected: // Caracteristiques des ennemis
 	Player *joueur;
-	float speed, degat, xp, ratio;
-	sf::Texture texture;
-	sf::Sprite sprite;
+	float speed, xp, ratio;
+	
 	sf::Vector2f location;
 	sf::Vector2f taille;
 	std::string name;
-	Animation anim;
 
 public:
-
+	float degat;
 	int PV;
-	//
-	//
+	sf::Texture texture;
+	sf::Sprite sprite;
+	Animation anim;
 
 	Ennemi(Player *j, sf::Vector2f loc); // Paramètre que l'ennemi utilisera
 	virtual ~Ennemi()
@@ -31,9 +29,8 @@ public:
 		joueur->prendreXP(xp);
 	}
 
-	void update();     // update pour le déplacement des ennemis
-	void draw(sf::RenderWindow &window); // Dessin de l'ennemi avec son sprite
-	void collision();					 // on check les collisions entre l'ennemi et le player
+	void update();						 // update pour le déplacement des ennemis
+	void draw(sf::RenderWindow &window); // Dessin de l'ennemi avec son sprite				 // on check les collisions entre l'ennemi et le player
 
 	sf::Vector2f getEnnemiPos()
 	{

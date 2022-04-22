@@ -8,16 +8,18 @@ class BulletEclair : public Bullet
 {
 private:
     Ennemi *cible;
-    Animation anim;
+    sf::Sprite hitbox;
+    sf::Texture texture;
 
 public:
-    BulletEclair(sf::Vector2f pos, float Rayon, float Degat, float Speed, int Life, Ennemi *cible, Animation a);
+    BulletEclair(sf::Vector2f pos, float Dqaegat, float Speed, int Life, Ennemi *cible, Animation a, float r);
     ~BulletEclair(){};
 
     void hit(Ennemi *enemy);
+    bool collision(Ennemi* enemy); 
+    void draw(sf::RenderWindow &window);
 
     void update();
-    void draw(sf::RenderWindow &window);
 };
 
 #endif

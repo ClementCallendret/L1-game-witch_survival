@@ -1,23 +1,26 @@
 #include "ArmeEclair.hpp"
 #include "../Bullets/BulletEclair.hpp"
+#include "../Collision.hpp"
 #include <sstream>
 #include <random>
 
 ArmeEclair::ArmeEclair(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 1;
+    m_degats = 2;
     m_vitesseProjectile = 2.5;
-    m_tailleProjectile = 25;
+    m_tailleProjectile = 1.5;
     m_nombreProjectile = 1;
-    m_vieProjectile = 1;
+    m_vieProjectile = 12;
     m_level = 0;
     m_nomArme = "Lightning";
     m_cooldown = sf::seconds(3);
     m_clock = new sf::Clock;
 
-    m_texture.loadFromFile("media/Lightning3.png");
+    if(!Collision::CreateTextureAndBitmask(m_texture, "media/lightning.png"))
+        throw "texture not loaded (Eclaire)";
+        
     m_sprite = new sf::Sprite(m_texture);
-    m_anim = new Animation(*m_sprite, 12, sf::Vector2i(25, 150), 50, 164, 1.5, 0.5);
+    m_anim = new Animation(*m_sprite, 12, sf::Vector2i(27, 147), 50, 164, 1.5, 0.5);
 
     m_icoText.loadFromFile("media/icon_lightning.png");
     m_icoSprite.setTexture(m_icoText);
@@ -36,7 +39,7 @@ void ArmeEclair::tirer()
             for (int i = 0; i < m_nombreProjectile && p!= ennemis->end(); i++)
             {
                 Ennemi *e = *p;
-                Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, e, *m_anim);
+                Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, e, *m_anim, m_tailleProjectile);
                 m_ensemble.push_back(b);
                 m_clock->restart();
                 p++;

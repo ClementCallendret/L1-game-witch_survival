@@ -2,21 +2,21 @@
 #define ENNEMI_CHAUVES
 
 #include "CEnnemi.hpp"
+#include "../Collision.hpp"
 
 class chauveS : public Ennemi
 {
 public:
     chauveS(Player *j, sf::Vector2f loc) : Ennemi(j, loc)
     {
-        speed = 2.5;
+        speed = 2;
         PV = 15;
         degat = 1;
         xp = 2;
         name = "Chauve-souris";
         ratio = 0.4;
-        if (!texture.loadFromFile("media/chauve-souris.png"))
-            return;
-        texture.loadFromFile("media/chauve-souris.png");
+        if (!Collision::CreateTextureAndBitmask(texture, "media/chauve-souris.png"))
+            throw "texture not loaded (chauve souris)";
         sprite.setTexture(texture);
         anim = Animation(sprite, 5, sf::Vector2i(72, 70), 140, 140, 1, 0.1);
         // nom, nb image, milieu, hauteur, largeur, ratio, vitesse

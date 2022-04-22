@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.cpp": "cpp",
+        "*.hpp": "cpp",
         "new": "cpp",
         "cctype": "cpp",
         "clocale": "cpp",
@@ -50,6 +51,7 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "set": "cpp"
     }
 }

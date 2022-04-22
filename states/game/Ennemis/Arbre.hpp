@@ -14,9 +14,8 @@ public:
         xp = 2;
         name = "Arbre";
         ratio = 0.2;
-        if (!texture.loadFromFile("media/arbre.png"))
+        if (!Collision::CreateTextureAndBitmask(texture, "media/arbre.png"))
             return;
-        texture.loadFromFile("media/arbre.png");
         sprite.setTexture(texture);                                              // application de la texture
         anim = Animation(sprite, 6, sf::Vector2i(145, 140), 290, 280, 0.2, 0.2); // Animation de l'ennemi
         // nom, nb image, milieu, LARGEUR, HAUTEUR, ratio, vitesse

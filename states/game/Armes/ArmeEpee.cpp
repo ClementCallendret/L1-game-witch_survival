@@ -1,20 +1,24 @@
 #include "ArmeEpee.hpp"
 #include "../Bullets/BulletEpee.hpp"
+#include "../Collision.hpp"
 #include <sstream>
+#include <stdio.h>
 
 ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
     m_degats = 3;
     m_vitesseProjectile = 3;
-    m_tailleProjectile = 20;
     m_nombreProjectile = 1;
-    m_vieProjectile = 1;
+    m_vieProjectile = 7;
     m_level = 1;
     m_nomArme = "Epee";
     m_cooldown = sf::seconds(2);
     m_clock = new sf::Clock;
 
-    m_texture.loadFromFile("media/slashepee.png");
+    if(!Collision::CreateTextureAndBitmask(m_texture, "media/animEpee.png"))
+        throw "texture not loaded (epee)";
+
+
     m_sprite = new sf::Sprite(m_texture);
     m_sprite->setColor(sf::Color(255, 255, 255, 200));
     m_anim = new Animation(*m_sprite, 7, sf::Vector2i(90, 42), 150, 64, 1.7, 0.4);
@@ -29,11 +33,11 @@ void ArmeEpee::tirer()
 {
     if (m_clock->getElapsedTime() >= m_cooldown)
     {
-        Bullet *b = new BulletEpee(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, m_joueur->sens, distance);
+        Bullet *b = new BulletEpee(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, m_joueur->sens);
         m_ensemble.push_back(b);
         if (m_nombreProjectile > 1)
         {
-            Bullet *b2 = new BulletEpee(m_joueur->getPlayerPos(), m_tailleProjectile, m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, -(m_joueur->sens), distance);
+            Bullet *b2 = new BulletEpee(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, -(m_joueur->sens));
             m_ensemble.push_back(b2);
         }
         m_clock->restart();
@@ -58,14 +62,12 @@ void ArmeEpee::upgrade()
         m_level++;
         m_degats *= 1.2;
         m_cooldown *= (float)0.9;
-        m_description = {"Epee level 4", "+50\% de taille\nAttaque des deux cotés"};
+        m_description = {"Epee level 4", "+50\% de taille\nAttaque des deux cotes"};
         break;
     case 3:
         m_level++;
-        m_tailleProjectile *= 1.2;
         m_anim->sprite.scale(1.5, 1.15);
         m_nombreProjectile++;
-        distance = 30;
         m_description = {"Epee level 5", "+20\% de degats\n-10\% de cooldown"};
         break;
     case 4:
@@ -88,9 +90,7 @@ void ArmeEpee::upgrade()
         break;
     case 7:
         m_level++;
-        m_tailleProjectile *= 1.2;
         m_anim->sprite.scale(1.5, 1.15);
-        distance = 45;
         m_description = {"Epee level 9", "+10\% de degats"};
         break;
     default:
