@@ -18,11 +18,9 @@ void ArmeChaudron::upgrade()
     m_description[0] = titre.str();
     for (Arme *a : *inventaire)
     {
-        if (a->m_level > 0 && a->m_nomArme != "Shield" && a->m_anim) 
-            a->m_anim->sprite.scale(1.1, 1.1);
-
-        if (a->m_nomArme == "Lightning")
-            a->m_tailleProjectile *= 1.1;
+        if (a->m_level > 0){
+            a->agrandir(1.05);
+        }
     }
     if (m_level > 5)
         m_levelMax = 1;

@@ -10,10 +10,17 @@ void BulletEpee::update()
 {
     anim->update();
     location = tireur->getPlayerPos();
-    life--;
 }
 
 void BulletEpee::hit(Ennemi *enemy)
 {
     enemy->PV -= degats;
+}
+
+void BulletEpee::draw(sf::RenderWindow &window)
+{
+    anim->sprite.setPosition(location);
+    window.draw(anim->sprite);
+    if(anim->isEnd())
+        life = 0;
 }

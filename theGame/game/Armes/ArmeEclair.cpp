@@ -2,7 +2,6 @@
 #include "../Bullets/BulletEclair.hpp"
 #include "../Collision.hpp"
 #include <sstream>
-#include <random>
 
 ArmeEclair::ArmeEclair(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
@@ -34,16 +33,19 @@ void ArmeEclair::tirer()
     {
         if (m_clock->getElapsedTime() >= m_cooldown)
         {
-            std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
             auto p = ennemis->begin();
+            if(m_nombreProjectile < (int)ennemis->size()){
+                for(int i = 0; i < rand()%((int)ennemis->size() - m_nombreProjectile) ; i++)
+                    p++;
+            }
             for (int i = 0; i < m_nombreProjectile && p!= ennemis->end(); i++)
             {
                 Ennemi *e = *p;
                 Bullet *b = new BulletEclair(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, e, *m_anim, m_tailleProjectile);
                 m_ensemble.push_back(b);
-                m_clock->restart();
                 p++;
             }
+            m_clock->restart();
         }
     }
 }

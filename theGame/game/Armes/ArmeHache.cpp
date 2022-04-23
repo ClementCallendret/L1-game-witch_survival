@@ -25,7 +25,7 @@ ArmeHache::ArmeHache(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, e
     m_icoText.loadFromFile("media/icon_hache.png");
     m_icoSprite.setTexture(m_icoText);
 
-    m_description = {"Hache level 1", "Lance une hache tournoyante vers\nl'ennemi le plus proche (elle revient)"};
+    m_description = {"Hache level 1", "Lance une hache tournoyante vers\n un ennemi aleatoire (elle revient)"};
 }
 
 void ArmeHache::tirer()
@@ -34,16 +34,19 @@ void ArmeHache::tirer()
     {
         if (m_clock->getElapsedTime() >= m_cooldown)
         {
-            std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
             auto p = ennemis->begin();
+            if(m_nombreProjectile < (int)ennemis->size()){
+                for(int i = 0; i < rand()%((int)ennemis->size() - m_nombreProjectile) ; i++)
+                    p++;
+            }
             for (int i = 0; i < m_nombreProjectile && p!= ennemis->end(); i++)
             {
                 Ennemi *e = *p;
                 Bullet *b = new BulletHache(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, *m_anim, m_joueur, m_range, e->getEnnemiPos());
                 m_ensemble.push_back(b);
-                m_clock->restart();
                 p++;
             }
+            m_clock->restart();
         }
     }
 }
@@ -96,7 +99,7 @@ void ArmeHache::upgrade()
         m_level++;
         m_cooldown *= (float)0.8;
         m_nombreProjectile++;
-        m_description = {"Hache level 9", "+10\% de dégats\n"};
+        m_description = {"Hache level 9", "+10\% de degats\n"};
         break;
     default:
         m_level++;

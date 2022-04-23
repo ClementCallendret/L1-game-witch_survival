@@ -13,6 +13,7 @@ public:
 
     void tirer() {}
     void upgrade();
+    void agrandir(float n) {}
 
     virtual void update() {}
     virtual void draw(sf::RenderWindow &window) {}

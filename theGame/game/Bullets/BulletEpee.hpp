@@ -18,6 +18,7 @@ public:
     void hit(Ennemi *enemy);
 
     void update();
+    void draw(sf::RenderWindow &window);
 };
 
 #endif

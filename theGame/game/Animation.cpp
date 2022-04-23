@@ -23,3 +23,7 @@ void Animation::update()
         num_frame -= nbtot_frames;
     sprite.setTextureRect(frames[(int)num_frame]);
 }
+
+bool Animation::isEnd(){
+    return num_frame + speed >= nbtot_frames;
+}

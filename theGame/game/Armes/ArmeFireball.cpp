@@ -2,7 +2,6 @@
 #include "../Bullets/BulletFireball.hpp"
 #include "../Collision.hpp"
 #include <sstream>
-#include <random>
 
 ArmeFireball::ArmeFireball(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
@@ -31,10 +30,15 @@ void ArmeFireball::tirer()
 {
     if (!ennemis->empty())
     {
-        std::shuffle(ennemis->begin(), ennemis->end(), std::random_device());
         if (m_clock->getElapsedTime() >= m_cooldown)
         {
-            Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, ennemis->front()->getEnnemiPos(), *m_anim);
+            auto p = ennemis->begin();
+            if(m_nombreProjectile < (int)ennemis->size()){
+                for(int i = 0; i < rand()%((int)ennemis->size() - m_nombreProjectile) ; i++)
+                    p++;
+            }
+            Ennemi *e = *p;
+            Bullet *b = new BulletFireball(m_joueur->getPlayerPos(), m_degats, m_vitesseProjectile, m_vieProjectile, e->getEnnemiPos(), *m_anim);
             m_ensemble.push_back(b);
             m_clock->restart();
         }

@@ -16,7 +16,6 @@ Bullet(pos, D, S, Life, a), cible(C)
 void BulletEclair::update()
 {
     anim->update();
-    life--;
 }
 
 void BulletEclair::hit(Ennemi *enemy)
@@ -31,4 +30,6 @@ bool BulletEclair::collision(Ennemi* enemy){
 void BulletEclair::draw(sf::RenderWindow &window)
 {
     window.draw(anim->sprite);
+    if(anim->isEnd())
+        life = 0;
 }

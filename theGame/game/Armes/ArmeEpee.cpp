@@ -6,7 +6,7 @@
 
 ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 3;
+    m_degats = 2;
     m_vitesseProjectile = 3;
     m_nombreProjectile = 1;
     m_vieProjectile = 7;
@@ -21,7 +21,7 @@ ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 
     m_sprite = new sf::Sprite(m_texture);
     m_sprite->setColor(sf::Color(255, 255, 255, 200));
-    m_anim = new Animation(*m_sprite, 7, sf::Vector2i(90, 42), 150, 64, 1.7, 0.4);
+    m_anim = new Animation(*m_sprite, 6, sf::Vector2i(90, 45), 150, 64, 1.7, 0.4);
 
     m_icoText.loadFromFile("media/icon_epee.png");
     m_icoSprite.setTexture(m_icoText);

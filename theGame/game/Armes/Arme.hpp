@@ -41,7 +41,8 @@ public :
     virtual ~Arme();
 
     virtual void tirer() = 0; // purement virtuelle car chaque arme tire differement
-    virtual void upgrade() = 0;  
+    virtual void upgrade() = 0; 
+    virtual void agrandir(float n) {m_anim->sprite.scale(n, n);} 
     
     virtual void update();
     virtual void draw(sf::RenderWindow& window);

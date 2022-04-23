@@ -12,6 +12,7 @@ public:
 
     void tirer();
     void upgrade();
+    void agrandir(float n) {}
     bool collide(Ennemi* ennemi);
     
     void update();
