@@ -3,10 +3,11 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.hpp"
 
+
 class Map : public sf::Drawable, public sf::Transformable // On cree la class map du coup
 {
 private: // c'est ici qu'il y aura la map ingame
-    const int level[113*104] =   // Nos tuiles placees au bon endroit avec le bon numero definissent la carte
+    int level[113*104] =   // Nos tuiles placees au bon endroit avec le bon numero definissent la carte
     { 
         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
         3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
@@ -115,11 +116,12 @@ private: // c'est ici qu'il y aura la map ingame
     };
     sf::VertexArray m_vertices;
     sf::Texture m_tileset;
-    //bool sapasse( on va essayer de prendre la getPlayerPos());
+
 public:
     Map();
-    bool load(const std::string& tileset, sf::Vector2u tileSize, const int* tiles, int width, int height);
+    bool load(const std::string& tileset, sf::Vector2u tileSize, int* tiles, int width, int height);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif
+

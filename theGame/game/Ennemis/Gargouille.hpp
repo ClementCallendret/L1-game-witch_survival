@@ -2,6 +2,7 @@
 #define ENNEMI_GARGOUILLE
 
 #include "CEnnemi.hpp"
+#include "../Collision.hpp"
 
 class gargouille : public Ennemi
 {
@@ -11,7 +12,7 @@ public:
         speed = 1.9;
         PV = 60;
         degat = 1;
-        xp = 2;
+        xp = 8;
         name = "Gargouille";
         ratio = 0.5;
         if (!Collision::CreateTextureAndBitmask(texture, "media/gargouille.png"))

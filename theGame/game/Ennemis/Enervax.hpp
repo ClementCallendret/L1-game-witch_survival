@@ -2,6 +2,7 @@
 #define ENNEMI_ENERVAX
 
 #include "CEnnemi.hpp"
+#include "../Collision.hpp"
 
 class enervax : public Ennemi
 {

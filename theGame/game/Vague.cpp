@@ -1,5 +1,6 @@
 #include "Vague.hpp"
 #include <random>
+#include <stdio.h>
 
 Vague::Vague(Player *p, sf::View *v) : joueur(p), vue(v)
 {
@@ -44,19 +45,19 @@ void Vague::spawn(sf::Vector2f pos)
             e = new chevalier(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 4 :
+    case 4:
         e = new villageois(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 5 :
+    case 5:
         e = new loup(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 6 :
+    case 6:
         e = new fantome(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 7 :
+    case 7:
         z = rand() % 2;
         if (z)
             e = new fantome(joueur, pos);
@@ -64,11 +65,11 @@ void Vague::spawn(sf::Vector2f pos)
             e = new gargouille(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 8 :
+    case 8:
         e = new gargouille(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 9 :
+    case 9:
         z = rand() % 2;
         if (z)
             e = new fantome(joueur, pos);
@@ -76,11 +77,11 @@ void Vague::spawn(sf::Vector2f pos)
             e = new arbre(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 10 :
+    case 10:
         e = new geant(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 11 :
+    case 11:
         z = rand() % 2;
         if (z)
             e = new geant(joueur, pos);
@@ -88,24 +89,29 @@ void Vague::spawn(sf::Vector2f pos)
             e = new loup(joueur, pos);
         ensemble.push_back(e);
         break;
-    case 12 :
+    case 12:
         z = rand() % 2;
         if (z)
-            {e = new enervax(joueur, pos);
-            e->PV = 800;}
+        {
+            e = new enervax(joueur, pos);
+            e->PV = 800;
+        }
         else
-            {e = new dragon(joueur, pos);
-            e->PV = 1000;}
+        {
+            e = new dragon(joueur, pos);
+            e->PV = 1000;
+        }
         ensemble.push_back(e);
         break;
-    default :
+    default:
         break; // YOU Win
-
     }
 }
 
 void Vague::update()
 {
+    intervalle = (90 - 7.5 * level)/2;
+
     if (rand() % int(intervalle) == 0)
     {
         int x, y;

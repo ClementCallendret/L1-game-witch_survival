@@ -2,6 +2,7 @@
 #define ENNEMI_LOUP
 
 #include "CEnnemi.hpp"
+#include "../Collision.hpp"
 
 class loup : public Ennemi
 {
@@ -9,9 +10,9 @@ public:
     loup(Player *j, sf::Vector2f loc) : Ennemi(j, loc)
     {
         speed = 1.75;
-        PV = 70;
-        degat = 1.5;
-        xp = 2;
+        PV = 60;
+        degat = 1;
+        xp = 3;
         name = "Loup";
         ratio = 0.3;
         if (!Collision::CreateTextureAndBitmask(texture, "media/loup.png"))

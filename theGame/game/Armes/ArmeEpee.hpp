@@ -11,7 +11,6 @@ public:
 
     void tirer();
     void upgrade();
-    void agrandir(float n) {m_anim->sprite.scale(n, n/2);}
 };
 
 #endif

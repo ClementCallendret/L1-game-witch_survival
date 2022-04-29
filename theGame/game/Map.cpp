@@ -1,15 +1,32 @@
 #include "Map.hpp"
 #include "Animation.hpp"
 
+// 0 = herbe arrondit haut droie        0
+// 1 = herbe arrondit haut gauche       1
+// 2 - 16 = herbe                       2
+// 17 - 31 = herbe + fleur              3
+// 32 - 37 = 4 carreaux                 4
+// 38 = angle bas droite                5
+// 39 = angle bas gauche                6
+// 40 = angle haut gauche               7
+// 41 = angle haut droite               8
+// 42 - 45 = carreaux en bas            9
+// 46 - 49 = carreaux en haut           10
+// 50 - 52 = droite                     11
+// 53 - 56 = gauche                     12
+// 57 = haut droite                     13
+// 58 - 59 = bas droite                 14
+// 60 = bas gauche                      15
+// 61 = haut gauche                     16
+
 Map::Map()
 {
     // on cree la map avec le niveau precedemment defini
-
     if (!load("media/Tileset.png", sf::Vector2u(32, 32), level, 113, 104))
-        throw ("Erreur la map ne charge pas");
+        throw("Erreur la map ne charge pas");
 }
 
-bool Map::load(const std::string &tileset, sf::Vector2u tileSize, const int *tiles, int width, int height)
+bool Map::load(const std::string &tileset, sf::Vector2u tileSize, int *tiles, int width, int height)
 {
     // on charge la texture du tileset
     if (!m_tileset.loadFromFile(tileset))
@@ -20,6 +37,7 @@ bool Map::load(const std::string &tileset, sf::Vector2u tileSize, const int *til
     m_vertices.resize(width * height * 4);
 
     // on remplit le tableau de vertex, avec un quad par tuile
+
     for (int i = 0; i < width; ++i)
         for (int j = 0; j < height; ++j)
         {

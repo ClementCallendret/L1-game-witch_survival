@@ -46,7 +46,7 @@ void Player::update() // deplacement de notre joueur (Haut/Bas/Gauche/Droite) ai
         {
             location.x += speed; // Si juste fleche droite activee, on va a droite
         }
-        sprite.setScale(-1, 1); // Pour changer où regarde la perso (pas qu'il fasse du moonwalk)
+        anim.sprite.setScale(-1, 1); // Pour changer où regarde la perso (pas qu'il fasse du moonwalk)
         sens = 1;               // Pour le sens des armes
     }
 
@@ -66,7 +66,7 @@ void Player::update() // deplacement de notre joueur (Haut/Bas/Gauche/Droite) ai
         {
             location.x -= speed;
         }
-        sprite.setScale(1, 1);
+        anim.sprite.setScale(1, 1);
         sens = -1;
     }
 

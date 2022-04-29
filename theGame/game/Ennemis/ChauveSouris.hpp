@@ -10,8 +10,8 @@ public:
     chauveS(Player *j, sf::Vector2f loc) : Ennemi(j, loc)
     {
         speed = 2;
-        PV = 15;
-        degat = 1;
+        PV = 30;
+        degat = 0.5;
         xp = 2;
         name = "Chauve-souris";
         ratio = 0.4;

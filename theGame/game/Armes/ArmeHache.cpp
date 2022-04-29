@@ -6,11 +6,11 @@
 
 ArmeHache::ArmeHache(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 2;
+    m_degats = 2.5;
     m_vitesseProjectile = 5;
     m_nombreProjectile = 1;
     m_vieProjectile = 1;
-    m_level = 3;
+    m_level = 0;
     m_nomArme = "Haches"; 
     m_cooldown = sf::seconds(3.5);
     m_clock = new sf::Clock;
