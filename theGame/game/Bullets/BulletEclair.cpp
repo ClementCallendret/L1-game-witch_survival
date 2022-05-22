@@ -7,6 +7,8 @@ Bullet(pos, D, S, Life, a), cible(C)
     location = cible->getEnnemiPos();
     anim->sprite.setPosition(location);
 
+    Collision::CreateTextureAndBitmask(texture, "media/hitboxLight.png");
+
     hitbox.setTexture(texture);
     hitbox.setOrigin(19, 11.5);
     hitbox.setScale(scl, scl);

@@ -2,6 +2,7 @@
 #define ENNEMI_DRAGON
 
 #include "CEnnemi.hpp"
+#include "../Collision.hpp"
 
 class dragon : public Ennemi
 {

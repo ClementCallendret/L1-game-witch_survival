@@ -6,7 +6,7 @@
 
 ArmeHache::ArmeHache(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
 {
-    m_degats = 2;
+    m_degats = 2.5;
     m_vitesseProjectile = 5;
     m_nombreProjectile = 1;
     m_vieProjectile = 1;
