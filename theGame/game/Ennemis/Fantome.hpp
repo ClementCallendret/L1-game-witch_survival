@@ -8,8 +8,8 @@ class fantome : public Ennemi
 public:
     fantome(Player *j, sf::Vector2f loc) : Ennemi(j, loc)
     {
-        speed = 2.1;
-        PV = 55;
+        speed = 2;
+        PV = 100;
         degat = 2;
         xp = 5;
         name = "Fantome";

@@ -22,6 +22,7 @@ ArmeEpee::ArmeEpee(Player *joueur, std::vector<Ennemi *> *en) : Arme(joueur, en)
     m_sprite = new sf::Sprite(m_texture);
     m_sprite->setColor(sf::Color(255, 255, 255, 200));
     m_anim = new Animation(*m_sprite, 6, sf::Vector2i(90, 45), 150, 64, 1.7, 0.4);
+    m_anim->sprite.scale(1, 0.7);
 
     m_icoText.loadFromFile("media/icon_epee.png");
     m_icoSprite.setTexture(m_icoText);

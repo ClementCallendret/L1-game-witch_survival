@@ -9,7 +9,7 @@ public:
     chevalier(Player *j, sf::Vector2f loc) : Ennemi(j, loc)
     {
         speed = 2;
-        PV = 45;
+        PV = 50;
         degat = 1;
         xp = 2;
         name = "chevalier";

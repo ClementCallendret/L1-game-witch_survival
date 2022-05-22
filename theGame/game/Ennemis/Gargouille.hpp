@@ -13,11 +13,11 @@ public:
         degat = 1;
         xp = 2;
         name = "Gargouille";
-        ratio = 0.5;
-        if (!Collision::CreateTextureAndBitmask(texture, "media/gargouille.png"))
+        ratio = 1.5;
+        if (!Collision::CreateTextureAndBitmask(texture, "media/Flight.png"))
             throw "texture not loaded (gargouille)";
         sprite.setTexture(texture);
-        anim = Animation(sprite, 4, sf::Vector2i(50, 45), 100, 90, 0.5, 0.2);
+        anim = Animation(sprite, 8, sf::Vector2i(75, 75), 150, 150, 1.5, 0.3);
         // nom, nb image, milieu, LARGEUR, HAUTEUR, ratio, vitesse
         taille = sf::Vector2f(90, 40); // pour la hitbox
     }

@@ -1,5 +1,6 @@
 #include "Vague.hpp"
 #include <random>
+#include <stdio.h>
 
 Vague::Vague(Player *p, sf::View *v) : joueur(p), vue(v)
 {
@@ -106,7 +107,8 @@ void Vague::spawn(sf::Vector2f pos)
 
 void Vague::update()
 {
-    if (rand() % int(intervalle) == 0)
+    intervalle = 90 - 10*level;
+    if ( rand() % int(intervalle) == 0)
     {
         int x, y;
         switch (rand() % 4)

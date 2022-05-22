@@ -132,7 +132,6 @@ void CPlayState::Update(CGameEngine *game)
 	chrono += clock.getElapsedTime().asSeconds();
 	clock.restart();
 	wave->level = int(chrono / 100 + 1);
-	wave->intervalle = 100/float(chrono / 100 + 1);
 
 	int min = int(chrono) / 60;
 	int sec = int(chrono) % 60;

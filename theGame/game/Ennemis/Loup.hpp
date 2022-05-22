@@ -9,8 +9,8 @@ public:
     loup(Player *j, sf::Vector2f loc) : Ennemi(j, loc)
     {
         speed = 1.75;
-        PV = 70;
-        degat = 1.5;
+        PV = 75;
+        degat = 1;
         xp = 2;
         name = "Loup";
         ratio = 0.3;
