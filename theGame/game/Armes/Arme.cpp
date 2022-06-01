@@ -4,7 +4,9 @@
 Arme::Arme(Player *j, std::vector<Ennemi *> *en) : m_joueur(j), ennemis(en)
 {
 }
-
+/*
+aaaaaaaa
+*/
 Arme::~Arme()
 {
     // On supprime tous les ennemis, l'animation si il y en a une
