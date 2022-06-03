@@ -3,16 +3,15 @@
 #include "../Bullets/Bullet.hpp"
 #include <string>
 #include <vector>
+#include <array>
 
 class Arme
 {
 public : 
-
     // Statistiques des projectiles de l'arme
     float m_degats, m_vitesseProjectile, m_tailleProjectile;
     int m_nombreProjectile, m_vieProjectile, m_level, m_levelMax = 0;
     std::string m_nomArme;
-
     // Timer pour le cooldown
     sf::Time m_cooldown;
     sf::Clock* m_clock = 0;
@@ -32,6 +31,7 @@ public :
     sf::Texture m_icoText;
     sf::Sprite m_icoSprite;
     std::array<std::string, 2> m_description;
+    
 
     // Liste des ennemis à viser
     std::vector<Ennemi*>* ennemis;
@@ -42,7 +42,7 @@ public :
 
     virtual void tirer() = 0; // purement virtuelle car chaque arme tire differement
     virtual void upgrade() = 0; 
-    virtual void agrandir(float n) {m_anim->sprite.scale(n, n);} 
+    virtual void agrandir(float n) { m_anim->sprite.scale(n, n); };
     
     virtual void update();
     virtual void draw(sf::RenderWindow& window);
