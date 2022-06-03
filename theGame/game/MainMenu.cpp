@@ -3,6 +3,9 @@
 
 MainMenu::MainMenu()
 {
+    nbChoix = 3;
+    menuSelected = -1;
+
     if(!police.loadFromFile("media/Witch.ttf"))
     {
         return;
@@ -29,8 +32,7 @@ MainMenu::MainMenu()
     choix[2].setCharacterSize(100);
     choix[2].setPosition(400, 550);
 
-    nbChoix = 3;
-    menuSelected = -1;
+
 }
 
 void MainMenu::draw(sf::RenderWindow &window)
