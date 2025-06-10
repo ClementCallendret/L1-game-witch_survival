@@ -1,4 +1,0 @@
-build/States_States/GameEngine.o: States/GameEngine.cpp \
- States/GameEngine.hpp States/GameState.hpp
-States/GameEngine.hpp:
-States/GameState.hpp:

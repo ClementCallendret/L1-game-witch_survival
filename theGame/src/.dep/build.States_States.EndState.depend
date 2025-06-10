@@ -1,8 +1,0 @@
-build/States_States/EndState.o: States/EndState.cpp States/EndState.hpp \
- States/GameState.hpp States/GameEngine.hpp States/MenuState.hpp \
- States/MainMenu.hpp
-States/EndState.hpp:
-States/GameState.hpp:
-States/GameEngine.hpp:
-States/MenuState.hpp:
-States/MainMenu.hpp:

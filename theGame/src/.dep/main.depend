@@ -1,7 +1,0 @@
-build/main.o: main.cpp States/GameEngine.hpp States/MenuState.hpp \
- States/GameState.hpp States/GameEngine.hpp States/MainMenu.hpp
-States/GameEngine.hpp:
-States/MenuState.hpp:
-States/GameState.hpp:
-States/GameEngine.hpp:
-States/MainMenu.hpp:

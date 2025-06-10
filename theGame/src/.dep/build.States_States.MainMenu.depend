@@ -1,2 +1,0 @@
-build/States_States/MainMenu.o: States/MainMenu.cpp States/MainMenu.hpp
-States/MainMenu.hpp:

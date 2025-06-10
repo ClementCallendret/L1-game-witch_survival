@@ -3,9 +3,9 @@ CXX := g++
 CXXFLAGS := -std=c++17 -O3 -Wall
 LDFLAGS := -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
-BUILD_DIR := build
-BIN_DIR := bin
-DEP_DIR := .dep
+BUILD_DIR := ../build
+BIN_DIR := ../bin
+DEP_DIR := ../.dep
 
 PROG := $(BIN_DIR)/witch-survival
 MODULES := Core States Bullets Armes Ennemis
@@ -36,7 +36,7 @@ define add_module =
   $(eval cur_src := $(foreach dir, $($(1)_DIRS), $(wildcard $(dir)/*.cpp)))
   $(eval $(1)_OBJS := $(patsubst %.cpp,$(BUILD_DIR)/$(1)_%.o,$(cur_src)))
   $(BUILD_DIR)/$(1)_%.o: %.cpp
-	@echo "Compilation du fichier '$$<'"
+	@echo "Compilation du fichier '$$<' en '$$@'"
 	$(MSQ)$(CXX) $(CXXFLAGS) $($(1)_INCLUDES) -MT $$@ -MMD -MP -MF $(DEP_DIR)/$$(subst /,.,$$(@:.o=.depend)) -c -o $$@ $$<
   OBJS += $($(1)_OBJS)
   REQUIRED_DIRS += $$(addprefix $(BUILD_DIR)/$(1)_,$($(1)_DIRS))
@@ -58,16 +58,16 @@ all: $(REQUIRED_DIRS)
 endif
 
 $(PROG): $(OBJS)
-	@echo "Génération du programme binaire à partir de $(OBJS)"
+	@echo "Génération du programme '$@' à partir des fichiers objets"
 	$(MSQ)$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(MAIN): main.cpp
-	@echo "Compilation du fichier $<"
+	@echo "Compilation du fichier '$<' en '$@'"
 	$(MSQ)$(CXX) $(CXXFLAGS) -MT $@ -MMD -MP -MF $(DEP_DIR)/$(@:$(BUILD_DIR)%.o=%.depend) -c -o $@ $< $(MAIN_INCLUDES)
 
 # Répertoire build / bin / .dep
 $(REQUIRED_DIRS):
-	@echo "Création du répertoire $@"
+	@echo "Création du répertoire '$@'"
 	$(MSQ)mkdir -p "$@"
 
 # Nettoyage
