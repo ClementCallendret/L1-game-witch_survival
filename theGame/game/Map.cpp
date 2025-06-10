@@ -1,82 +1,10 @@
 #include "Map.hpp"
 #include "Animation.hpp"
 
-// 0 = herbe arrondit haut droie        0
-// 1 = herbe arrondit haut gauche       1
-// 2 - 16 = herbe                       2
-// 17 - 31 = herbe + fleur              3
-// 32 - 37 = 4 carreaux                 4
-// 38 = angle bas droite                5
-// 39 = angle bas gauche                6
-// 40 = angle haut gauche               7
-// 41 = angle haut droite               8
-// 42 - 45 = carreaux en bas            9
-// 46 - 49 = carreaux en haut           10
-// 50 - 52 = droite                     11
-// 53 - 56 = gauche                     12
-// 57 = haut droite                     13
-// 58 - 59 = bas droite                 14
-// 60 = bas gauche                      15
-// 61 = haut gauche                     16
-
 Map::Map()
 {
     // on cree la map avec le niveau precedemment defini
-    for (int i = 0; i < 113*104; i++)
-    {
-        switch (level[i])
-        {
-        case 2:
-            level[i] = 2 + rand() % (16 - 2 + 1);
-            break;
-        case 3:
-            level[i] = 17 + rand() % (31 - 17 + 1);
-            break;
-        case 4:
-            level[i] = 32 + rand() % (37 - 32 + 1);
-            break;
-        case 5:
-            level[i] = 38;
-            break;
-        case 6:
-            level[i] = 39;
-            break;
-        case 7:
-            level[i] = 40;
-            break;
-        case 8:
-            level[i] = 41;
-            break;
-        case 9:
-            level[i] = 42 + rand() % (45 - 42 + 1);
-            break;
-        case 10:
-            level[i] = 46 + rand() % (49 - 46 + 1);
-            break;
-        case 11:
-            level[i] = 50 + rand() % (52 - 50 + 1);
-            break;
-        case 12:
-            level[i] = 53 + rand() % (56 - 53 + 1);
-            break;
-        case 13:
-            level[i] = 57;
-            break;
-        case 14:
-            level[i] = 58 + rand() % 2;
-            break;
-        case 15:
-            level[i] = 60;
-            break;
-        case 16:
-            level[i] = 61;
-            break;
-        default:
-            break;
-        }
-    }
-
-    if (!load("media/newmap.png", sf::Vector2u(32, 32), level, 113, 104))
+    if (!load("media/Tileset.png", sf::Vector2u(32, 32), level, 113, 104))
         throw("Erreur la map ne charge pas");
 }
 
