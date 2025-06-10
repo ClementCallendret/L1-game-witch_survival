@@ -10,11 +10,7 @@ public:
     fantome(Player *j, sf::Vector2f loc) : Ennemi(j, loc)
     {
         speed = 2;
-<<<<<<< HEAD
         PV = 100;
-=======
-        PV = 80;
->>>>>>> c21e5f28f9792c8e5b70902bd1b5f8b7a9b1e6da
         degat = 2;
         xp = 7.5;
         name = "Fantome";
