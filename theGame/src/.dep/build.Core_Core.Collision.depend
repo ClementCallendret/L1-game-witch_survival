@@ -1,0 +1,2 @@
+build/Core_Core/Collision.o: Core/Collision.cpp Core/Collision.hpp
+Core/Collision.hpp:

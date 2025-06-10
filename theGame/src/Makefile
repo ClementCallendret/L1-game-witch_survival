@@ -1,51 +1,83 @@
+MSQ = @
 CXX := g++
 CXXFLAGS := -std=c++17 -O3 -Wall
 LDFLAGS := -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
-# Directories
 BUILD_DIR := build
 BIN_DIR := bin
-MODULES := Core Armes Ennemis States Bullets
+DEP_DIR := .dep
 
-# Object files
-MAIN := main.cpp
+PROG := $(BIN_DIR)/witch-survival
+MODULES := Core States Bullets Armes Ennemis
 
-MAIN_OBJ := $(BUILD_DIR)/main.o
-MODULE_OBJS := $(foreach module,$(MODULES),$(shell $(MAKE) -s -C $(module) objs))
-#SUBIDRS := $(addprefix, $(BUILD_DIR)/,$(foreach module,$(MODULES),$(shell $(MAKE) -s -C $(module) subdirs)))
-SUBDIRS := build/Armes_Variants build/Ennemis_Variants build/Bullets_Variants
-OBJS := $(MAIN_OBJ) $(MODULE_OBJS)
+Core_DIRS := Core
+Core_INCLUDES := -ICore
 
-TARGET := $(BIN_DIR)/witch-survival
+States_DIRS := States
+States_INCLUDES := -IStates -IEnnemis -IEnnemis/Variants -IBullets  -ICore -IArmes -IArmes/Variants
 
-.PHONY: all clean $(MODULES)
+Bullets_DIRS := Bullets Bullets/Variants
+Bullets_INCLUDES := -IBullets -ICore -IBullets/Variants -IEnnemis
 
-all: $(BIN_DIR) $(BUILD_DIR) $(SUBDIRS) $(TARGET)
+Armes_DIRS := Armes Armes/Variants
+Armes_INCLUDES := -IArmes -IArmes/Variants -IEnnemis -IBullets -IArmes -ICore
 
-# Link the final program and everything
-$(TARGET): $(OBJS) 
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+Ennemis_DIRS := Ennemis Ennemis/Variants
+Ennemis_INCLUDES := -IEnnemis -ICore -IEnnemis/Variants
 
-# Build the program object file
-$(MAIN_OBJ): $(MAIN)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+MAIN := $(BUILD_DIR)/main.o
+MAIN_INCLUDES := -IStates
 
-# Build a module obj file assuming pattern Module_Component.o
-$(MODULE_OBJS):
-	@mod=$(notdir $(word 1,$(subst _, ,$*))); \
-	echo "building obj $@ inside $$mod"; \
-	$(MAKE) -C $$mod $@
+OBJS := $(MAIN)
 
-# Create bin / build dirs if necessary
-$(BIN_DIR) $(BUILD_DIR) $(SUBDIRS):
-	echo "Creating output directory $@"; \
-	mkdir -p $@
+REQUIRED_DIRS := $(DEP_DIR) $(BUILD_DIR) $(BIN_DIR)
 
-# Build modules
-$(MODULES):
-	echo "Building module $@"; \
-	$(MAKE) -C $@
+define add_module =
+  $(eval cur_src := $(foreach dir, $($(1)_DIRS), $(wildcard $(dir)/*.cpp)))
+  $(eval $(1)_OBJS := $(patsubst %.cpp,$(BUILD_DIR)/$(1)_%.o,$(cur_src)))
+  $(BUILD_DIR)/$(1)_%.o: %.cpp
+	@echo "Compilation du fichier '$$<'"
+	$(MSQ)$(CXX) $(CXXFLAGS) $($(1)_INCLUDES) -MT $$@ -MMD -MP -MF $(DEP_DIR)/$$(subst /,.,$$(@:.o=.depend)) -c -o $$@ $$<
+  OBJS += $($(1)_OBJS)
+  REQUIRED_DIRS += $$(addprefix $(BUILD_DIR)/$(1)_,$($(1)_DIRS))
+endef
 
+$(foreach module, $(MODULES),$(eval $(call add_module,$(module))))
+
+
+# Cibles factices
+.PHONY: all clean
+
+MISSING_DIRS := $(filter-out $(wildcard $(REQUIRED_DIRS)), $(REQUIRED_DIRS))
+ifeq ($(MISSING_DIRS),)
+all: $(PROG)
+include $(wildcard $(DEP_DIR)/*)
+else
+all: $(REQUIRED_DIRS)
+	$(MAKE)
+endif
+
+$(PROG): $(OBJS)
+	@echo "Génération du programme binaire à partir de $(OBJS)"
+	$(MSQ)$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+$(MAIN): main.cpp
+	@echo "Compilation du fichier $<"
+	$(MSQ)$(CXX) $(CXXFLAGS) -MT $@ -MMD -MP -MF $(DEP_DIR)/$(@:$(BUILD_DIR)%.o=%.depend) -c -o $@ $< $(MAIN_INCLUDES)
+
+# Répertoire build / bin / .dep
+$(REQUIRED_DIRS):
+	@echo "Création du répertoire $@"
+	$(MSQ)mkdir -p "$@"
+
+# Nettoyage
 clean:
-	@rm -rf $(BUILD_DIR) $(BIN_DIR)
-	@for module in $(MODULES); do $(MAKE) -C $$module clean; done
+	@echo "Suppression du répertoire contenant les dépendances ($(DEP_DIR))"
+	$(MSQ)rm -rf $(DEP_DIR)
+	@echo "Suppression du répertoire contenant les fichers objets ($(BUILD_DIR))"
+	$(MSQ)rm -rf $(BUILD_DIR)
+	@echo "Suppression du répertoire contenant les programmes ($(BIN_DIR))"
+	$(MSQ)rm -rf $(BIN_DIR)
+	@echo "Suppression des fichiers de backup"
+	$(MSQ)rm -f *~
+	@echo

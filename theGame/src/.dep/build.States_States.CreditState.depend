@@ -1,0 +1,8 @@
+build/States_States/CreditState.o: States/CreditState.cpp \
+ States/CreditState.hpp States/GameState.hpp States/GameEngine.hpp \
+ States/MenuState.hpp States/MainMenu.hpp
+States/CreditState.hpp:
+States/GameState.hpp:
+States/GameEngine.hpp:
+States/MenuState.hpp:
+States/MainMenu.hpp:

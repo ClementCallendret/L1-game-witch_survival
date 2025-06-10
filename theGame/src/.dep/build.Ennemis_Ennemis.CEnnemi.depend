@@ -1,0 +1,7 @@
+build/Ennemis_Ennemis/CEnnemi.o: Ennemis/CEnnemi.cpp Ennemis/CEnnemi.hpp \
+ Core/Player.hpp Core/Animation.hpp Core/Animation.hpp Core/Collision.hpp
+Ennemis/CEnnemi.hpp:
+Core/Player.hpp:
+Core/Animation.hpp:
+Core/Animation.hpp:
+Core/Collision.hpp:

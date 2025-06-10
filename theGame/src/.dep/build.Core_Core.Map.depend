@@ -1,0 +1,3 @@
+build/Core_Core/Map.o: Core/Map.cpp Core/Map.hpp Core/Animation.hpp
+Core/Map.hpp:
+Core/Animation.hpp:

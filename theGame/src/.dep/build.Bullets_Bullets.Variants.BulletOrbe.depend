@@ -1,0 +1,10 @@
+build/Bullets_Bullets/Variants/BulletOrbe.o: \
+ Bullets/Variants/BulletOrbe.cpp Bullets/Variants/BulletOrbe.hpp \
+ Bullets/Bullet.hpp Ennemis/CEnnemi.hpp Core/Player.hpp \
+ Core/Animation.hpp Core/Animation.hpp
+Bullets/Variants/BulletOrbe.hpp:
+Bullets/Bullet.hpp:
+Ennemis/CEnnemi.hpp:
+Core/Player.hpp:
+Core/Animation.hpp:
+Core/Animation.hpp:

@@ -1,0 +1,11 @@
+build/Armes_Armes/Variants/ArmeBalais.o: Armes/Variants/ArmeBalais.cpp \
+ Armes/Variants/ArmeBalais.hpp Armes/Arme.hpp Bullets/Bullet.hpp \
+ Ennemis/CEnnemi.hpp Core/Player.hpp Core/Animation.hpp \
+ Core/Animation.hpp
+Armes/Variants/ArmeBalais.hpp:
+Armes/Arme.hpp:
+Bullets/Bullet.hpp:
+Ennemis/CEnnemi.hpp:
+Core/Player.hpp:
+Core/Animation.hpp:
+Core/Animation.hpp:

@@ -1,5 +1,5 @@
-#include "States/GameEngine.hpp"
-#include "States/MenuState.hpp"
+#include "GameEngine.hpp"
+#include "MenuState.hpp"
 
 int main ( int argc, char *argv[] )
 {

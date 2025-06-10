@@ -1,0 +1,13 @@
+build/Armes_Armes/Variants/ArmeOrbe.o: Armes/Variants/ArmeOrbe.cpp \
+ Armes/Variants/ArmeOrbe.hpp Armes/Arme.hpp Bullets/Bullet.hpp \
+ Ennemis/CEnnemi.hpp Core/Player.hpp Core/Animation.hpp \
+ Core/Animation.hpp Bullets/Variants/BulletOrbe.hpp Core/Collision.hpp
+Armes/Variants/ArmeOrbe.hpp:
+Armes/Arme.hpp:
+Bullets/Bullet.hpp:
+Ennemis/CEnnemi.hpp:
+Core/Player.hpp:
+Core/Animation.hpp:
+Core/Animation.hpp:
+Bullets/Variants/BulletOrbe.hpp:
+Core/Collision.hpp:

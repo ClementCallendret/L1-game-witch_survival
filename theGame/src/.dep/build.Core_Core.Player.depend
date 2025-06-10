@@ -1,0 +1,5 @@
+build/Core_Core/Player.o: Core/Player.cpp Core/Player.hpp \
+ Core/Animation.hpp Core/Collision.hpp
+Core/Player.hpp:
+Core/Animation.hpp:
+Core/Collision.hpp:
