@@ -6,7 +6,7 @@ Dif, Clément Callendret et Elio Torquet.<br/>
 familiariser avec le développement d’un projet en équipe et la rédaction de
 rapports. Ce projet nous offre l’occasion de mobiliser les connaissance ac-
 quises au premier semestre, ainsi que d’en acquérir de nouvelles.<br/>
-  Le développement du jeu se déroulera sur 11 semaines : du 31 janvier au
-15 avril. Les membres de l’équipe se réuniront régulièrement afin de pouvoir
+  Le développement du jeu se déroulera sur 11 semaines : du 31 janvier 2022 au
+15 avril 2022. Les membres de l’équipe se réuniront régulièrement afin de pouvoir
 faire le point sur l’avancement de chacun, ajuster le planning ou affecter de
 nouveaux objectifs si nécessaire.
